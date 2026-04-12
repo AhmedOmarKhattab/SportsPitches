@@ -3,16 +3,16 @@
   "WorkspaceRootPath": "D:\\projects\\C# projects\\Core Projects\\Apis\\New folder (9)\\FiveStudium\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{F6633A8C-1BF2-4FD0-9E49-9295CD4DC82C}|OnlineShop\\OnlineShop.csproj|d:\\projects\\c# projects\\core projects\\apis\\new folder (9)\\fivestudium\\onlineshop\\views\\order\\checkout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{F6633A8C-1BF2-4FD0-9E49-9295CD4DC82C}|OnlineShop\\OnlineShop.csproj|solutionrelative:onlineshop\\views\\order\\checkout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+      "AbsoluteMoniker": "D:0:0:{F6633A8C-1BF2-4FD0-9E49-9295CD4DC82C}|OnlineShop\\OnlineShop.csproj|d:\\projects\\c# projects\\core projects\\apis\\new folder (9)\\fivestudium\\onlineshop\\views\\order\\pay.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{F6633A8C-1BF2-4FD0-9E49-9295CD4DC82C}|OnlineShop\\OnlineShop.csproj|solutionrelative:onlineshop\\views\\order\\pay.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{F6633A8C-1BF2-4FD0-9E49-9295CD4DC82C}|OnlineShop\\OnlineShop.csproj|d:\\projects\\c# projects\\core projects\\apis\\new folder (9)\\fivestudium\\onlineshop\\controllers\\ordercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{F6633A8C-1BF2-4FD0-9E49-9295CD4DC82C}|OnlineShop\\OnlineShop.csproj|solutionrelative:onlineshop\\controllers\\ordercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{F6633A8C-1BF2-4FD0-9E49-9295CD4DC82C}|OnlineShop\\OnlineShop.csproj|d:\\projects\\c# projects\\core projects\\apis\\new folder (9)\\fivestudium\\onlineshop\\views\\order\\pay.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{F6633A8C-1BF2-4FD0-9E49-9295CD4DC82C}|OnlineShop\\OnlineShop.csproj|solutionrelative:onlineshop\\views\\order\\pay.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+      "AbsoluteMoniker": "D:0:0:{F6633A8C-1BF2-4FD0-9E49-9295CD4DC82C}|OnlineShop\\OnlineShop.csproj|d:\\projects\\c# projects\\core projects\\apis\\new folder (9)\\fivestudium\\onlineshop\\views\\order\\checkout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{F6633A8C-1BF2-4FD0-9E49-9295CD4DC82C}|OnlineShop\\OnlineShop.csproj|solutionrelative:onlineshop\\views\\order\\checkout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{F6633A8C-1BF2-4FD0-9E49-9295CD4DC82C}|OnlineShop\\OnlineShop.csproj|d:\\projects\\c# projects\\core projects\\apis\\new folder (9)\\fivestudium\\onlineshop\\models\\order.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -218,7 +218,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 7,
+          "SelectedChildIndex": 2,
           "Children": [
             {
               "$type": "Document",
@@ -235,28 +235,41 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
-              "Title": "DataSeeding.cs",
-              "DocumentMoniker": "D:\\projects\\C# projects\\Core Projects\\Apis\\New folder (9)\\FiveStudium\\OnlineShop\\Extensions\\DataSeeding.cs",
-              "RelativeDocumentMoniker": "OnlineShop\\Extensions\\DataSeeding.cs",
-              "ToolTip": "D:\\projects\\C# projects\\Core Projects\\Apis\\New folder (9)\\FiveStudium\\OnlineShop\\Extensions\\DataSeeding.cs",
-              "RelativeToolTip": "OnlineShop\\Extensions\\DataSeeding.cs",
-              "ViewState": "AgIAABgAAAAAAAAAAAAWwDkAAAAvAAAAAAAAAA==",
+              "DocumentIndex": 4,
+              "Title": "HomeController.cs",
+              "DocumentMoniker": "D:\\projects\\C# projects\\Core Projects\\Apis\\New folder (9)\\FiveStudium\\OnlineShop\\Controllers\\HomeController.cs",
+              "RelativeDocumentMoniker": "OnlineShop\\Controllers\\HomeController.cs",
+              "ToolTip": "D:\\projects\\C# projects\\Core Projects\\Apis\\New folder (9)\\FiveStudium\\OnlineShop\\Controllers\\HomeController.cs",
+              "RelativeToolTip": "OnlineShop\\Controllers\\HomeController.cs",
+              "ViewState": "AgIAAGYAAAAAAAAAAAAlwDMAAAAQAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-03T20:37:24.598Z",
+              "WhenOpened": "2026-04-11T15:24:30.348Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "ProductTypeController.cs",
-              "DocumentMoniker": "D:\\projects\\C# projects\\Core Projects\\Apis\\New folder (9)\\FiveStudium\\OnlineShop\\Controllers\\ProductTypeController.cs",
-              "RelativeDocumentMoniker": "OnlineShop\\Controllers\\ProductTypeController.cs",
-              "ToolTip": "D:\\projects\\C# projects\\Core Projects\\Apis\\New folder (9)\\FiveStudium\\OnlineShop\\Controllers\\ProductTypeController.cs",
-              "RelativeToolTip": "OnlineShop\\Controllers\\ProductTypeController.cs",
-              "ViewState": "AgIAAAgAAAAAAAAAAAAkwBEAAAAsAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-11T15:27:30.924Z",
+              "DocumentIndex": 0,
+              "Title": "Pay.cshtml",
+              "DocumentMoniker": "D:\\projects\\C# projects\\Core Projects\\Apis\\New folder (9)\\FiveStudium\\OnlineShop\\Views\\Order\\Pay.cshtml",
+              "RelativeDocumentMoniker": "OnlineShop\\Views\\Order\\Pay.cshtml",
+              "ToolTip": "D:\\projects\\C# projects\\Core Projects\\Apis\\New folder (9)\\FiveStudium\\OnlineShop\\Views\\Order\\Pay.cshtml",
+              "RelativeToolTip": "OnlineShop\\Views\\Order\\Pay.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAIAAAASAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-04-12T17:20:28.257Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Checkout.cshtml",
+              "DocumentMoniker": "D:\\projects\\C# projects\\Core Projects\\Apis\\New folder (9)\\FiveStudium\\OnlineShop\\Views\\Order\\Checkout.cshtml",
+              "RelativeDocumentMoniker": "OnlineShop\\Views\\Order\\Checkout.cshtml",
+              "ToolTip": "D:\\projects\\C# projects\\Core Projects\\Apis\\New folder (9)\\FiveStudium\\OnlineShop\\Views\\Order\\Checkout.cshtml",
+              "RelativeToolTip": "OnlineShop\\Views\\Order\\Checkout.cshtml",
+              "ViewState": "AgIAABgDAAAAAAAAAAAmwFMDAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-04-04T17:10:34.901Z",
               "EditorCaption": ""
             },
             {
@@ -265,9 +278,9 @@
               "Title": "OrderController.cs",
               "DocumentMoniker": "D:\\projects\\C# projects\\Core Projects\\Apis\\New folder (9)\\FiveStudium\\OnlineShop\\Controllers\\OrderController.cs",
               "RelativeDocumentMoniker": "OnlineShop\\Controllers\\OrderController.cs",
-              "ToolTip": "D:\\projects\\C# projects\\Core Projects\\Apis\\New folder (9)\\FiveStudium\\OnlineShop\\Controllers\\OrderController.cs*",
-              "RelativeToolTip": "OnlineShop\\Controllers\\OrderController.cs*",
-              "ViewState": "AgIAACsAAAAAAAAAAIA2wDsAAAAAAAAAAAAAAA==",
+              "ToolTip": "D:\\projects\\C# projects\\Core Projects\\Apis\\New folder (9)\\FiveStudium\\OnlineShop\\Controllers\\OrderController.cs",
+              "RelativeToolTip": "OnlineShop\\Controllers\\OrderController.cs",
+              "ViewState": "AgIAACAAAAAAAAAAAIA7wCgAAAAIAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-04-11T15:22:43.065Z",
               "EditorCaption": ""
@@ -287,41 +300,28 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "HomeController.cs",
-              "DocumentMoniker": "D:\\projects\\C# projects\\Core Projects\\Apis\\New folder (9)\\FiveStudium\\OnlineShop\\Controllers\\HomeController.cs",
-              "RelativeDocumentMoniker": "OnlineShop\\Controllers\\HomeController.cs",
-              "ToolTip": "D:\\projects\\C# projects\\Core Projects\\Apis\\New folder (9)\\FiveStudium\\OnlineShop\\Controllers\\HomeController.cs",
-              "RelativeToolTip": "OnlineShop\\Controllers\\HomeController.cs",
-              "ViewState": "AgIAAGYAAAAAAAAAAAAlwDMAAAAQAAAAAAAAAA==",
+              "DocumentIndex": 6,
+              "Title": "ProductTypeController.cs",
+              "DocumentMoniker": "D:\\projects\\C# projects\\Core Projects\\Apis\\New folder (9)\\FiveStudium\\OnlineShop\\Controllers\\ProductTypeController.cs",
+              "RelativeDocumentMoniker": "OnlineShop\\Controllers\\ProductTypeController.cs",
+              "ToolTip": "D:\\projects\\C# projects\\Core Projects\\Apis\\New folder (9)\\FiveStudium\\OnlineShop\\Controllers\\ProductTypeController.cs",
+              "RelativeToolTip": "OnlineShop\\Controllers\\ProductTypeController.cs",
+              "ViewState": "AgIAAAgAAAAAAAAAAAAkwBEAAAAsAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-11T15:24:30.348Z",
+              "WhenOpened": "2026-04-11T15:27:30.924Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "Pay.cshtml",
-              "DocumentMoniker": "D:\\projects\\C# projects\\Core Projects\\Apis\\New folder (9)\\FiveStudium\\OnlineShop\\Views\\Order\\Pay.cshtml",
-              "RelativeDocumentMoniker": "OnlineShop\\Views\\Order\\Pay.cshtml",
-              "ToolTip": "D:\\projects\\C# projects\\Core Projects\\Apis\\New folder (9)\\FiveStudium\\OnlineShop\\Views\\Order\\Pay.cshtml",
-              "RelativeToolTip": "OnlineShop\\Views\\Order\\Pay.cshtml",
-              "ViewState": "AgIAACsAAAAAAAAAAAAmwEAAAAA0AAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2026-04-12T17:20:28.257Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "Checkout.cshtml",
-              "DocumentMoniker": "D:\\projects\\C# projects\\Core Projects\\Apis\\New folder (9)\\FiveStudium\\OnlineShop\\Views\\Order\\Checkout.cshtml",
-              "RelativeDocumentMoniker": "OnlineShop\\Views\\Order\\Checkout.cshtml",
-              "ToolTip": "D:\\projects\\C# projects\\Core Projects\\Apis\\New folder (9)\\FiveStudium\\OnlineShop\\Views\\Order\\Checkout.cshtml*",
-              "RelativeToolTip": "OnlineShop\\Views\\Order\\Checkout.cshtml*",
-              "ViewState": "AgIAABgDAAAAAAAAAAAmwFMDAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2026-04-04T17:10:34.901Z",
+              "DocumentIndex": 7,
+              "Title": "DataSeeding.cs",
+              "DocumentMoniker": "D:\\projects\\C# projects\\Core Projects\\Apis\\New folder (9)\\FiveStudium\\OnlineShop\\Extensions\\DataSeeding.cs",
+              "RelativeDocumentMoniker": "OnlineShop\\Extensions\\DataSeeding.cs",
+              "ToolTip": "D:\\projects\\C# projects\\Core Projects\\Apis\\New folder (9)\\FiveStudium\\OnlineShop\\Extensions\\DataSeeding.cs",
+              "RelativeToolTip": "OnlineShop\\Extensions\\DataSeeding.cs",
+              "ViewState": "AgIAABgAAAAAAAAAAAAWwDkAAAAvAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-03T20:37:24.598Z",
               "EditorCaption": ""
             },
             {

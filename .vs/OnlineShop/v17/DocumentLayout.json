@@ -3,6 +3,14 @@
   "WorkspaceRootPath": "D:\\projects\\C# projects\\Core Projects\\Apis\\New folder (9)\\FiveStudium\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{F6633A8C-1BF2-4FD0-9E49-9295CD4DC82C}|OnlineShop\\OnlineShop.csproj|d:\\projects\\c# projects\\core projects\\apis\\new folder (9)\\fivestudium\\onlineshop\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F6633A8C-1BF2-4FD0-9E49-9295CD4DC82C}|OnlineShop\\OnlineShop.csproj|solutionrelative:onlineshop\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F6633A8C-1BF2-4FD0-9E49-9295CD4DC82C}|OnlineShop\\OnlineShop.csproj|d:\\projects\\c# projects\\core projects\\apis\\new folder (9)\\fivestudium\\onlineshop\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{F6633A8C-1BF2-4FD0-9E49-9295CD4DC82C}|OnlineShop\\OnlineShop.csproj|solutionrelative:onlineshop\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{F6633A8C-1BF2-4FD0-9E49-9295CD4DC82C}|OnlineShop\\OnlineShop.csproj|d:\\projects\\c# projects\\core projects\\apis\\new folder (9)\\fivestudium\\onlineshop\\views\\order\\pay.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
       "RelativeMoniker": "D:0:0:{F6633A8C-1BF2-4FD0-9E49-9295CD4DC82C}|OnlineShop\\OnlineShop.csproj|solutionrelative:onlineshop\\views\\order\\pay.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
@@ -47,10 +55,6 @@
       "RelativeMoniker": "D:0:0:{F6633A8C-1BF2-4FD0-9E49-9295CD4DC82C}|OnlineShop\\OnlineShop.csproj|solutionrelative:onlineshop\\views\\order\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\projects\\C# projects\\Core Projects\\Apis\\New folder (9)\\FiveStudium\\OnlineShop\\DataAccess\\Migrations\\20260412173949_EditOrderTable2.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:OnlineShop\\DataAccess\\Migrations\\20260412173949_EditOrderTable2.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{F6633A8C-1BF2-4FD0-9E49-9295CD4DC82C}|OnlineShop\\OnlineShop.csproj|d:\\projects\\c# projects\\core projects\\apis\\new folder (9)\\fivestudium\\onlineshop\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
       "RelativeMoniker": "D:0:0:{F6633A8C-1BF2-4FD0-9E49-9295CD4DC82C}|OnlineShop\\OnlineShop.csproj|solutionrelative:onlineshop\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
@@ -59,20 +63,12 @@
       "RelativeMoniker": "D:0:0:{F6633A8C-1BF2-4FD0-9E49-9295CD4DC82C}|OnlineShop\\OnlineShop.csproj|solutionrelative:onlineshop\\views\\payment\\success.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{F6633A8C-1BF2-4FD0-9E49-9295CD4DC82C}|OnlineShop\\OnlineShop.csproj|d:\\projects\\c# projects\\core projects\\apis\\new folder (9)\\fivestudium\\onlineshop\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
-      "RelativeMoniker": "D:0:0:{F6633A8C-1BF2-4FD0-9E49-9295CD4DC82C}|OnlineShop\\OnlineShop.csproj|solutionrelative:onlineshop\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{F6633A8C-1BF2-4FD0-9E49-9295CD4DC82C}|OnlineShop\\OnlineShop.csproj|d:\\projects\\c# projects\\core projects\\apis\\new folder (9)\\fivestudium\\onlineshop\\models\\pitch.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{F6633A8C-1BF2-4FD0-9E49-9295CD4DC82C}|OnlineShop\\OnlineShop.csproj|solutionrelative:onlineshop\\models\\pitch.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{F6633A8C-1BF2-4FD0-9E49-9295CD4DC82C}|OnlineShop\\OnlineShop.csproj|d:\\projects\\c# projects\\core projects\\apis\\new folder (9)\\fivestudium\\onlineshop\\views\\home\\details.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
       "RelativeMoniker": "D:0:0:{F6633A8C-1BF2-4FD0-9E49-9295CD4DC82C}|OnlineShop\\OnlineShop.csproj|solutionrelative:onlineshop\\views\\home\\details.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\projects\\C# projects\\Core Projects\\Apis\\New folder (9)\\FiveStudium\\OnlineShop\\DataAccess\\Migrations\\20260412165800_EditOrderTable.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:OnlineShop\\DataAccess\\Migrations\\20260412165800_EditOrderTable.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{F6633A8C-1BF2-4FD0-9E49-9295CD4DC82C}|OnlineShop\\OnlineShop.csproj|d:\\projects\\c# projects\\core projects\\apis\\new folder (9)\\fivestudium\\onlineshop\\services\\paymentservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -132,10 +128,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{F6633A8C-1BF2-4FD0-9E49-9295CD4DC82C}|OnlineShop\\OnlineShop.csproj|d:\\projects\\c# projects\\core projects\\apis\\new folder (9)\\fivestudium\\onlineshop\\extensions\\appusersandrolesseeding.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{F6633A8C-1BF2-4FD0-9E49-9295CD4DC82C}|OnlineShop\\OnlineShop.csproj|solutionrelative:onlineshop\\extensions\\appusersandrolesseeding.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\projects\\C# projects\\Core Projects\\Apis\\New folder (9)\\FiveStudium\\OnlineShop\\DataAccess\\Migrations\\20260411161851_EditContent.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:OnlineShop\\DataAccess\\Migrations\\20260411161851_EditContent.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{F6633A8C-1BF2-4FD0-9E49-9295CD4DC82C}|OnlineShop\\OnlineShop.csproj|d:\\projects\\c# projects\\core projects\\apis\\new folder (9)\\fivestudium\\onlineshop\\controllers\\specialtagcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -205,10 +197,16 @@
       "RelativeMoniker": "D:0:0:{F6633A8C-1BF2-4FD0-9E49-9295CD4DC82C}|OnlineShop\\OnlineShop.csproj|solutionrelative:onlineshop\\wwwroot\\css\\site.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\ahmmm\\AppData\\Local\\Temp\\0j4ouqyx..sql||{CC5D8DF0-88F4-4BB2-9DBB-B48CEE65C30A}|CodeFrame"
+      "AbsoluteMoniker": "D:0:0:{F6633A8C-1BF2-4FD0-9E49-9295CD4DC82C}|OnlineShop\\OnlineShop.csproj|d:\\projects\\c# projects\\core projects\\apis\\new folder (9)\\fivestudium\\onlineshop\\dataaccess\\migrations\\20260412173949_editordertable2.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F6633A8C-1BF2-4FD0-9E49-9295CD4DC82C}|OnlineShop\\OnlineShop.csproj|solutionrelative:onlineshop\\dataaccess\\migrations\\20260412173949_editordertable2.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\ahmmm\\AppData\\Local\\Temp\\0j4ouqyx..sql||{CC5D8DF0-88F4-4BB2-9DBB-B48CEE65C30A}|ResultFrame"
+      "AbsoluteMoniker": "D:0:0:{F6633A8C-1BF2-4FD0-9E49-9295CD4DC82C}|OnlineShop\\OnlineShop.csproj|d:\\projects\\c# projects\\core projects\\apis\\new folder (9)\\fivestudium\\onlineshop\\dataaccess\\migrations\\20260412165800_editordertable.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F6633A8C-1BF2-4FD0-9E49-9295CD4DC82C}|OnlineShop\\OnlineShop.csproj|solutionrelative:onlineshop\\dataaccess\\migrations\\20260412165800_editordertable.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F6633A8C-1BF2-4FD0-9E49-9295CD4DC82C}|OnlineShop\\OnlineShop.csproj|d:\\projects\\c# projects\\core projects\\apis\\new folder (9)\\fivestudium\\onlineshop\\dataaccess\\migrations\\20260411161851_editcontent.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F6633A8C-1BF2-4FD0-9E49-9295CD4DC82C}|OnlineShop\\OnlineShop.csproj|solutionrelative:onlineshop\\dataaccess\\migrations\\20260411161851_editcontent.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -218,11 +216,11 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 2,
+          "SelectedChildIndex": 1,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 50,
+              "DocumentIndex": 48,
               "Title": "site.css",
               "DocumentMoniker": "D:\\projects\\C# projects\\Core Projects\\Apis\\New folder (9)\\FiveStudium\\OnlineShop\\wwwroot\\css\\site.css",
               "RelativeDocumentMoniker": "OnlineShop\\wwwroot\\css\\site.css",
@@ -235,20 +233,20 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "HomeController.cs",
-              "DocumentMoniker": "D:\\projects\\C# projects\\Core Projects\\Apis\\New folder (9)\\FiveStudium\\OnlineShop\\Controllers\\HomeController.cs",
-              "RelativeDocumentMoniker": "OnlineShop\\Controllers\\HomeController.cs",
-              "ToolTip": "D:\\projects\\C# projects\\Core Projects\\Apis\\New folder (9)\\FiveStudium\\OnlineShop\\Controllers\\HomeController.cs",
-              "RelativeToolTip": "OnlineShop\\Controllers\\HomeController.cs",
-              "ViewState": "AgIAAGYAAAAAAAAAAAAlwDMAAAAQAAAAAAAAAA==",
+              "DocumentIndex": 0,
+              "Title": "Program.cs",
+              "DocumentMoniker": "D:\\projects\\C# projects\\Core Projects\\Apis\\New folder (9)\\FiveStudium\\OnlineShop\\Program.cs",
+              "RelativeDocumentMoniker": "OnlineShop\\Program.cs",
+              "ToolTip": "D:\\projects\\C# projects\\Core Projects\\Apis\\New folder (9)\\FiveStudium\\OnlineShop\\Program.cs",
+              "RelativeToolTip": "OnlineShop\\Program.cs",
+              "ViewState": "AgIAABwAAAAAAAAAAAA0wCsAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-11T15:24:30.348Z",
+              "WhenOpened": "2026-04-12T18:02:53.491Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 2,
               "Title": "Pay.cshtml",
               "DocumentMoniker": "D:\\projects\\C# projects\\Core Projects\\Apis\\New folder (9)\\FiveStudium\\OnlineShop\\Views\\Order\\Pay.cshtml",
               "RelativeDocumentMoniker": "OnlineShop\\Views\\Order\\Pay.cshtml",
@@ -261,7 +259,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 4,
               "Title": "Checkout.cshtml",
               "DocumentMoniker": "D:\\projects\\C# projects\\Core Projects\\Apis\\New folder (9)\\FiveStudium\\OnlineShop\\Views\\Order\\Checkout.cshtml",
               "RelativeDocumentMoniker": "OnlineShop\\Views\\Order\\Checkout.cshtml",
@@ -269,12 +267,11 @@
               "RelativeToolTip": "OnlineShop\\Views\\Order\\Checkout.cshtml",
               "ViewState": "AgIAABgDAAAAAAAAAAAmwFMDAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2026-04-04T17:10:34.901Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-04-04T17:10:34.901Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 3,
               "Title": "OrderController.cs",
               "DocumentMoniker": "D:\\projects\\C# projects\\Core Projects\\Apis\\New folder (9)\\FiveStudium\\OnlineShop\\Controllers\\OrderController.cs",
               "RelativeDocumentMoniker": "OnlineShop\\Controllers\\OrderController.cs",
@@ -282,12 +279,11 @@
               "RelativeToolTip": "OnlineShop\\Controllers\\OrderController.cs",
               "ViewState": "AgIAACAAAAAAAAAAAIA7wCgAAAAIAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-11T15:22:43.065Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-04-11T15:22:43.065Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 7,
               "Title": "PaymentController.cs",
               "DocumentMoniker": "D:\\projects\\C# projects\\Core Projects\\Apis\\New folder (9)\\FiveStudium\\OnlineShop\\Controllers\\PaymentController.cs",
               "RelativeDocumentMoniker": "OnlineShop\\Controllers\\PaymentController.cs",
@@ -295,12 +291,11 @@
               "RelativeToolTip": "OnlineShop\\Controllers\\PaymentController.cs",
               "ViewState": "AgIAAEgAAAAAAAAAAAAuwCAAAAAYAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-12T16:54:58.722Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-04-12T16:54:58.722Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 8,
               "Title": "ProductTypeController.cs",
               "DocumentMoniker": "D:\\projects\\C# projects\\Core Projects\\Apis\\New folder (9)\\FiveStudium\\OnlineShop\\Controllers\\ProductTypeController.cs",
               "RelativeDocumentMoniker": "OnlineShop\\Controllers\\ProductTypeController.cs",
@@ -308,12 +303,11 @@
               "RelativeToolTip": "OnlineShop\\Controllers\\ProductTypeController.cs",
               "ViewState": "AgIAAAgAAAAAAAAAAAAkwBEAAAAsAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-11T15:27:30.924Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-04-11T15:27:30.924Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 9,
               "Title": "DataSeeding.cs",
               "DocumentMoniker": "D:\\projects\\C# projects\\Core Projects\\Apis\\New folder (9)\\FiveStudium\\OnlineShop\\Extensions\\DataSeeding.cs",
               "RelativeDocumentMoniker": "OnlineShop\\Extensions\\DataSeeding.cs",
@@ -321,12 +315,36 @@
               "RelativeToolTip": "OnlineShop\\Extensions\\DataSeeding.cs",
               "ViewState": "AgIAABgAAAAAAAAAAAAWwDkAAAAvAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-03T20:37:24.598Z",
+              "WhenOpened": "2026-03-03T20:37:24.598Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "appsettings.json",
+              "DocumentMoniker": "D:\\projects\\C# projects\\Core Projects\\Apis\\New folder (9)\\FiveStudium\\OnlineShop\\appsettings.json",
+              "RelativeDocumentMoniker": "OnlineShop\\appsettings.json",
+              "ToolTip": "D:\\projects\\C# projects\\Core Projects\\Apis\\New folder (9)\\FiveStudium\\OnlineShop\\appsettings.json",
+              "RelativeToolTip": "OnlineShop\\appsettings.json",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAADAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2026-04-04T19:08:56.429Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 6,
+              "Title": "HomeController.cs",
+              "DocumentMoniker": "D:\\projects\\C# projects\\Core Projects\\Apis\\New folder (9)\\FiveStudium\\OnlineShop\\Controllers\\HomeController.cs",
+              "RelativeDocumentMoniker": "OnlineShop\\Controllers\\HomeController.cs",
+              "ToolTip": "D:\\projects\\C# projects\\Core Projects\\Apis\\New folder (9)\\FiveStudium\\OnlineShop\\Controllers\\HomeController.cs",
+              "RelativeToolTip": "OnlineShop\\Controllers\\HomeController.cs",
+              "ViewState": "AgIAAGYAAAAAAAAAAAAlwDMAAAAQAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-11T15:24:30.348Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
               "Title": "Index.cshtml",
               "DocumentMoniker": "D:\\projects\\C# projects\\Core Projects\\Apis\\New folder (9)\\FiveStudium\\OnlineShop\\Views\\Home\\Index.cshtml",
               "RelativeDocumentMoniker": "OnlineShop\\Views\\Home\\Index.cshtml",
@@ -334,12 +352,11 @@
               "RelativeToolTip": "OnlineShop\\Views\\Home\\Index.cshtml",
               "ViewState": "AgIAAMQAAAAAAAAAAAAWwNkAAABTAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2026-04-02T17:58:16.375Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-04-02T17:58:16.375Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 5,
               "Title": "Order.cs",
               "DocumentMoniker": "D:\\projects\\C# projects\\Core Projects\\Apis\\New folder (9)\\FiveStudium\\OnlineShop\\Models\\Order.cs",
               "RelativeDocumentMoniker": "OnlineShop\\Models\\Order.cs",
@@ -347,12 +364,11 @@
               "RelativeToolTip": "OnlineShop\\Models\\Order.cs",
               "ViewState": "AgIAAAwAAAAAAAAAAAAuwBUAAAA2AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-12T16:51:54.569Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-04-12T16:51:54.569Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
+              "DocumentIndex": 11,
               "Title": "GetDetails.cshtml",
               "DocumentMoniker": "D:\\projects\\C# projects\\Core Projects\\Apis\\New folder (9)\\FiveStudium\\OnlineShop\\Views\\Order\\GetDetails.cshtml",
               "RelativeDocumentMoniker": "OnlineShop\\Views\\Order\\GetDetails.cshtml",
@@ -360,12 +376,11 @@
               "RelativeToolTip": "OnlineShop\\Views\\Order\\GetDetails.cshtml",
               "ViewState": "AgIAAF0AAAAAAAAAAAAmwG8AAAAEAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2026-04-04T18:04:43.435Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-04-04T18:04:43.435Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 10,
+              "DocumentIndex": 12,
               "Title": "Index.cshtml",
               "DocumentMoniker": "D:\\projects\\C# projects\\Core Projects\\Apis\\New folder (9)\\FiveStudium\\OnlineShop\\Views\\Order\\Index.cshtml",
               "RelativeDocumentMoniker": "OnlineShop\\Views\\Order\\Index.cshtml",
@@ -373,12 +388,11 @@
               "RelativeToolTip": "OnlineShop\\Views\\Order\\Index.cshtml",
               "ViewState": "AgIAACEAAAAAAAAAAAAAACoAAAAIAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2026-04-04T18:03:43.849Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-04-04T18:03:43.849Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 11,
+              "DocumentIndex": 49,
               "Title": "20260412173949_EditOrderTable2.cs",
               "DocumentMoniker": "D:\\projects\\C# projects\\Core Projects\\Apis\\New folder (9)\\FiveStudium\\OnlineShop\\DataAccess\\Migrations\\20260412173949_EditOrderTable2.cs",
               "RelativeDocumentMoniker": "OnlineShop\\DataAccess\\Migrations\\20260412173949_EditOrderTable2.cs",
@@ -386,8 +400,7 @@
               "RelativeToolTip": "OnlineShop\\DataAccess\\Migrations\\20260412173949_EditOrderTable2.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-12T17:39:49.315Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-04-12T17:39:49.315Z"
             },
             {
               "$type": "Document",
@@ -399,25 +412,11 @@
               "RelativeToolTip": "OnlineShop\\Views\\Home\\Details.cshtml",
               "ViewState": "AgIAAGEAAAAAAAAAAAAWwBkAAAAuAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2026-04-03T19:51:03.982Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-04-03T19:51:03.982Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 14,
-              "Title": "appsettings.json",
-              "DocumentMoniker": "D:\\projects\\C# projects\\Core Projects\\Apis\\New folder (9)\\FiveStudium\\OnlineShop\\appsettings.json",
-              "RelativeDocumentMoniker": "OnlineShop\\appsettings.json",
-              "ToolTip": "D:\\projects\\C# projects\\Core Projects\\Apis\\New folder (9)\\FiveStudium\\OnlineShop\\appsettings.json",
-              "RelativeToolTip": "OnlineShop\\appsettings.json",
-              "ViewState": "AgIAAAMAAAAAAAAAAAAkwA0AAAADAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
-              "WhenOpened": "2026-04-04T19:08:56.429Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 17,
+              "DocumentIndex": 50,
               "Title": "20260412165800_EditOrderTable.cs",
               "DocumentMoniker": "D:\\projects\\C# projects\\Core Projects\\Apis\\New folder (9)\\FiveStudium\\OnlineShop\\DataAccess\\Migrations\\20260412165800_EditOrderTable.cs",
               "RelativeDocumentMoniker": "OnlineShop\\DataAccess\\Migrations\\20260412165800_EditOrderTable.cs",
@@ -425,12 +424,11 @@
               "RelativeToolTip": "OnlineShop\\DataAccess\\Migrations\\20260412165800_EditOrderTable.cs",
               "ViewState": "AgIAAAYAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-12T16:58:00.667Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-04-12T16:58:00.667Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 12,
+              "DocumentIndex": 13,
               "Title": "_Layout.cshtml",
               "DocumentMoniker": "D:\\projects\\C# projects\\Core Projects\\Apis\\New folder (9)\\FiveStudium\\OnlineShop\\Views\\Shared\\_Layout.cshtml",
               "RelativeDocumentMoniker": "OnlineShop\\Views\\Shared\\_Layout.cshtml",
@@ -438,8 +436,7 @@
               "RelativeToolTip": "OnlineShop\\Views\\Shared\\_Layout.cshtml",
               "ViewState": "AgIAANcDAAAAAAAAAAAmwOkDAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2026-04-02T18:09:55.292Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-04-02T18:09:55.292Z"
             },
             {
               "$type": "Document",
@@ -451,12 +448,11 @@
               "RelativeToolTip": "OnlineShop\\Models\\Pitch.cs",
               "ViewState": "AgIAABcAAAAAAAAAAAA6wCYAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-02T17:48:14.861Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-04-02T17:48:14.861Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 13,
+              "DocumentIndex": 14,
               "Title": "Success.cshtml",
               "DocumentMoniker": "D:\\projects\\C# projects\\Core Projects\\Apis\\New folder (9)\\FiveStudium\\OnlineShop\\Views\\Payment\\Success.cshtml",
               "RelativeDocumentMoniker": "OnlineShop\\Views\\Payment\\Success.cshtml",
@@ -464,12 +460,11 @@
               "RelativeToolTip": "OnlineShop\\Views\\Payment\\Success.cshtml",
               "ViewState": "AgIAACYAAAAAAAAAAAAmwDgAAAADAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2026-04-12T16:54:04.659Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-04-12T16:54:04.659Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 18,
+              "DocumentIndex": 17,
               "Title": "PaymentService.cs",
               "DocumentMoniker": "D:\\projects\\C# projects\\Core Projects\\Apis\\New folder (9)\\FiveStudium\\OnlineShop\\Services\\PaymentService.cs",
               "RelativeDocumentMoniker": "OnlineShop\\Services\\PaymentService.cs",
@@ -477,22 +472,20 @@
               "RelativeToolTip": "OnlineShop\\Services\\PaymentService.cs",
               "ViewState": "AgIAAEcAAAAAAAAAAAAywFQAAAAWAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-12T16:55:14.155Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-04-12T16:55:14.155Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 22,
-              "Title": "SQLQuery1.sql ",
+              "DocumentIndex": 21,
+              "Title": "0j4ouqyx..sql",
               "DocumentMoniker": "C:\\Users\\ahmmm\\AppData\\Local\\Temp\\0j4ouqyx..sql",
-              "ToolTip": "SQLQuery1.sql *",
+              "ToolTip": "C:\\Users\\ahmmm\\AppData\\Local\\Temp\\0j4ouqyx..sql",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000826|",
-              "WhenOpened": "2026-04-12T16:11:58.234Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-04-12T16:11:58.234Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 19,
+              "DocumentIndex": 18,
               "Title": "ShowPitches.cshtml",
               "DocumentMoniker": "D:\\projects\\C# projects\\Core Projects\\Apis\\New folder (9)\\FiveStudium\\OnlineShop\\Views\\Home\\ShowPitches.cshtml",
               "RelativeDocumentMoniker": "OnlineShop\\Views\\Home\\ShowPitches.cshtml",
@@ -500,12 +493,11 @@
               "RelativeToolTip": "OnlineShop\\Views\\Home\\ShowPitches.cshtml",
               "ViewState": "AgIAAOYAAAAAAAAAAAAWwO8AAABWAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2026-04-04T16:54:42.677Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-04-04T16:54:42.677Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 20,
+              "DocumentIndex": 19,
               "Title": "ProductController.cs",
               "DocumentMoniker": "D:\\projects\\C# projects\\Core Projects\\Apis\\New folder (9)\\FiveStudium\\OnlineShop\\Controllers\\ProductController.cs",
               "RelativeDocumentMoniker": "OnlineShop\\Controllers\\ProductController.cs",
@@ -513,12 +505,11 @@
               "RelativeToolTip": "OnlineShop\\Controllers\\ProductController.cs",
               "ViewState": "AgIAABIAAAAAAAAAAAAlwBoAAAAjAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-04T17:08:00.827Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-04-04T17:08:00.827Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 24,
+              "DocumentIndex": 23,
               "Title": "20260412160912_edit.cs",
               "DocumentMoniker": "D:\\projects\\C# projects\\Core Projects\\Apis\\New folder (9)\\FiveStudium\\OnlineShop\\DataAccess\\Migrations\\20260412160912_edit.cs",
               "RelativeDocumentMoniker": "OnlineShop\\DataAccess\\Migrations\\20260412160912_edit.cs",
@@ -526,12 +517,11 @@
               "RelativeToolTip": "OnlineShop\\DataAccess\\Migrations\\20260412160912_edit.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-12T16:09:12.461Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-04-12T16:09:12.461Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 21,
+              "DocumentIndex": 20,
               "Title": "20260412161328_edit.cs",
               "DocumentMoniker": "D:\\projects\\C# projects\\Core Projects\\Apis\\New folder (9)\\FiveStudium\\OnlineShop\\DataAccess\\Migrations\\20260412161328_edit.cs",
               "RelativeDocumentMoniker": "OnlineShop\\DataAccess\\Migrations\\20260412161328_edit.cs",
@@ -539,12 +529,11 @@
               "RelativeToolTip": "OnlineShop\\DataAccess\\Migrations\\20260412161328_edit.cs",
               "ViewState": "AgIAABkAAAAAAAAAAAA0wCAAAAAJAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-12T16:13:29.026Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-04-12T16:13:29.026Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 23,
+              "DocumentIndex": 22,
               "Title": "PitchType.cs",
               "DocumentMoniker": "D:\\projects\\C# projects\\Core Projects\\Apis\\New folder (9)\\FiveStudium\\OnlineShop\\Models\\PitchType.cs",
               "RelativeDocumentMoniker": "OnlineShop\\Models\\PitchType.cs",
@@ -552,12 +541,11 @@
               "RelativeToolTip": "OnlineShop\\Models\\PitchType.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-11T15:09:50.199Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-04-11T15:09:50.199Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 30,
+              "DocumentIndex": 29,
               "Title": "Details.cshtml",
               "DocumentMoniker": "D:\\projects\\C# projects\\Core Projects\\Apis\\New folder (9)\\FiveStudium\\OnlineShop\\Views\\Product\\Details.cshtml",
               "RelativeDocumentMoniker": "OnlineShop\\Views\\Product\\Details.cshtml",
@@ -565,12 +553,11 @@
               "RelativeToolTip": "OnlineShop\\Views\\Product\\Details.cshtml",
               "ViewState": "AgIAAB0AAAAAAAAAAAAywCcAAAApAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2026-04-04T17:44:04.851Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-04-04T17:44:04.851Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 25,
+              "DocumentIndex": 24,
               "Title": "_AuthLayout.cshtml",
               "DocumentMoniker": "D:\\projects\\C# projects\\Core Projects\\Apis\\New folder (9)\\FiveStudium\\OnlineShop\\Views\\Shared\\_AuthLayout.cshtml",
               "RelativeDocumentMoniker": "OnlineShop\\Views\\Shared\\_AuthLayout.cshtml",
@@ -578,12 +565,11 @@
               "RelativeToolTip": "OnlineShop\\Views\\Shared\\_AuthLayout.cshtml",
               "ViewState": "AgIAAA0BAAAAAAAAAAA0wBkBAAAuAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2026-04-02T19:26:46.607Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-04-02T19:26:46.607Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 29,
+              "DocumentIndex": 28,
               "Title": "Edit.cshtml",
               "DocumentMoniker": "D:\\projects\\C# projects\\Core Projects\\Apis\\New folder (9)\\FiveStudium\\OnlineShop\\Views\\Product\\Edit.cshtml",
               "RelativeDocumentMoniker": "OnlineShop\\Views\\Product\\Edit.cshtml",
@@ -591,12 +577,11 @@
               "RelativeToolTip": "OnlineShop\\Views\\Product\\Edit.cshtml",
               "ViewState": "AgIAADwAAAAAAAAAAAAywEYAAAAwAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2026-04-04T18:25:48.707Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-04-04T18:25:48.707Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 28,
+              "DocumentIndex": 27,
               "Title": "Index.cshtml",
               "DocumentMoniker": "D:\\projects\\C# projects\\Core Projects\\Apis\\New folder (9)\\FiveStudium\\OnlineShop\\Views\\Product\\Index.cshtml",
               "RelativeDocumentMoniker": "OnlineShop\\Views\\Product\\Index.cshtml",
@@ -604,12 +589,11 @@
               "RelativeToolTip": "OnlineShop\\Views\\Product\\Index.cshtml",
               "ViewState": "AgIAAD0AAAAAAAAAAAAywEcAAAAnAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2026-04-04T17:17:11.702Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-04-04T17:17:11.702Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 26,
+              "DocumentIndex": 25,
               "Title": "Login.cshtml",
               "DocumentMoniker": "D:\\projects\\C# projects\\Core Projects\\Apis\\New folder (9)\\FiveStudium\\OnlineShop\\Views\\Account\\Login.cshtml",
               "RelativeDocumentMoniker": "OnlineShop\\Views\\Account\\Login.cshtml",
@@ -617,12 +601,11 @@
               "RelativeToolTip": "OnlineShop\\Views\\Account\\Login.cshtml",
               "ViewState": "AgIAAC4AAAAAAAAAAAAzwDcAAAAQAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2026-04-03T19:31:32.655Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-04-03T19:31:32.655Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 27,
+              "DocumentIndex": 26,
               "Title": "Create.cshtml",
               "DocumentMoniker": "D:\\projects\\C# projects\\Core Projects\\Apis\\New folder (9)\\FiveStudium\\OnlineShop\\Views\\Product\\Create.cshtml",
               "RelativeDocumentMoniker": "OnlineShop\\Views\\Product\\Create.cshtml",
@@ -630,12 +613,11 @@
               "RelativeToolTip": "OnlineShop\\Views\\Product\\Create.cshtml",
               "ViewState": "AgIAADoAAAAAAAAAAAAywEEAAAAwAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2026-04-02T17:56:05.649Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-04-02T17:56:05.649Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 31,
+              "DocumentIndex": 30,
               "Title": "Delete.cshtml",
               "DocumentMoniker": "D:\\projects\\C# projects\\Core Projects\\Apis\\New folder (9)\\FiveStudium\\OnlineShop\\Views\\Product\\Delete.cshtml",
               "RelativeDocumentMoniker": "OnlineShop\\Views\\Product\\Delete.cshtml",
@@ -643,12 +625,11 @@
               "RelativeToolTip": "OnlineShop\\Views\\Product\\Delete.cshtml",
               "ViewState": "AgIAAEQAAAAAAAAAAAAywE4AAAA2AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2026-04-02T17:54:26.04Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-04-02T17:54:26.04Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 32,
+              "DocumentIndex": 31,
               "Title": "AppUsersAndRolesSeeding.cs",
               "DocumentMoniker": "D:\\projects\\C# projects\\Core Projects\\Apis\\New folder (9)\\FiveStudium\\OnlineShop\\Extensions\\AppUsersAndRolesSeeding.cs",
               "RelativeDocumentMoniker": "OnlineShop\\Extensions\\AppUsersAndRolesSeeding.cs",
@@ -656,12 +637,11 @@
               "RelativeToolTip": "OnlineShop\\Extensions\\AppUsersAndRolesSeeding.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-02T17:52:12.398Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-04-02T17:52:12.398Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 33,
+              "DocumentIndex": 51,
               "Title": "20260411161851_EditContent.cs",
               "DocumentMoniker": "D:\\projects\\C# projects\\Core Projects\\Apis\\New folder (9)\\FiveStudium\\OnlineShop\\DataAccess\\Migrations\\20260411161851_EditContent.cs",
               "RelativeDocumentMoniker": "OnlineShop\\DataAccess\\Migrations\\20260411161851_EditContent.cs",
@@ -669,12 +649,11 @@
               "RelativeToolTip": "OnlineShop\\DataAccess\\Migrations\\20260411161851_EditContent.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAA3AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-11T16:18:51.983Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-04-11T16:18:51.983Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 34,
+              "DocumentIndex": 32,
               "Title": "SpecialTagController.cs",
               "DocumentMoniker": "D:\\projects\\C# projects\\Core Projects\\Apis\\New folder (9)\\FiveStudium\\OnlineShop\\Controllers\\SpecialTagController.cs",
               "RelativeDocumentMoniker": "OnlineShop\\Controllers\\SpecialTagController.cs",
@@ -682,12 +661,11 @@
               "RelativeToolTip": "OnlineShop\\Controllers\\SpecialTagController.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAAZAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-04T18:12:36.273Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-04-04T18:12:36.273Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 35,
+              "DocumentIndex": 33,
               "Title": "ApplicationDbContext .cs",
               "DocumentMoniker": "D:\\projects\\C# projects\\Core Projects\\Apis\\New folder (9)\\FiveStudium\\OnlineShop\\Data\\ApplicationDbContext .cs",
               "RelativeDocumentMoniker": "OnlineShop\\Data\\ApplicationDbContext .cs",
@@ -695,12 +673,11 @@
               "RelativeToolTip": "OnlineShop\\Data\\ApplicationDbContext .cs",
               "ViewState": "AgIAAAYAAAAAAAAAAAAAABEAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-02T17:50:46.19Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-04-02T17:50:46.19Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 38,
+              "DocumentIndex": 36,
               "Title": "Edit.cshtml",
               "DocumentMoniker": "D:\\projects\\C# projects\\Core Projects\\Apis\\New folder (9)\\FiveStudium\\OnlineShop\\Views\\SpecialTag\\Edit.cshtml",
               "RelativeDocumentMoniker": "OnlineShop\\Views\\SpecialTag\\Edit.cshtml",
@@ -712,7 +689,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 39,
+              "DocumentIndex": 37,
               "Title": "Details.cshtml",
               "DocumentMoniker": "D:\\projects\\C# projects\\Core Projects\\Apis\\New folder (9)\\FiveStudium\\OnlineShop\\Views\\SpecialTag\\Details.cshtml",
               "RelativeDocumentMoniker": "OnlineShop\\Views\\SpecialTag\\Details.cshtml",
@@ -724,7 +701,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 41,
+              "DocumentIndex": 39,
               "Title": "Create.cshtml",
               "DocumentMoniker": "D:\\projects\\C# projects\\Core Projects\\Apis\\New folder (9)\\FiveStudium\\OnlineShop\\Views\\SpecialTag\\Create.cshtml",
               "RelativeDocumentMoniker": "OnlineShop\\Views\\SpecialTag\\Create.cshtml",
@@ -736,7 +713,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 40,
+              "DocumentIndex": 38,
               "Title": "Delete.cshtml",
               "DocumentMoniker": "D:\\projects\\C# projects\\Core Projects\\Apis\\New folder (9)\\FiveStudium\\OnlineShop\\Views\\SpecialTag\\Delete.cshtml",
               "RelativeDocumentMoniker": "OnlineShop\\Views\\SpecialTag\\Delete.cshtml",
@@ -748,7 +725,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 36,
+              "DocumentIndex": 34,
               "Title": "WhoUs.cshtml",
               "DocumentMoniker": "D:\\projects\\C# projects\\Core Projects\\Apis\\New folder (9)\\FiveStudium\\OnlineShop\\Views\\Home\\WhoUs.cshtml",
               "RelativeDocumentMoniker": "OnlineShop\\Views\\Home\\WhoUs.cshtml",
@@ -760,7 +737,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 37,
+              "DocumentIndex": 35,
               "Title": "Index.cshtml",
               "DocumentMoniker": "D:\\projects\\C# projects\\Core Projects\\Apis\\New folder (9)\\FiveStudium\\OnlineShop\\Views\\SpecialTag\\Index.cshtml",
               "RelativeDocumentMoniker": "OnlineShop\\Views\\SpecialTag\\Index.cshtml",
@@ -772,7 +749,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 42,
+              "DocumentIndex": 40,
               "Title": "Microsoft.NET.Sdk.StaticWebAssets.targets",
               "DocumentMoniker": "C:\\Program Files\\dotnet\\sdk\\9.0.311\\Sdks\\Microsoft.NET.Sdk.StaticWebAssets\\targets\\Microsoft.NET.Sdk.StaticWebAssets.targets",
               "ToolTip": "C:\\Program Files\\dotnet\\sdk\\9.0.311\\Sdks\\Microsoft.NET.Sdk.StaticWebAssets\\targets\\Microsoft.NET.Sdk.StaticWebAssets.targets",
@@ -782,7 +759,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 44,
+              "DocumentIndex": 42,
               "Title": "Create.cshtml",
               "DocumentMoniker": "D:\\projects\\C# projects\\Core Projects\\Apis\\New folder (9)\\FiveStudium\\OnlineShop\\Views\\ProductType\\Create.cshtml",
               "RelativeDocumentMoniker": "OnlineShop\\Views\\ProductType\\Create.cshtml",
@@ -790,12 +767,11 @@
               "RelativeToolTip": "OnlineShop\\Views\\ProductType\\Create.cshtml",
               "ViewState": "AgIAAAMAAAAAAAAAAAAAAA0AAAAkAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2026-04-04T17:51:22.792Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-04-04T17:51:22.792Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 45,
+              "DocumentIndex": 43,
               "Title": "Delete.cshtml",
               "DocumentMoniker": "D:\\projects\\C# projects\\Core Projects\\Apis\\New folder (9)\\FiveStudium\\OnlineShop\\Views\\ProductType\\Delete.cshtml",
               "RelativeDocumentMoniker": "OnlineShop\\Views\\ProductType\\Delete.cshtml",
@@ -803,12 +779,11 @@
               "RelativeToolTip": "OnlineShop\\Views\\ProductType\\Delete.cshtml",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAUAAAAkAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2026-04-04T17:50:40.789Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-04-04T17:50:40.789Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 43,
+              "DocumentIndex": 41,
               "Title": "Index.cshtml",
               "DocumentMoniker": "D:\\projects\\C# projects\\Core Projects\\Apis\\New folder (9)\\FiveStudium\\OnlineShop\\Views\\ProductType\\Index.cshtml",
               "RelativeDocumentMoniker": "OnlineShop\\Views\\ProductType\\Index.cshtml",
@@ -816,12 +791,11 @@
               "RelativeToolTip": "OnlineShop\\Views\\ProductType\\Index.cshtml",
               "ViewState": "AgIAACEAAAAAAAAAAAAAACQAAAAnAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2026-04-04T17:49:04.522Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-04-04T17:49:04.522Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 47,
+              "DocumentIndex": 45,
               "Title": "Details.cshtml",
               "DocumentMoniker": "D:\\projects\\C# projects\\Core Projects\\Apis\\New folder (9)\\FiveStudium\\OnlineShop\\Views\\ProductType\\Details.cshtml",
               "RelativeDocumentMoniker": "OnlineShop\\Views\\ProductType\\Details.cshtml",
@@ -829,12 +803,11 @@
               "RelativeToolTip": "OnlineShop\\Views\\ProductType\\Details.cshtml",
               "ViewState": "AgIAAAkAAAAAAAAAAAAAAAUAAAAnAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2026-04-04T17:50:28.508Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-04-04T17:50:28.508Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 46,
+              "DocumentIndex": 44,
               "Title": "Edit.cshtml",
               "DocumentMoniker": "D:\\projects\\C# projects\\Core Projects\\Apis\\New folder (9)\\FiveStudium\\OnlineShop\\Views\\ProductType\\Edit.cshtml",
               "RelativeDocumentMoniker": "OnlineShop\\Views\\ProductType\\Edit.cshtml",
@@ -842,12 +815,11 @@
               "RelativeToolTip": "OnlineShop\\Views\\ProductType\\Edit.cshtml",
               "ViewState": "AgIAAAYAAAAAAAAAAAAAAA4AAAAlAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2026-04-04T17:50:01.647Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-04-04T17:50:01.647Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 48,
+              "DocumentIndex": 46,
               "Title": "buttons.dataTables.min.css",
               "DocumentMoniker": "D:\\projects\\C# projects\\Core Projects\\Apis\\New folder (9)\\FiveStudium\\OnlineShop\\wwwroot\\lib\\datatables-buttons\\css\\buttons.dataTables.min.css",
               "RelativeDocumentMoniker": "OnlineShop\\wwwroot\\lib\\datatables-buttons\\css\\buttons.dataTables.min.css",
@@ -859,7 +831,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 49,
+              "DocumentIndex": 47,
               "Title": "Register.cshtml",
               "DocumentMoniker": "D:\\projects\\C# projects\\Core Projects\\Apis\\New folder (9)\\FiveStudium\\OnlineShop\\Views\\Account\\Register.cshtml",
               "RelativeDocumentMoniker": "OnlineShop\\Views\\Account\\Register.cshtml",
