@@ -1,0 +1,851 @@
+﻿@model Order
+@using OnlineShop.Helpers
+@using Microsoft.AspNetCore.Http
+@inject IHttpContextAccessor HttpContextAccessor;
+
+@{
+    ViewData["Title"] = "إتمام الحجز";
+    var pitch = ViewBag.Pitch as Pitch;
+}
+
+<!-- ══ BREADCRUMB ══ -->
+<nav class="co-crumb" dir="rtl">
+    <a asp-action="Index" asp-controller="Home"><i class="bi bi-house-fill"></i> الرئيسية</a>
+    <i class="bi bi-chevron-left crumb-sep"></i>
+    <a asp-action="Cart" asp-controller="Home">السلة</a>
+    <i class="bi bi-chevron-left crumb-sep"></i>
+    <span class="crumb-current">إتمام الحجز</span>
+</nav>
+
+<!-- ══ PAGE HEADER ══ -->
+<div class="co-header" dir="rtl">
+    <div class="co-header-inner">
+        <div class="co-header-left">
+            <div class="co-header-icon"><i class="bi bi-calendar-check-fill"></i></div>
+            <div>
+                <h1 class="co-header-title">إتمام الحجز</h1>
+                <p class="co-header-sub">أدخل بياناتك لتأكيد حجزك في الملعب</p>
+            </div>
+        </div>
+        <div class="co-header-badge">
+            <i class="bi bi-shield-lock-fill"></i> حجز آمن ومؤمّن
+        </div>
+    </div>
+</div>
+
+<!-- ══ STEPS ══ -->
+<div class="co-steps" dir="rtl">
+    <div class="co-step done">
+        <div class="co-step-circle"><i class="bi bi-cart-check-fill"></i></div>
+        <span>السلة</span>
+    </div>
+    <div class="co-step-line done"></div>
+    <div class="co-step active">
+        <div class="co-step-circle"><i class="bi bi-person-lines-fill"></i></div>
+        <span>تفاصيل الحجز</span>
+    </div>
+    <div class="co-step-line"></div>
+    <div class="co-step">
+        <div class="co-step-circle"><i class="bi bi-check2-circle"></i></div>
+        <span>تأكيد</span>
+    </div>
+</div>
+
+<form asp-action="CheckOut" method="post" enctype="multipart/form-data" dir="rtl">
+    <div asp-validation-summary="ModelOnly" class="co-validation-error"></div>
+
+    <div class="co-layout">
+
+        <!-- LEFT: FORM -->
+        <div class="co-form-section">
+            <div class="co-card">
+                <div class="co-card-head">
+                    <div class="co-card-head-icon"><i class="bi bi-person-fill"></i></div>
+                    <div>
+                        <h3>بيانات الحجز</h3>
+                        <p>أدخل بياناتك لإتمام الحجز</p>
+                    </div>
+                </div>
+                <div class="co-card-body">
+
+                    <input type="hidden" asp-for="PitchId" value="@pitch.Id" />
+
+                    <div class="co-field">
+                        <label asp-for="Name" class="co-label">الاسم الكامل</label>
+                        <div class="co-input-wrap">
+                            <i class="bi bi-person-fill co-input-icon"></i>
+                            <input asp-for="Name" class="co-input" placeholder="أدخل اسمك الكامل" />
+                        </div>
+                        <span asp-validation-for="Name" class="co-field-error"></span>
+                    </div>
+
+                    <div class="co-field">
+                        <label asp-for="PhoneNo" class="co-label">رقم الهاتف</label>
+                        <div class="co-input-wrap">
+                            <i class="bi bi-telephone-fill co-input-icon"></i>
+                            <input asp-for="PhoneNo" class="co-input" placeholder="أدخل رقم هاتفك" />
+                        </div>
+                        <span asp-validation-for="PhoneNo" class="co-field-error"></span>
+                    </div>
+
+                    <div class="co-field">
+                        <label asp-for="Email" class="co-label">البريد الإلكتروني</label>
+                        <div class="co-input-wrap">
+                            <i class="bi bi-envelope-fill co-input-icon"></i>
+                            <input asp-for="Email" type="email" class="co-input" placeholder="example@email.com" />
+                        </div>
+                        <span asp-validation-for="Email" class="co-field-error"></span>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <!-- RIGHT: SUMMARY -->
+        <div class="co-summary-section">
+            <div class="co-card">
+                <div class="co-card-head co-summary-head">
+                    <div class="co-card-head-icon"><i class="bi bi-receipt"></i></div>
+                    <div>
+                        <h3>ملخص الحجز</h3>
+                        <p>@(pitch != null ? "حجز واحد في قائمتك" : "القائمة فارغة")</p>
+                    </div>
+                </div>
+                <div class="co-card-body co-summary-body">
+
+                    @if (pitch != null)
+                    {
+                        <div class="co-order-items">
+                            <div class="co-order-item">
+                                <div class="co-order-item-img-wrap">
+                                    <img src="~/files/images/@pitch.Image"
+                                         alt="@pitch.Name"
+                                         class="co-order-item-img"
+                                         onerror="this.src='/files/images/noimage.png'" />
+                                </div>
+                                <div class="co-order-item-info">
+                                    <div class="co-order-item-name">@pitch.Name</div>
+                                    <div class="co-order-item-meta">
+                                        <i class="bi bi-tag-fill"></i> @(pitch.PitchType?.Name ?? "ملعب رياضي")
+                                    </div>
+                                    <div class="co-order-item-meta">
+                                        <i class="bi bi-geo-alt-fill"></i> @pitch.Address
+                                    </div>
+                                </div>
+                                <div class="co-order-item-price">
+                                    @pitch.Price.ToString("N2") <sup>ج.م</sup>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="co-summary-rows">
+                            <div class="co-summary-row">
+                                <span>قيمة الحجز</span>
+                                <span>@pitch.Price.ToString("N2") ج.م</span>
+                            </div>
+                            <div class="co-summary-row">
+                                <span><i class="bi bi-receipt"></i> رسوم إضافية</span>
+                                <span class="co-free">مجاني</span>
+                            </div>
+                        </div>
+
+                        <div class="co-total-box">
+                            <span class="co-total-label">الإجمالي</span>
+                            <span class="co-total-amount">
+                                @pitch.Price.ToString("N2") <sup>ج.م</sup>
+                            </span>
+                        </div>
+
+                        <div class="co-confirm-note">
+                            <i class="bi bi-check-circle-fill"></i>
+                            تأكيد فوري لحجزك بمجرد إتمام البيانات
+                        </div>
+                    }
+                    else
+                    {
+                        <div class="co-empty">
+                            <i class="bi bi-exclamation-circle"></i>
+                            <p>عذراً، لم يتم العثور على بيانات الملعب</p>
+                        </div>
+                    }
+
+                </div>
+            </div>
+
+            <div class="co-actions">
+                <button type="submit" class="co-submit-btn" @(pitch == null ? "disabled" : "")>
+                    <i class="bi bi-check-circle-fill"></i>
+                    تأكيد الحجز الآن
+                </button>
+                <a asp-action="ShowPitches" asp-controller="Home" class="co-back-btn">
+                    <i class="bi bi-arrow-right"></i>
+                    الرجوع للملاعب
+                </a>
+            </div>
+        </div>
+
+    </div>
+</form>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
+
+<style>
+    :root {
+        --c-bg: #F7F8FC;
+        --c-surface: #FFFFFF;
+        --c-text: #111827;
+        --c-muted: #6B7280;
+        --c-border: #E5E7EB;
+        --c-accent: #1D4ED8;
+        --c-accent-lt: #DBEAFE;
+        --c-accent-dk: #1e40af;
+        --c-green: #16A34A;
+        --c-green-lt: #DCFCE7;
+        --c-amber: #D97706;
+        --c-rose: #E11D48;
+        --bounce: cubic-bezier(0.34, 1.56, 0.64, 1);
+        --font-ar: 'Cairo', 'Tajawal', sans-serif;
+    }
+
+    /* BREADCRUMB */
+    .co-crumb {
+        display: flex;
+        align-items: center;
+        gap: .5rem;
+        padding: 1.5rem 2.5rem .5rem;
+        font-size: .85rem;
+        font-weight: 700;
+        flex-wrap: wrap;
+        font-family: var(--font-ar);
+    }
+
+        .co-crumb a {
+            color: var(--c-muted);
+            text-decoration: none;
+            transition: color .2s;
+            display: flex;
+            align-items: center;
+            gap: .3rem;
+        }
+
+            .co-crumb a:hover {
+                color: var(--c-accent);
+            }
+
+    .crumb-sep {
+        color: var(--c-border);
+        font-size: .72rem;
+    }
+
+    .crumb-current {
+        color: var(--c-accent);
+        font-weight: 800;
+    }
+
+    /* HEADER */
+    .co-header {
+        background: linear-gradient(145deg, var(--c-accent-dk) 0%, var(--c-accent) 100%);
+        padding: 2rem 0;
+        position: relative;
+        overflow: hidden;
+        margin-bottom: 0;
+    }
+
+        .co-header::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background-image: radial-gradient(rgba(255,255,255,0.07) 1px, transparent 1px);
+            background-size: 28px 28px;
+            pointer-events: none;
+        }
+
+    .co-header-inner {
+        max-width: 1140px;
+        margin: 0 auto;
+        padding: 0 2rem;
+        position: relative;
+        z-index: 2;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        gap: 1rem;
+        font-family: var(--font-ar);
+    }
+
+    .co-header-left {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+    }
+
+    .co-header-icon {
+        width: 52px;
+        height: 52px;
+        background: rgba(255,255,255,0.15);
+        backdrop-filter: blur(10px);
+        border: 1px solid rgba(255,255,255,0.2);
+        border-radius: 14px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.4rem;
+        color: white;
+        flex-shrink: 0;
+    }
+
+    .co-header-title {
+        color: white;
+        font-family: var(--font-ar);
+        font-size: 1.7rem;
+        font-weight: 900;
+        margin: 0;
+    }
+
+    .co-header-sub {
+        color: rgba(255,255,255,0.7);
+        font-size: .85rem;
+        font-weight: 500;
+        margin: .15rem 0 0;
+    }
+
+    .co-header-badge {
+        background: rgba(22,163,74,0.18);
+        border: 1px solid rgba(22,163,74,0.35);
+        color: #86efac;
+        font-size: .82rem;
+        font-weight: 800;
+        padding: .45rem 1.1rem;
+        border-radius: 50px;
+        display: flex;
+        align-items: center;
+        gap: .45rem;
+        font-family: var(--font-ar);
+    }
+
+    /* STEPS */
+    .co-steps {
+        background: var(--c-surface);
+        border-bottom: 1px solid var(--c-border);
+        padding: 1.25rem 2rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0;
+        margin-bottom: 2rem;
+        font-family: var(--font-ar);
+    }
+
+    .co-step {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: .4rem;
+        font-size: .78rem;
+        font-weight: 800;
+        color: var(--c-muted);
+        min-width: 90px;
+    }
+
+        .co-step.active {
+            color: var(--c-accent);
+        }
+
+        .co-step.done {
+            color: var(--c-green);
+        }
+
+    .co-step-circle {
+        width: 44px;
+        height: 44px;
+        border-radius: 50%;
+        background: var(--c-bg);
+        border: 2px solid var(--c-border);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.1rem;
+        transition: all .3s var(--bounce);
+    }
+
+    .co-step.active .co-step-circle {
+        background: var(--c-accent);
+        border-color: var(--c-accent);
+        color: white;
+        box-shadow: 0 6px 18px rgba(29,78,216,.3);
+        transform: scale(1.1);
+    }
+
+    .co-step.done .co-step-circle {
+        background: var(--c-green-lt);
+        border-color: var(--c-green);
+        color: var(--c-green);
+    }
+
+    .co-step-line {
+        flex: 1;
+        height: 2px;
+        background: var(--c-border);
+        border-radius: 2px;
+        min-width: 60px;
+        margin-bottom: 1.5rem;
+    }
+
+        .co-step-line.done {
+            background: var(--c-green);
+        }
+
+    /* LAYOUT */
+    .co-layout {
+        max-width: 1140px;
+        margin: 0 auto;
+        padding: 0 2rem 5rem;
+        display: grid;
+        grid-template-columns: 1fr 400px;
+        gap: 1.75rem;
+        align-items: start;
+        font-family: var(--font-ar);
+    }
+
+    /* CARD */
+    .co-card {
+        background: var(--c-surface);
+        border-radius: 18px;
+        border: 1px solid var(--c-border);
+        box-shadow: 0 4px 20px rgba(0,0,0,.05);
+        overflow: hidden;
+        margin-bottom: 1.25rem;
+    }
+
+    .co-card-head {
+        background: var(--c-bg);
+        padding: 1.2rem 1.5rem;
+        border-bottom: 1px solid var(--c-border);
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+    }
+
+    .co-card-head-icon {
+        width: 44px;
+        height: 44px;
+        background: var(--c-accent-lt);
+        color: var(--c-accent);
+        border-radius: 12px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.2rem;
+        flex-shrink: 0;
+    }
+
+    .co-card-head h3 {
+        font-size: 1rem;
+        font-weight: 900;
+        color: var(--c-text);
+        margin: 0 0 .1rem;
+    }
+
+    .co-card-head p {
+        font-size: .78rem;
+        color: var(--c-muted);
+        font-weight: 600;
+        margin: 0;
+    }
+
+    .co-card-body {
+        padding: 1.5rem;
+    }
+
+    /* FIELDS */
+    .co-field {
+        margin-bottom: 1.2rem;
+    }
+
+    .co-label {
+        display: block;
+        font-size: .8rem;
+        font-weight: 700;
+        color: var(--c-text);
+        margin-bottom: .5rem;
+    }
+
+    .co-input-wrap {
+        position: relative;
+    }
+
+    .co-input-icon {
+        position: absolute;
+        top: 50%;
+        right: 1rem;
+        transform: translateY(-50%);
+        color: var(--c-muted);
+        font-size: .95rem;
+        pointer-events: none;
+        transition: color .2s;
+    }
+
+    .co-input {
+        width: 100%;
+        padding: .85rem 2.75rem .85rem 1rem;
+        border: 1.5px solid var(--c-border);
+        border-radius: 12px;
+        font-family: var(--font-ar);
+        font-size: .92rem;
+        font-weight: 600;
+        color: var(--c-text);
+        background: var(--c-bg);
+        outline: none;
+        transition: border-color .2s, box-shadow .2s;
+        text-align: right;
+        direction: rtl;
+    }
+
+        .co-input:focus {
+            border-color: var(--c-accent);
+            box-shadow: 0 0 0 4px var(--c-accent-lt);
+            background: white;
+        }
+
+            .co-input:focus + .co-input-icon {
+                color: var(--c-accent);
+            }
+
+        .co-input::placeholder {
+            color: var(--c-muted);
+            font-weight: 500;
+        }
+
+    .co-field-error {
+        display: block;
+        font-size: .75rem;
+        font-weight: 700;
+        color: var(--c-rose);
+        margin-top: .35rem;
+    }
+
+    .co-validation-error {
+        max-width: 1140px;
+        margin: 1rem auto;
+        padding: 0 2rem;
+        font-size: .85rem;
+        font-weight: 700;
+        color: var(--c-rose);
+    }
+
+    /* SUMMARY HEAD */
+    .co-summary-head {
+        background: linear-gradient(145deg, var(--c-accent-dk), var(--c-accent)) !important;
+        border-bottom-color: rgba(255,255,255,.1) !important;
+    }
+
+        .co-summary-head .co-card-head-icon {
+            background: rgba(255,255,255,.15) !important;
+            color: white !important;
+        }
+
+        .co-summary-head h3 {
+            color: white !important;
+        }
+
+        .co-summary-head p {
+            color: rgba(255,255,255,.6) !important;
+        }
+
+    .co-summary-body {
+        padding: 0 !important;
+    }
+
+    /* ORDER ITEM */
+    .co-order-items {
+        padding: 1.1rem 1.5rem;
+        border-bottom: 1px solid var(--c-border);
+    }
+
+    .co-order-item {
+        display: flex;
+        align-items: center;
+        gap: .85rem;
+        padding: .5rem;
+        border-radius: 12px;
+        transition: background .2s;
+    }
+
+        .co-order-item:hover {
+            background: var(--c-bg);
+        }
+
+    .co-order-item-img-wrap {
+        width: 58px;
+        height: 54px;
+        flex-shrink: 0;
+        border-radius: 10px;
+        overflow: hidden;
+        border: 1px solid var(--c-border);
+        background: var(--c-bg);
+    }
+
+    .co-order-item-img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    .co-order-item-info {
+        flex: 1;
+        min-width: 0;
+    }
+
+    .co-order-item-name {
+        font-size: .88rem;
+        font-weight: 800;
+        color: var(--c-text);
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+    .co-order-item-meta {
+        font-size: .73rem;
+        font-weight: 700;
+        color: var(--c-muted);
+        margin-top: .2rem;
+        display: flex;
+        align-items: center;
+        gap: .3rem;
+    }
+
+        .co-order-item-meta i {
+            color: var(--c-accent);
+            font-size: .7rem;
+        }
+
+    .co-order-item-price {
+        font-size: 1.05rem;
+        font-weight: 900;
+        color: var(--c-accent);
+        white-space: nowrap;
+        display: flex;
+        align-items: baseline;
+        gap: .15rem;
+        flex-shrink: 0;
+    }
+
+        .co-order-item-price sup {
+            font-size: .65rem;
+            font-weight: 800;
+        }
+
+    /* SUMMARY ROWS */
+    .co-summary-rows {
+        padding: 1rem 1.5rem;
+        border-bottom: 1px solid var(--c-border);
+        display: flex;
+        flex-direction: column;
+        gap: .6rem;
+    }
+
+    .co-summary-row {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        font-size: .85rem;
+        font-weight: 600;
+        color: var(--c-muted);
+    }
+
+        .co-summary-row i {
+            color: var(--c-accent);
+            margin-left: .3rem;
+        }
+
+    .co-free {
+        color: var(--c-green);
+        font-weight: 800;
+    }
+
+    /* TOTAL */
+    .co-total-box {
+        margin: 1rem 1.5rem;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 1rem 1.25rem;
+        background: var(--c-accent-lt);
+        border-radius: 14px;
+        border: 1px solid rgba(29,78,216,.15);
+    }
+
+    .co-total-label {
+        font-size: .92rem;
+        font-weight: 800;
+        color: var(--c-accent-dk);
+    }
+
+    .co-total-amount {
+        font-size: 1.7rem;
+        font-weight: 900;
+        color: var(--c-accent);
+        display: flex;
+        align-items: baseline;
+        gap: .2rem;
+        font-family: var(--font-ar);
+    }
+
+        .co-total-amount sup {
+            font-size: .75rem;
+            font-weight: 800;
+        }
+
+    /* CONFIRM NOTE */
+    .co-confirm-note {
+        margin: 0 1.5rem 1.25rem;
+        display: flex;
+        align-items: center;
+        gap: .6rem;
+        padding: .75rem 1rem;
+        background: var(--c-green-lt);
+        border: 1px solid rgba(22,163,74,.25);
+        border-radius: 12px;
+        font-size: .82rem;
+        color: var(--c-green);
+        font-weight: 700;
+    }
+
+    /* EMPTY */
+    .co-empty {
+        text-align: center;
+        padding: 2.5rem 1rem;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: .75rem;
+    }
+
+        .co-empty i {
+            font-size: 2.5rem;
+            color: var(--c-muted);
+        }
+
+        .co-empty p {
+            color: var(--c-muted);
+            font-weight: 600;
+        }
+
+    /* ACTIONS */
+    .co-actions {
+        display: flex;
+        flex-direction: column;
+        gap: .75rem;
+        margin-bottom: 1rem;
+    }
+
+    .co-submit-btn {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: .6rem;
+        width: 100%;
+        padding: 1rem;
+        background: linear-gradient(135deg, var(--c-accent), var(--c-accent-dk));
+        color: white;
+        border: none;
+        border-radius: 14px;
+        font-family: var(--font-ar);
+        font-size: 1rem;
+        font-weight: 800;
+        cursor: pointer;
+        transition: transform .25s var(--bounce), box-shadow .25s;
+        box-shadow: 0 6px 20px rgba(29,78,216,.28);
+    }
+
+        .co-submit-btn:hover:not(:disabled) {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 28px rgba(29,78,216,.38);
+        }
+
+        .co-submit-btn:disabled {
+            opacity: .5;
+            cursor: not-allowed;
+        }
+
+    .co-back-btn {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: .5rem;
+        width: 100%;
+        padding: .85rem;
+        background: var(--c-surface);
+        color: var(--c-muted);
+        border: 1.5px solid var(--c-border);
+        border-radius: 14px;
+        font-family: var(--font-ar);
+        font-size: .9rem;
+        font-weight: 800;
+        text-decoration: none;
+        transition: all .2s;
+    }
+
+        .co-back-btn:hover {
+            border-color: var(--c-accent);
+            color: var(--c-accent);
+            background: var(--c-accent-lt);
+            transform: translateY(-2px);
+        }
+
+    /* RESPONSIVE */
+    @@media (max-width: 960px) {
+        .co-layout {
+            grid-template-columns: 1fr;
+        }
+    }
+
+    @@media (max-width: 576px) {
+        .co-layout {
+            padding: 0 1rem 3rem;
+        }
+
+        .co-crumb {
+            padding: 1rem 1rem .5rem;
+        }
+
+        .co-steps {
+            padding: 1rem;
+        }
+
+        .co-step {
+            min-width: 70px;
+            font-size: .7rem;
+        }
+
+        .co-step-line {
+            min-width: 30px;
+        }
+
+        .co-header-inner {
+            padding: 0 1rem;
+        }
+
+        .co-card-body {
+            padding: 1.1rem;
+        }
+
+        .co-order-items, .co-summary-rows {
+            padding: .85rem 1rem;
+        }
+
+        .co-total-box {
+            margin: .75rem 1rem;
+        }
+
+        .co-confirm-note {
+            margin: 0 1rem 1rem;
+        }
+    }
+</style>

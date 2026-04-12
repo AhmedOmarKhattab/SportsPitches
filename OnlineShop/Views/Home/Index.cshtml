@@ -1,0 +1,1632 @@
+﻿@model X.PagedList.IPagedList<Pitch>
+@{
+    ViewData["Title"] = "بيتش أرينا — احجز ملعبك الآن";
+}
+
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&family=Tajawal:wght@400;500;700;800;900&display=swap" rel="stylesheet" />
+<link href="~/lib/bootstrap-icons/font/bootstrap-icons.min.css" rel="stylesheet" />
+
+<!-- ═══════════════════════════════════════════════════════ HERO -->
+<section class="hero">
+    <!-- Background cover image -->
+    <div class="hero__cover">
+        <img src="~/files/images/homeimage.jpg"
+             alt="ملعب رياضي"
+             class="hero__cover-img" />
+        <div class="hero__cover-overlay"></div>
+    </div>
+
+    <!-- Floating badge top -->
+    <div class="hero__top-badge wrap">
+        <span class="pill pill--glass">⚡ احجز في أقل من 60 ثانية</span>
+    </div>
+
+    <!-- Main content -->
+    <div class="hero__inner wrap">
+        <div class="hero__copy">
+            <h1 class="hero__h1">
+                لعبتك،<br />
+                <em>قواعدك</em>،<br />
+                ملعبك.
+            </h1>
+            <p class="hero__sub">
+                ابحث واحجز فوراً في أفضل الملاعب الرياضية — كرة قدم، كرة سلة، بادل، تنس والمزيد. توفر فوري وبدون أي تعقيدات.
+            </p>
+            <div class="hero__actions">
+                <a asp-action="ShowPitches" class="btn btn--primary">تصفح الملاعب <i class="bi bi-arrow-left-short"></i></a>
+                <a href="#how-it-works" class="btn btn--glass-outline">كيف يعمل؟</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bottom info strip -->
+    <div class="hero__bottom">
+        <div class="wrap hero__bottom-inner">
+            <div class="hero__trust-strip">
+                <div class="hero__trust-item">
+                    <i class="bi bi-check-circle-fill"></i>
+                    <span>تأكيد فوري</span>
+                </div>
+                <div class="hero__trust-sep"></div>
+                <div class="hero__trust-item">
+                    <i class="bi bi-shield-check"></i>
+                    <span>إلغاء مجاني</span>
+                </div>
+                <div class="hero__trust-sep"></div>
+                <div class="hero__trust-item">
+                    <i class="bi bi-lock-fill"></i>
+                    <span>حجز آمن</span>
+                </div>
+                <div class="hero__trust-sep"></div>
+                <div class="hero__trust-item">
+                    <i class="bi bi-star-fill"></i>
+                    <span>+12,000 حجز مكتمل</span>
+                </div>
+            </div>
+            <div class="hero__scroll-hint">
+                <div class="scroll-line"></div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════ QUICK STATS -->
+<div class="stats-bar">
+    <div class="wrap stats-bar__inner">
+        <div class="stats-bar__item">
+            <strong>+12,000</strong>
+            <span>حجز مكتمل</span>
+        </div>
+        <div class="stats-bar__divider"></div>
+        <div class="stats-bar__item">
+            <strong>6 رياضات</strong>
+            <span>ملاعب متنوعة</span>
+        </div>
+        <div class="stats-bar__divider"></div>
+        <div class="stats-bar__item">
+            <strong>7 أيام</strong>
+            <span>مفتوح كل أسبوع</span>
+        </div>
+        <div class="stats-bar__divider"></div>
+        <div class="stats-bar__item">
+            <strong>24 / 7</strong>
+            <span>حجز إلكتروني</span>
+        </div>
+    </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════ SPORT CATEGORIES -->
+<section class="sports" id="sports">
+    <div class="wrap">
+        <div class="section-head">
+            <span class="pill">جميع الرياضات</span>
+            <h2 class="section-h2">اختر <mark>رياضتك</mark></h2>
+            <p class="section-sub">كل ملعب مجهز ومصان وجاهز للعب في أي وقت.</p>
+        </div>
+        <div class="sports__grid">
+            <a asp-action="ShowPitches" asp-route-type="football" class="sport-card sport-card--football">
+                <div class="sport-card__icon">⚽</div>
+                <h3>كرة القدم</h3>
+                <p>ملاعب 5 ضد 5 و7 ضد 7، عشب طبيعي وصناعي</p>
+                <div class="sport-card__meta">
+                    <span><i class="bi bi-geo-alt"></i> 8 ملاعب</span>
+                    <span class="sport-card__arrow"><i class="bi bi-arrow-up-left"></i></span>
+                </div>
+            </a>
+            <a asp-action="ShowPitches" asp-route-type="basketball" class="sport-card sport-card--basketball">
+                <div class="sport-card__icon">🏀</div>
+                <h3>كرة السلة</h3>
+                <p>ملاعب داخلية وخارجية بأرضية احترافية</p>
+                <div class="sport-card__meta">
+                    <span><i class="bi bi-geo-alt"></i> 4 ملاعب</span>
+                    <span class="sport-card__arrow"><i class="bi bi-arrow-up-left"></i></span>
+                </div>
+            </a>
+            <a asp-action="ShowPitches" asp-route-type="tennis" class="sport-card sport-card--tennis">
+                <div class="sport-card__icon">🎾</div>
+                <h3>التنس</h3>
+                <p>ملاعب ترابية وصلبة وداخلية متاحة للحجز</p>
+                <div class="sport-card__meta">
+                    <span><i class="bi bi-geo-alt"></i> 6 ملاعب</span>
+                    <span class="sport-card__arrow"><i class="bi bi-arrow-up-left"></i></span>
+                </div>
+            </a>
+            <a asp-action="ShowPitches" asp-route-type="padel" class="sport-card sport-card--padel">
+                <div class="sport-card__icon">🏓</div>
+                <h3>البادل</h3>
+                <p>ملاعب بادل مغطاة ومكشوفة مع إضاءة كاملة</p>
+                <div class="sport-card__meta">
+                    <span><i class="bi bi-geo-alt"></i> 5 ملاعب</span>
+                    <span class="sport-card__arrow"><i class="bi bi-arrow-up-left"></i></span>
+                </div>
+            </a>
+            <a asp-action="ShowPitches" asp-route-type="volleyball" class="sport-card sport-card--volleyball">
+                <div class="sport-card__icon">🏐</div>
+                <h3>الكرة الطائرة</h3>
+                <p>ملاعب شاطئية وداخلية للكرة الطائرة</p>
+                <div class="sport-card__meta">
+                    <span><i class="bi bi-geo-alt"></i> 3 ملاعب</span>
+                    <span class="sport-card__arrow"><i class="bi bi-arrow-up-left"></i></span>
+                </div>
+            </a>
+            <a asp-action="ShowPitches" asp-route-type="cricket" class="sport-card sport-card--cricket">
+                <div class="sport-card__icon">🏏</div>
+                <h3>الكريكيت</h3>
+                <p>ملاعب كاملة الحجم وشبكات للتدريب</p>
+                <div class="sport-card__meta">
+                    <span><i class="bi bi-geo-alt"></i> 2 ملاعب</span>
+                    <span class="sport-card__arrow"><i class="bi bi-arrow-up-left"></i></span>
+                </div>
+            </a>
+        </div>
+    </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════ FEATURED PITCHES -->
+<section class="pitches" id="pitches">
+    <div class="wrap">
+        <div class="section-head section-head--row">
+            <div>
+                <span class="pill">مميزة</span>
+                <h2 class="section-h2">أفضل <mark>الملاعب</mark></h2>
+            </div>
+            <a asp-action="ShowPitches" class="btn btn--outline"><i class="bi bi-arrow-left-short"></i> عرض جميع الملاعب</a>
+        </div>
+
+        @if (!Model.Any())
+        {
+            <div class="empty-state">
+                <div class="empty-state__icon">🏟️</div>
+                <h3>لا توجد ملاعب متاحة الآن</h3>
+                <p>تابعنا قريباً — نضيف أماكن جديدة يومياً.</p>
+            </div>
+        }
+        else
+        {
+            <div class="pitches__grid">
+                @foreach (var pitch in Model)
+                {
+                    <div class="pitch-card">
+                        <div class="pitch-card__img-wrap">
+                            <img src="~/files/images/@pitch.Image"
+                                 alt="@pitch.Name"
+                                 class="pitch-card__img"
+                                 loading="lazy"
+                                 onerror="this.src='/images/placeholder-pitch.jpg'" />
+                            <div class="pitch-card__overlay"></div>
+                            <div class="pitch-card__top-row">
+                                @if (pitch.IsAvailable)
+                                {
+                                    <span class="avail-badge avail-badge--green"><span class="dot dot--green"></span> متاح</span>
+                                }
+                                else
+                                {
+                                    <span class="avail-badge avail-badge--red"><span class="dot dot--red"></span> محجوز</span>
+                                }
+                                <span class="sport-tag">@(pitch.PitchType?.Name ?? "رياضة")</span>
+                            </div>
+                        </div>
+                        <div class="pitch-card__body">
+                            <div class="pitch-card__stars">★★★★★ <span>(4.8)</span></div>
+                            <h3 class="pitch-card__name">@pitch.Name</h3>
+                            @if (!string.IsNullOrEmpty(pitch.Address))
+                            {
+                                <p class="pitch-card__address"><i class="bi bi-geo-alt"></i> @pitch.Address</p>
+                            }
+                            <div class="pitch-card__footer">
+                                <div class="pitch-card__price">
+                                    <strong>@pitch.Price.ToString("0.00") ج.م</strong>
+
+                                    <span>/ ساعة</span>
+                                </div>
+                                <a asp-action="Details"
+                                   asp-controller="Home"
+                                   asp-route-id="@pitch.Id"
+                                   class="btn btn--book">
+                                    احجز الآن <i class="bi bi-arrow-left-short"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+
+            <div class="pagination-wrap">
+                @Html.PagedListPager(Model, page => Url.Action("Index", new { page }), new PagedListRenderOptions
+                {
+                    DisplayLinkToFirstPage = PagedListDisplayMode.Never,
+                        DisplayLinkToLastPage = PagedListDisplayMode.Never,
+                        DisplayLinkToPreviousPage = PagedListDisplayMode.Always,
+                        DisplayLinkToNextPage = PagedListDisplayMode.Always,
+                        LinkToPreviousPageFormat = "→ السابق",
+                        LinkToNextPageFormat = "التالي ←",
+                        UlElementClasses = new[] { "pg" },
+                        LiElementClasses = new[] { "pg__item" }
+                        })
+        </div>
+                }
+    </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════ HOW IT WORKS -->
+<section class="how" id="how-it-works">
+    <div class="wrap">
+        <div class="section-head">
+            <span class="pill">بسيط وسريع</span>
+            <h2 class="section-h2">احجز في <mark>3 خطوات</mark></h2>
+            <p class="section-sub">لا تطبيق، لا حساب — فقط اختر، أدخل بياناتك، والعب.</p>
+        </div>
+        <div class="how__steps">
+            <div class="how__step">
+                <div class="how__step-num">01</div>
+                <div class="how__step-icon">🔍</div>
+                <h3>اختر ملعبك</h3>
+                <p>تصفح حسب الرياضة أو الموقع أو السعر. صفّ حسب التوفر وابحث عن المكان المثالي للعبتك.</p>
+            </div>
+            <div class="how__connector"><i class="bi bi-arrow-left"></i></div>
+            <div class="how__step">
+                <div class="how__step-num">02</div>
+                <div class="how__step-icon">📋</div>
+                <h3>أدخل بياناتك</h3>
+                <p>اكتب اسمك ورقم هاتفك واختر الوقت المناسب لك. العملية كلها لا تستغرق دقيقة واحدة.</p>
+            </div>
+            <div class="how__connector"><i class="bi bi-arrow-left"></i></div>
+            <div class="how__step">
+                <div class="how__step-num">03</div>
+                <div class="how__step-icon">✅</div>
+                <h3>احضر والعب</h3>
+                <p>استقبل تأكيد حجزك فوراً. احضر في الوقت المحدد والملعب بالكامل لك.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════ FEATURES -->
+<section class="features">
+    <div class="wrap features__inner">
+        <div class="features__text">
+            <span class="pill">لماذا بيتش أرينا؟</span>
+            <h2 class="section-h2">كل ما يحتاجه <mark>اللاعب</mark></h2>
+            <p class="section-sub">نتولى كل التفاصيل حتى تركّز أنت على اللعب فقط.</p>
+            <a asp-action="ShowPitches" class="btn btn--primary" style="margin-top:2rem;">ابحث عن ملعب <i class="bi bi-arrow-left-short"></i></a>
+        </div>
+        <div class="features__cards">
+            <div class="feat-card">
+                <div class="feat-card__icon feat-card__icon--yellow"><i class="bi bi-lightning-charge-fill"></i></div>
+                <h4>حجز فوري</h4>
+                <p>يُؤكَّد الملعب في اللحظة التي تضغط فيها إرسال. لا انتظار ولا مكالمات.</p>
+            </div>
+            <div class="feat-card">
+                <div class="feat-card__icon feat-card__icon--green"><i class="bi bi-shield-check-fill"></i></div>
+                <h4>ملاعب موثّقة</h4>
+                <p>كل ملعب يتم فحصه وتقييمه من فريقنا قبل إدراجه في المنصة.</p>
+            </div>
+            <div class="feat-card">
+                <div class="feat-card__icon feat-card__icon--blue"><i class="bi bi-clock-history"></i></div>
+                <h4>أوقات مرنة</h4>
+                <p>حجز بالساعة أو لعدة ساعات. صباحاً أو مساءً أو في المساء المتأخر.</p>
+            </div>
+            <div class="feat-card">
+                <div class="feat-card__icon feat-card__icon--pink"><i class="bi bi-x-circle-fill"></i></div>
+                <h4>إلغاء مجاني</h4>
+                <p>تغيّرت خططك؟ ألغِ حجزك قبل ساعتين من الموعد بدون أي رسوم.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════ TESTIMONIALS -->
+<section class="testimonials">
+    <div class="wrap">
+        <div class="section-head">
+            <span class="pill">يقول اللاعبون</span>
+            <h2 class="section-h2">تجارب حقيقية، <mark>ألعاب حقيقية</mark></h2>
+        </div>
+        <div class="testi__grid">
+            <div class="testi-card">
+                <div class="testi-card__header">
+                    <div class="testi-card__avatar">مح</div>
+                    <div>
+                        <strong>محمد خ.</strong>
+                        <span>كرة قدم · 5 ضد 5</span>
+                    </div>
+                    <div class="testi-card__stars">★★★★★</div>
+                </div>
+                <p>"حجزت ملعباً لمباراتنا الأسبوعية في دقيقتين بالضبط. العملية سهلة جداً والملعب كان في حالة ممتازة."</p>
+                <div class="testi-card__tag">⚽ ملعب كرة قدم ب</div>
+            </div>
+            <div class="testi-card testi-card--accent">
+                <div class="testi-card__header">
+                    <div class="testi-card__avatar">سر</div>
+                    <div>
+                        <strong>سارة ر.</strong>
+                        <span>تنس · فردي</span>
+                    </div>
+                    <div class="testi-card__stars">★★★★★</div>
+                </div>
+                <p>"أخيراً منصة حجز لا تجبرك على إنشاء حساب أولاً. حجزت ملعب التنس، حضرت، لعبت. هذا كل شيء."</p>
+                <div class="testi-card__tag">🎾 ملعب 2 — ترابي</div>
+            </div>
+            <div class="testi-card">
+                <div class="testi-card__header">
+                    <div class="testi-card__avatar">عل</div>
+                    <div>
+                        <strong>علي ت.</strong>
+                        <span>كرة سلة · 3×3</span>
+                    </div>
+                    <div class="testi-card__stars">★★★★★</div>
+                </div>
+                <p>"الملعب الداخلي كان نظيفاً جداً. أحببت التوفر الفوري — عرفت الأوقات المتاحة بالضبط قبل الحجز."</p>
+                <div class="testi-card__tag">🏀 صالة 1</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════ CTA BANNER -->
+<section class="cta-band">
+    <div class="cta-band__bg">
+        <div class="cta-band__orb cta-band__orb--1"></div>
+        <div class="cta-band__orb cta-band__orb--2"></div>
+    </div>
+    <div class="wrap cta-band__inner">
+        <div class="cta-band__text">
+            <h2>جاهز للعب؟</h2>
+            <p>تصفح جميع الملاعب المتاحة واحجز موعدك قبل أن يسبقك أحد.</p>
+        </div>
+        <div class="cta-band__actions">
+            <a asp-action="ShowPitches" class="btn btn--white"><i class="bi bi-arrow-left-short"></i> تصفح جميع الملاعب</a>
+        </div>
+    </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════ STYLES -->
+<style>
+    :root {
+        --c-bg: #F7F8FC;
+        --c-surface: #FFFFFF;
+        --c-text: #111827;
+        --c-muted: #6B7280;
+        --c-border: #E5E7EB;
+        --c-green: #16A34A;
+        --c-green-lt: #DCFCE7;
+        --c-amber: #D97706;
+        --c-amber-lt: #FEF3C7;
+        --c-sky: #0284C7;
+        --c-sky-lt: #E0F2FE;
+        --c-rose: #E11D48;
+        --c-rose-lt: #FFE4E6;
+        --c-accent: #1D4ED8;
+        --c-accent-lt: #DBEAFE;
+        --radius-sm: 8px;
+        --radius-md: 16px;
+        --radius-lg: 24px;
+        --radius-xl: 32px;
+        --shadow-md: 0 4px 16px rgba(0,0,0,.08);
+        --shadow-lg: 0 12px 40px rgba(0,0,0,.10);
+        --font-ar: 'Cairo', 'Tajawal', sans-serif;
+        --ease-bounce: cubic-bezier(.34,1.56,.64,1);
+    }
+
+    *, *::before, *::after {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+    }
+
+    body {
+        background: var(--c-bg);
+        color: var(--c-text);
+        font-family: var(--font-ar);
+        line-height: 1.7;
+        overflow-x: hidden;
+        direction: rtl;
+    }
+
+    .wrap {
+        max-width: 1180px;
+        margin: 0 auto;
+        padding: 0 1.5rem;
+    }
+
+    mark {
+        background: none;
+        color: var(--c-accent);
+    }
+
+    .pill {
+        display: inline-flex;
+        align-items: center;
+        gap: .4rem;
+        background: var(--c-accent-lt);
+        color: var(--c-accent);
+        font-weight: 700;
+        font-size: .78rem;
+        padding: .3rem .9rem;
+        border-radius: 999px;
+        margin-bottom: .9rem;
+    }
+
+    .pill--outline {
+        background: transparent;
+        border: 1.5px solid rgba(29,78,216,.3);
+    }
+
+    .dot {
+        width: 7px;
+        height: 7px;
+        border-radius: 50%;
+        display: inline-block;
+        flex-shrink: 0;
+    }
+
+    .dot--green {
+        background: var(--c-green);
+        box-shadow: 0 0 0 3px var(--c-green-lt);
+    }
+
+    .dot--red {
+        background: var(--c-rose);
+        box-shadow: 0 0 0 3px var(--c-rose-lt);
+    }
+
+    /* BUTTONS */
+    .btn {
+        display: inline-flex;
+        align-items: center;
+        gap: .35rem;
+        font-family: var(--font-ar);
+        font-weight: 700;
+        font-size: .92rem;
+        padding: .75rem 1.5rem;
+        border-radius: var(--radius-md);
+        text-decoration: none;
+        transition: transform .22s var(--ease-bounce), box-shadow .22s, background .18s;
+        cursor: pointer;
+        border: none;
+    }
+
+        .btn:hover {
+            transform: translateY(-2px);
+        }
+
+    .btn--primary {
+        background: var(--c-accent);
+        color: #fff;
+        box-shadow: 0 4px 18px rgba(29,78,216,.35);
+    }
+
+        .btn--primary:hover {
+            background: #1e40af;
+            box-shadow: 0 8px 28px rgba(29,78,216,.45);
+            color: #fff;
+        }
+
+    .btn--ghost {
+        background: rgba(255,255,255,.15);
+        color: var(--c-text);
+        border: 1.5px solid var(--c-border);
+    }
+
+        .btn--ghost:hover {
+            background: var(--c-surface);
+        }
+
+    .btn--outline {
+        background: transparent;
+        color: var(--c-accent);
+        border: 1.5px solid var(--c-accent);
+    }
+
+        .btn--outline:hover {
+            background: var(--c-accent-lt);
+        }
+
+    .btn--book {
+        background: var(--c-accent);
+        color: #fff;
+        font-size: .85rem;
+        padding: .55rem 1.1rem;
+        border-radius: var(--radius-sm);
+        box-shadow: 0 3px 10px rgba(29,78,216,.3);
+    }
+
+        .btn--book:hover {
+            color: #fff;
+            background: #1e40af;
+        }
+
+    .btn--white {
+        background: #fff;
+        color: var(--c-accent);
+        box-shadow: 0 4px 16px rgba(0,0,0,.12);
+    }
+
+        .btn--white:hover {
+            background: var(--c-accent-lt);
+        }
+
+    /* SECTION HEADERS */
+    .section-head {
+        text-align: center;
+        margin-bottom: 3rem;
+    }
+
+    .section-head--row {
+        display: flex;
+        align-items: flex-end;
+        justify-content: space-between;
+        text-align: right;
+        flex-wrap: wrap;
+        gap: 1rem;
+    }
+
+    .section-h2 {
+        font-family: var(--font-ar);
+        font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+        font-weight: 900;
+        line-height: 1.2;
+        color: var(--c-text);
+        margin-bottom: .5rem;
+    }
+
+    .section-sub {
+        color: var(--c-muted);
+        font-size: 1rem;
+        max-width: 520px;
+        margin: 0 auto;
+        font-weight: 500;
+    }
+
+    /* ── HERO COVER ── */
+    .hero {
+        position: relative;
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+        overflow: hidden;
+    }
+
+    .hero__cover {
+        position: absolute;
+        inset: 0;
+        z-index: 0;
+    }
+
+    .hero__cover-img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center;
+        animation: heroZoom 14s ease-in-out infinite alternate;
+    }
+
+    @@keyframes heroZoom {
+        0% {
+            transform: scale(1.04) translateX(0);
+        }
+
+        100% {
+            transform: scale(1.08) translateX(-1%);
+        }
+    }
+
+    .hero__cover-overlay {
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(to left, rgba(0,0,0,0) 0%, rgba(0,0,0,.55) 60%), linear-gradient(to top, rgba(0,0,0,.7) 0%, rgba(0,0,0,.1) 50%, rgba(0,0,0,.35) 100%);
+    }
+
+    .hero__top-badge {
+        position: relative;
+        z-index: 2;
+        padding-top: 2.5rem;
+    }
+
+    .pill--glass {
+        background: rgba(255,255,255,.15);
+        color: #fff;
+        border: 1.5px solid rgba(255,255,255,.35);
+        backdrop-filter: blur(10px);
+        font-size: .8rem;
+        font-weight: 700;
+    }
+
+    .hero__inner {
+        position: relative;
+        z-index: 2;
+        flex: 1;
+        display: flex;
+        align-items: center;
+        padding: 3rem 1.5rem 2rem;
+    }
+
+    .hero__copy {
+        max-width: 620px;
+        animation: fadeSlideUp .9s ease both;
+    }
+
+    @@keyframes fadeSlideUp {
+        from {
+            opacity: 0;
+            transform: translateY(32px);
+        }
+
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    .hero__h1 {
+        font-family: var(--font-ar);
+        font-size: clamp(3rem, 7vw, 5.5rem);
+        font-weight: 900;
+        line-height: 1.15;
+        color: #fff;
+        margin-bottom: 1.25rem;
+        text-shadow: 0 2px 24px rgba(0,0,0,.4);
+    }
+
+        .hero__h1 em {
+            font-style: normal;
+            color: #FDE68A;
+        }
+
+    .hero__sub {
+        font-size: 1.1rem;
+        color: rgba(255,255,255,.82);
+        max-width: 500px;
+        margin-bottom: 2.25rem;
+        line-height: 1.9;
+        font-weight: 500;
+        text-shadow: 0 1px 8px rgba(0,0,0,.3);
+    }
+
+    .hero__actions {
+        display: flex;
+        gap: .9rem;
+        flex-wrap: wrap;
+    }
+
+    .btn--glass-outline {
+        background: rgba(255,255,255,.12);
+        color: #fff;
+        border: 1.5px solid rgba(255,255,255,.5);
+        backdrop-filter: blur(8px);
+    }
+
+        .btn--glass-outline:hover {
+            background: rgba(255,255,255,.22);
+            color: #fff;
+        }
+
+    .hero__bottom {
+        position: relative;
+        z-index: 2;
+        border-top: 1px solid rgba(255,255,255,.15);
+        padding: 1.25rem 0;
+        background: rgba(0,0,0,.35);
+        backdrop-filter: blur(12px);
+    }
+
+    .hero__bottom-inner {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 1rem;
+    }
+
+    .hero__trust-strip {
+        display: flex;
+        align-items: center;
+        gap: 1.5rem;
+        flex-wrap: wrap;
+    }
+
+    .hero__trust-item {
+        display: flex;
+        align-items: center;
+        gap: .5rem;
+        color: rgba(255,255,255,.85);
+        font-size: .85rem;
+        font-weight: 600;
+    }
+
+        .hero__trust-item i {
+            color: #86EFAC;
+            font-size: 1rem;
+        }
+
+    .hero__trust-sep {
+        width: 1px;
+        height: 20px;
+        background: rgba(255,255,255,.2);
+        flex-shrink: 0;
+    }
+
+    .hero__scroll-hint {
+        display: flex;
+        align-items: center;
+    }
+
+    .scroll-line {
+        width: 1px;
+        height: 40px;
+        background: linear-gradient(to bottom, rgba(255,255,255,.5), transparent);
+        animation: scrollPulse 1.8s ease-in-out infinite;
+    }
+
+    @@keyframes scrollPulse {
+        0%, 100% {
+            opacity: .4;
+        }
+
+        50% {
+            opacity: 1;
+        }
+    }
+
+    @@media (max-width: 768px) {
+        .hero__h1 {
+            font-size: clamp(2.4rem, 10vw, 3.5rem);
+        }
+
+        .hero__trust-sep {
+            display: none;
+        }
+
+        .hero__trust-strip {
+            gap: 1rem;
+        }
+
+        .hero__scroll-hint {
+            display: none;
+        }
+    }
+
+    /* STATS BAR */
+    .stats-bar {
+        background: var(--c-surface);
+        border-top: 1px solid var(--c-border);
+        border-bottom: 1px solid var(--c-border);
+        padding: 1.75rem 1.5rem;
+    }
+
+    .stats-bar__inner {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 2rem;
+        flex-wrap: wrap;
+    }
+
+    .stats-bar__item {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+        .stats-bar__item strong {
+            font-size: 1.5rem;
+            font-weight: 900;
+            color: var(--c-text);
+        }
+
+        .stats-bar__item span {
+            font-size: .8rem;
+            color: var(--c-muted);
+            font-weight: 600;
+        }
+
+    .stats-bar__divider {
+        width: 1px;
+        height: 36px;
+        background: var(--c-border);
+    }
+
+    /* SPORTS */
+    .sports {
+        padding: 5rem 1.5rem;
+    }
+
+    .sports__grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 1.25rem;
+    }
+
+    .sport-card {
+        background: var(--c-surface);
+        border-radius: var(--radius-lg);
+        padding: 1.75rem;
+        border: 1.5px solid var(--c-border);
+        text-decoration: none;
+        color: var(--c-text);
+        transition: transform .3s var(--ease-bounce), box-shadow .3s, border-color .2s;
+        display: flex;
+        flex-direction: column;
+        gap: .5rem;
+        position: relative;
+        overflow: hidden;
+    }
+
+        .sport-card::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            opacity: 0;
+            border-radius: inherit;
+            transition: opacity .3s;
+        }
+
+        .sport-card:hover {
+            transform: translateY(-6px);
+            box-shadow: var(--shadow-lg);
+        }
+
+            .sport-card:hover::before {
+                opacity: 1;
+            }
+
+    .sport-card--football {
+        border-color: #BBF7D0;
+    }
+
+        .sport-card--football::before {
+            background: linear-gradient(135deg,rgba(187,247,208,.25),rgba(167,243,208,.1));
+        }
+
+        .sport-card--football:hover {
+            border-color: var(--c-green);
+            box-shadow: 0 12px 36px rgba(22,163,74,.15);
+        }
+
+    .sport-card--basketball {
+        border-color: #FED7AA;
+    }
+
+        .sport-card--basketball::before {
+            background: linear-gradient(135deg,rgba(254,215,170,.25),rgba(253,186,116,.1));
+        }
+
+        .sport-card--basketball:hover {
+            border-color: #EA580C;
+            box-shadow: 0 12px 36px rgba(234,88,12,.15);
+        }
+
+    .sport-card--tennis {
+        border-color: #FEF08A;
+    }
+
+        .sport-card--tennis::before {
+            background: linear-gradient(135deg,rgba(254,240,138,.25),rgba(250,204,21,.1));
+        }
+
+        .sport-card--tennis:hover {
+            border-color: #CA8A04;
+            box-shadow: 0 12px 36px rgba(202,138,4,.15);
+        }
+
+    .sport-card--padel {
+        border-color: #BAE6FD;
+    }
+
+        .sport-card--padel::before {
+            background: linear-gradient(135deg,rgba(186,230,253,.25),rgba(125,211,252,.1));
+        }
+
+        .sport-card--padel:hover {
+            border-color: var(--c-sky);
+            box-shadow: 0 12px 36px rgba(2,132,199,.15);
+        }
+
+    .sport-card--volleyball {
+        border-color: #F5D0FE;
+    }
+
+        .sport-card--volleyball::before {
+            background: linear-gradient(135deg,rgba(245,208,254,.25),rgba(216,180,254,.1));
+        }
+
+        .sport-card--volleyball:hover {
+            border-color: #9333EA;
+            box-shadow: 0 12px 36px rgba(147,51,234,.15);
+        }
+
+    .sport-card--cricket {
+        border-color: #FCA5A5;
+    }
+
+        .sport-card--cricket::before {
+            background: linear-gradient(135deg,rgba(252,165,165,.25),rgba(248,113,113,.1));
+        }
+
+        .sport-card--cricket:hover {
+            border-color: #DC2626;
+            box-shadow: 0 12px 36px rgba(220,38,38,.15);
+        }
+
+    .sport-card__icon {
+        font-size: 2.5rem;
+        margin-bottom: .25rem;
+    }
+
+    .sport-card h3 {
+        font-size: 1.3rem;
+        font-weight: 900;
+    }
+
+    .sport-card p {
+        font-size: .88rem;
+        color: var(--c-muted);
+        line-height: 1.65;
+        flex: 1;
+        font-weight: 500;
+    }
+
+    .sport-card__meta {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-top: .75rem;
+        font-size: .78rem;
+        font-weight: 700;
+        color: var(--c-muted);
+    }
+
+    .sport-card__arrow {
+        width: 32px;
+        height: 32px;
+        background: var(--c-accent-lt);
+        color: var(--c-accent);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1rem;
+        transition: background .2s, transform .2s var(--ease-bounce);
+    }
+
+    .sport-card:hover .sport-card__arrow {
+        background: var(--c-accent);
+        color: #fff;
+        transform: rotate(-45deg) scale(1.1);
+    }
+
+    /* PITCHES */
+    .pitches {
+        padding: 5rem 1.5rem;
+        background: var(--c-surface);
+    }
+
+    .pitches__grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 1.5rem;
+    }
+
+    .pitch-card {
+        background: var(--c-surface);
+        border-radius: var(--radius-lg);
+        overflow: hidden;
+        border: 1.5px solid var(--c-border);
+        transition: transform .3s var(--ease-bounce), box-shadow .3s;
+        display: flex;
+        flex-direction: column;
+    }
+
+        .pitch-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 16px 48px rgba(0,0,0,.1);
+        }
+
+    .pitch-card__img-wrap {
+        position: relative;
+        overflow: hidden;
+        height: 190px;
+        background: linear-gradient(135deg, #EFF6FF, #DBEAFE);
+    }
+
+    .pitch-card__img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform .5s ease;
+    }
+
+    .pitch-card:hover .pitch-card__img {
+        transform: scale(1.06);
+    }
+
+    .pitch-card__overlay {
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(to top, rgba(0,0,0,.35) 0%, transparent 60%);
+    }
+
+    .pitch-card__top-row {
+        position: absolute;
+        top: .9rem;
+        right: .9rem;
+        left: .9rem;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .avail-badge {
+        display: flex;
+        align-items: center;
+        gap: .4rem;
+        font-size: .72rem;
+        font-weight: 800;
+        padding: .3rem .8rem;
+        border-radius: 999px;
+        backdrop-filter: blur(8px);
+    }
+
+    .avail-badge--green {
+        background: rgba(220,252,231,.9);
+        color: var(--c-green);
+    }
+
+    .avail-badge--red {
+        background: rgba(255,228,230,.9);
+        color: var(--c-rose);
+    }
+
+    .sport-tag {
+        background: rgba(255,255,255,.85);
+        color: var(--c-accent);
+        font-weight: 800;
+        font-size: .72rem;
+        padding: .3rem .8rem;
+        border-radius: 999px;
+        backdrop-filter: blur(8px);
+    }
+
+    .pitch-card__body {
+        padding: 1.25rem;
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        gap: .4rem;
+    }
+
+    .pitch-card__stars {
+        font-size: .78rem;
+        color: var(--c-amber);
+        font-weight: 700;
+    }
+
+        .pitch-card__stars span {
+            color: var(--c-muted);
+            font-weight: 500;
+        }
+
+    .pitch-card__name {
+        font-size: 1.05rem;
+        font-weight: 800;
+        line-height: 1.4;
+    }
+
+    .pitch-card__address {
+        font-size: .8rem;
+        color: var(--c-muted);
+        display: flex;
+        align-items: center;
+        gap: .3rem;
+        font-weight: 500;
+    }
+
+    .pitch-card__footer {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-top: auto;
+        padding-top: .9rem;
+        border-top: 1px solid var(--c-border);
+    }
+
+    .pitch-card__price strong {
+        font-size: 1.35rem;
+        font-weight: 900;
+        color: var(--c-accent);
+    }
+
+    .pitch-card__price span {
+        font-size: .75rem;
+        color: var(--c-muted);
+        margin-right: .2rem;
+    }
+
+    .empty-state {
+        text-align: center;
+        padding: 5rem 2rem;
+        background: var(--c-bg);
+        border-radius: var(--radius-xl);
+        border: 2px dashed var(--c-border);
+    }
+
+    .empty-state__icon {
+        font-size: 3.5rem;
+        margin-bottom: 1rem;
+        display: block;
+    }
+
+    .empty-state h3 {
+        font-weight: 800;
+        margin-bottom: .5rem;
+        font-size: 1.3rem;
+    }
+
+    .empty-state p {
+        color: var(--c-muted);
+    }
+
+    .pagination-wrap {
+        display: flex;
+        justify-content: center;
+        margin-top: 3rem;
+    }
+
+    .pg {
+        display: flex;
+        gap: .5rem;
+        list-style: none;
+        padding: 0;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .pg__item a {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        min-width: 42px;
+        height: 42px;
+        padding: 0 .9rem;
+        background: var(--c-surface);
+        color: var(--c-accent);
+        text-decoration: none;
+        border-radius: var(--radius-sm);
+        font-weight: 700;
+        border: 1.5px solid var(--c-border);
+        transition: all .2s var(--ease-bounce);
+        font-size: .85rem;
+        font-family: var(--font-ar);
+    }
+
+        .pg__item a:hover, .pg__item.active a {
+            background: var(--c-accent);
+            color: #fff;
+            border-color: var(--c-accent);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 16px rgba(29,78,216,.3);
+        }
+
+    /* HOW IT WORKS */
+    .how {
+        padding: 5rem 1.5rem;
+        background: linear-gradient(135deg, #EFF6FF, #F0FDF4);
+    }
+
+    .how__steps {
+        display: flex;
+        align-items: flex-start;
+        gap: 1rem;
+        max-width: 880px;
+        margin: 0 auto;
+    }
+
+    .how__step {
+        flex: 1;
+        background: var(--c-surface);
+        border-radius: var(--radius-lg);
+        padding: 2rem 1.5rem;
+        border: 1.5px solid var(--c-border);
+        transition: transform .3s var(--ease-bounce), box-shadow .3s;
+        text-align: center;
+    }
+
+        .how__step:hover {
+            transform: translateY(-6px);
+            box-shadow: var(--shadow-lg);
+        }
+
+    .how__step-num {
+        font-size: 3.5rem;
+        font-weight: 900;
+        color: var(--c-accent-lt);
+        line-height: 1;
+        margin-bottom: .5rem;
+    }
+
+    .how__step-icon {
+        font-size: 2.2rem;
+        margin-bottom: .75rem;
+        display: block;
+    }
+
+    .how__step h3 {
+        font-size: 1.1rem;
+        font-weight: 800;
+        margin-bottom: .5rem;
+    }
+
+    .how__step p {
+        font-size: .88rem;
+        color: var(--c-muted);
+        line-height: 1.75;
+        font-weight: 500;
+    }
+
+    .how__connector {
+        display: flex;
+        align-items: center;
+        padding-top: 5rem;
+        font-size: 1.5rem;
+        color: var(--c-border);
+        flex-shrink: 0;
+    }
+
+    /* FEATURES */
+    .features {
+        padding: 5rem 1.5rem;
+        background: var(--c-surface);
+    }
+
+    .features__inner {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 4rem;
+        align-items: center;
+    }
+
+    .features__text .section-h2 {
+        text-align: right;
+    }
+
+    .features__text .section-sub {
+        text-align: right;
+        margin: 0;
+    }
+
+    .features__cards {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 1rem;
+    }
+
+    .feat-card {
+        background: var(--c-bg);
+        border-radius: var(--radius-md);
+        padding: 1.5rem;
+        border: 1.5px solid var(--c-border);
+        transition: transform .3s var(--ease-bounce), box-shadow .3s;
+    }
+
+        .feat-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-md);
+            border-color: var(--c-accent);
+        }
+
+    .feat-card__icon {
+        width: 44px;
+        height: 44px;
+        border-radius: var(--radius-sm);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.25rem;
+        margin-bottom: .9rem;
+    }
+
+    .feat-card__icon--yellow {
+        background: var(--c-amber-lt);
+        color: var(--c-amber);
+    }
+
+    .feat-card__icon--green {
+        background: var(--c-green-lt);
+        color: var(--c-green);
+    }
+
+    .feat-card__icon--blue {
+        background: var(--c-sky-lt);
+        color: var(--c-sky);
+    }
+
+    .feat-card__icon--pink {
+        background: var(--c-rose-lt);
+        color: var(--c-rose);
+    }
+
+    .feat-card h4 {
+        font-weight: 800;
+        margin-bottom: .35rem;
+        font-size: .95rem;
+    }
+
+    .feat-card p {
+        font-size: .84rem;
+        color: var(--c-muted);
+        line-height: 1.7;
+        font-weight: 500;
+    }
+
+    /* TESTIMONIALS */
+    .testimonials {
+        padding: 5rem 1.5rem;
+        background: var(--c-bg);
+    }
+
+    .testi__grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 1.5rem;
+    }
+
+    .testi-card {
+        background: var(--c-surface);
+        border-radius: var(--radius-lg);
+        padding: 1.75rem;
+        border: 1.5px solid var(--c-border);
+        transition: transform .3s var(--ease-bounce);
+        display: flex;
+        flex-direction: column;
+        gap: .75rem;
+    }
+
+        .testi-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-md);
+        }
+
+    .testi-card--accent {
+        background: var(--c-accent);
+        border-color: var(--c-accent);
+        color: #fff;
+    }
+
+        .testi-card--accent .testi-card__header span, .testi-card--accent p, .testi-card--accent .testi-card__tag {
+            color: rgba(255,255,255,.75);
+        }
+
+        .testi-card--accent .testi-card__stars {
+            color: #FDE68A;
+        }
+
+        .testi-card--accent .testi-card__avatar {
+            background: rgba(255,255,255,.2);
+            color: #fff;
+        }
+
+        .testi-card--accent .testi-card__tag {
+            border-color: rgba(255,255,255,.2);
+        }
+
+    .testi-card__header {
+        display: flex;
+        align-items: center;
+        gap: .9rem;
+    }
+
+    .testi-card__avatar {
+        width: 42px;
+        height: 42px;
+        border-radius: 50%;
+        background: var(--c-accent-lt);
+        color: var(--c-accent);
+        font-weight: 800;
+        font-size: .9rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+    }
+
+    .testi-card__header strong {
+        font-weight: 800;
+        font-size: .9rem;
+        display: block;
+    }
+
+    .testi-card__header span {
+        font-size: .75rem;
+        color: var(--c-muted);
+        font-weight: 500;
+    }
+
+    .testi-card__stars {
+        margin-right: auto;
+        color: var(--c-amber);
+        font-size: .9rem;
+    }
+
+    .testi-card p {
+        font-size: .9rem;
+        color: var(--c-muted);
+        line-height: 1.8;
+        flex: 1;
+        font-weight: 500;
+    }
+
+    .testi-card__tag {
+        font-size: .75rem;
+        font-weight: 700;
+        color: var(--c-muted);
+        padding-top: .5rem;
+        border-top: 1px solid var(--c-border);
+    }
+
+    /* CTA BAND */
+    .cta-band {
+        padding: 5rem 1.5rem;
+        background: linear-gradient(135deg, #1D4ED8, #1e40af);
+        position: relative;
+        overflow: hidden;
+    }
+
+    .cta-band__bg {
+        position: absolute;
+        inset: 0;
+        pointer-events: none;
+    }
+
+    .cta-band__orb {
+        position: absolute;
+        border-radius: 50%;
+        filter: blur(80px);
+        opacity: .3;
+    }
+
+    .cta-band__orb--1 {
+        width: 400px;
+        height: 400px;
+        background: #3B82F6;
+        top: -200px;
+        right: -100px;
+    }
+
+    .cta-band__orb--2 {
+        width: 300px;
+        height: 300px;
+        background: #60A5FA;
+        bottom: -150px;
+        left: -100px;
+    }
+
+    .cta-band__inner {
+        position: relative;
+        z-index: 1;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 2rem;
+        flex-wrap: wrap;
+    }
+
+    .cta-band__text h2 {
+        font-size: clamp(2rem, 4vw, 2.8rem);
+        font-weight: 900;
+        color: #fff;
+        margin-bottom: .5rem;
+    }
+
+    .cta-band__text p {
+        color: rgba(255,255,255,.7);
+        font-size: 1rem;
+        max-width: 440px;
+        font-weight: 500;
+    }
+
+    /* RESPONSIVE */
+    @@media (max-width: 1024px) {
+        .sports__grid {
+            grid-template-columns: repeat(2,1fr);
+        }
+
+        .pitches__grid {
+            grid-template-columns: repeat(2,1fr);
+        }
+
+        .features__inner {
+            grid-template-columns: 1fr;
+        }
+
+        .features__text .section-h2, .features__text .section-sub {
+            text-align: center;
+            margin: 0 auto;
+        }
+
+        .features__text {
+            text-align: center;
+        }
+    }
+
+    @@media (max-width: 768px) {
+        .hero__inner {
+            grid-template-columns: 1fr;
+        }
+
+        .hero__visual {
+            display: none;
+        }
+
+        .stats-bar__divider {
+            display: none;
+        }
+
+        .stats-bar__inner {
+            gap: 1.5rem;
+        }
+
+        .how__steps {
+            flex-direction: column;
+        }
+
+        .how__connector {
+            display: none;
+        }
+
+        .testi__grid {
+            grid-template-columns: 1fr;
+        }
+
+        .cta-band__inner {
+            flex-direction: column;
+            text-align: center;
+        }
+
+        .section-head--row {
+            flex-direction: column;
+            align-items: flex-end;
+        }
+    }
+
+    @@media (max-width: 640px) {
+        .sports__grid {
+            grid-template-columns: 1fr;
+        }
+
+        .pitches__grid {
+            grid-template-columns: 1fr;
+        }
+
+        .features__cards {
+            grid-template-columns: 1fr;
+        }
+    }
+
+    /* REVEAL */
+    .reveal {
+        opacity: 0;
+        transform: translateY(28px);
+        transition: opacity .55s ease, transform .55s var(--ease-bounce);
+    }
+
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+</style>
+
+<script>
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach((e) => {
+            if (e.isIntersecting) {
+                setTimeout(() => { e.target.classList.add('visible'); }, (e.target.dataset.delay || 0) * 80);
+                observer.unobserve(e.target);
+            }
+        });
+    }, { threshold: 0.12 });
+
+    document.querySelectorAll('.sport-card, .pitch-card, .feat-card, .testi-card, .how__step, .stats-bar__item').forEach((el, i) => {
+        el.classList.add('reveal');
+        el.dataset.delay = i % 4;
+        observer.observe(el);
+    });
+</script>

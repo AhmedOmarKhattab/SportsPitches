@@ -1,0 +1,928 @@
+﻿@model Pitch
+@{
+    ViewData["Title"] = "تفاصيل الملعب";
+}
+
+@using OnlineShop.Helpers
+@using Microsoft.AspNetCore.Http
+@inject IHttpContextAccessor HttpContextAccessor;
+
+@{
+    var products = HttpContextAccessor.HttpContext?.Session.Get<List<Pitch>>("products");
+    var productInCart = products?.FirstOrDefault(e => e.Id == Model.Id);
+}
+
+<!-- ══ BREADCRUMB ══ -->
+<nav class="pd-crumb" dir="rtl">
+    <a asp-action="Index" asp-controller="Home"><i class="bi bi-house-fill"></i> الرئيسية</a>
+    <i class="bi bi-chevron-left crumb-sep"></i>
+    <a asp-action="ShowPitches" asp-controller="Home">الملاعب</a>
+    <i class="bi bi-chevron-left crumb-sep"></i>
+    <span class="crumb-current">@Model.Name</span>
+</nav>
+
+<!-- ══ MAIN PAGE ══ -->
+<div class="pd-page" dir="rtl">
+    <form asp-action="CreateOrder" method="get" enctype="multipart/form-data">
+        <input type="hidden" asp-for="Id" />
+        <input type="hidden" asp-for="PitchTypeId" />
+
+        <div class="pd-main">
+
+            <!-- ══ LEFT: VISUAL ══ -->
+            <div class="pd-visual">
+
+                <!-- Availability badge -->
+                <div class="pd-status-badges">
+                    @if (Model.IsAvailable)
+                    {
+                        <span class="pd-badge badge-available"><i class="bi bi-check-circle-fill"></i> متاح للحجز</span>
+                    }
+                    else
+                    {
+                        <span class="pd-badge badge-unavailable"><i class="bi bi-x-circle-fill"></i> غير متاح</span>
+                    }
+                    @if (Model.SpecialTag != null)
+                    {
+                        <span class="pd-badge badge-tag"><i class="bi bi-bookmark-star-fill"></i> @Model.SpecialTag.Name</span>
+                    }
+                </div>
+
+                <!-- Wishlist -->
+                <button type="button" class="pd-wish" title="أضف للمفضلة"
+                        onclick="this.classList.toggle('wished')">
+                    <i class="bi bi-heart-fill"></i>
+                </button>
+
+                <!-- Main image -->
+                <div class="pd-img-wrap">
+                    <div class="pd-img-overlay"></div>
+                    <img src="~/files/images/@Model.Image"
+                         alt="@Model.Name"
+                         class="pd-main-img"
+                         onerror="this.src='/files/images/noimage.png'" />
+                </div>
+
+                <!-- Thumbnail strip -->
+                <div class="pd-thumbs">
+                    <div class="pd-thumb active">
+                        <img src="~/files/images/@Model.Image" alt=""
+                             onerror="this.src='/files/images/noimage.png'" />
+                    </div>
+                    <div class="pd-thumb">
+                        <img src="~/files/images/@Model.Image" alt=""
+                             onerror="this.src='/files/images/noimage.png'"
+                             style="filter:brightness(0.85) saturate(1.2)" />
+                    </div>
+                    <div class="pd-thumb">
+                        <img src="~/files/images/@Model.Image" alt=""
+                             onerror="this.src='/files/images/noimage.png'"
+                             style="filter:brightness(1.1) saturate(0.6)" />
+                    </div>
+                </div>
+
+                <!-- Type tag -->
+                <div class="pd-visual-footer">
+                    <i class="bi bi-geo-alt-fill"></i>
+                    <span>@Model.Address</span>
+                </div>
+            </div>
+
+            <!-- ══ RIGHT: INFO ══ -->
+            <div class="pd-info">
+
+                <!-- Type pill -->
+                <div class="pd-type-pill">
+                    <i class="bi bi-grid-3x3-gap-fill"></i>
+                    @(Model.PitchType?.Name ?? "ملعب")
+                </div>
+
+                <!-- Name -->
+                <h1 class="pd-name">@Model.Name</h1>
+
+                <!-- Rating row -->
+                <div class="pd-stars">
+                    <i class="bi bi-star-fill star-icon"></i>
+                    <i class="bi bi-star-fill star-icon"></i>
+                    <i class="bi bi-star-fill star-icon"></i>
+                    <i class="bi bi-star-fill star-icon"></i>
+                    <i class="bi bi-star-half star-icon"></i>
+                    <span class="star-score">٤.٥</span>
+                    <div class="sep"></div>
+                    <span>١٢٨ تقييم</span>
+                    <div class="sep"></div>
+                    <span class="satisfaction"><i class="bi bi-check2-circle"></i> ٩٦٪ راضون</span>
+                </div>
+
+                <!-- Price block -->
+                <div class="pd-price-block">
+                    <div class="pd-price-left">
+                        <span class="price-label">سعر الحجز / ساعة</span>
+                        <div class="pd-price-main">
+                            <span class="price-currency">ج.م</span>@Model.Price.ToString("0.00")
+                        </div>
+                    </div>
+                    <div class="pd-availability-badge @(Model.IsAvailable ? "avail-open" : "avail-closed")">
+                        @if (Model.IsAvailable)
+                        {
+                            <i class="bi bi-circle-fill pulse-dot"></i>
+                            <span>مفتوح الآن</span>
+                        }
+                        else
+                        {
+                            <i class="bi bi-circle-fill"></i>
+                            <span>مغلق</span>
+                        }
+                    </div>
+                </div>
+
+                <!-- Description -->
+                @if (!string.IsNullOrEmpty(Model.Description))
+                {
+                    <div class="pd-desc">
+                        <i class="bi bi-info-circle pd-desc-icon"></i>
+                        @Model.Description
+                    </div>
+                }
+
+                <!-- Info rows -->
+                <div class="pd-info-rows">
+                    <div class="pd-info-row">
+                        <div class="pd-info-row-icon icon-blue"><i class="bi bi-tag-fill"></i></div>
+                        <div class="pd-info-row-body">
+                            <div class="pd-info-row-label">نوع الملعب</div>
+                            <div class="pd-info-row-val">@(Model.PitchType?.Name ?? "—")</div>
+                        </div>
+                    </div>
+                    <div class="pd-info-row">
+                        <div class="pd-info-row-icon icon-green"><i class="bi bi-geo-alt-fill"></i></div>
+                        <div class="pd-info-row-body">
+                            <div class="pd-info-row-label">العنوان / الموقع</div>
+                            <div class="pd-info-row-val">@(Model.Address ?? "—")</div>
+                        </div>
+                    </div>
+                    @if (Model.SpecialTag != null)
+                    {
+                        <div class="pd-info-row">
+                            <div class="pd-info-row-icon icon-amber"><i class="bi bi-bookmark-star-fill"></i></div>
+                            <div class="pd-info-row-body">
+                                <div class="pd-info-row-label">تصنيف مميز</div>
+                                <div class="pd-info-row-val">@Model.SpecialTag.Name</div>
+                            </div>
+                        </div>
+                    }
+                </div>
+
+                <!-- Login note -->
+                <div class="pd-login-note">
+                    <i class="bi bi-info-circle-fill"></i>
+                    يجب تسجيل الدخول أولاً قبل إضافة الملعب إلى قائمة حجوزاتك
+                </div>
+
+                <!-- CTA buttons -->
+                <div class="pd-cta">
+                    @if (productInCart != null)
+                    {
+                        <button type="submit" class="pd-btn pd-btn-remove"
+                                asp-action="Remove" asp-route-id="@Model.Id">
+                            <i class="bi bi-calendar-x-fill"></i> إلغاء الحجز
+                        </button>
+                    }
+                    else
+                    {
+                        <button type="submit" class="pd-btn pd-btn-add" @(!Model.IsAvailable ? "disabled" : "")>
+                            <i class="bi bi-calendar-check-fill"></i> احجز الآن
+                        </button>
+                    }
+                    <a asp-action="ShowPitches" asp-controller="Home" class="pd-btn pd-btn-back">
+                        <i class="bi bi-arrow-right"></i> رجوع
+                    </a>
+                </div>
+
+                <!-- Guarantees -->
+                <div class="pd-guarantees">
+                    <div class="pd-guarantee">
+                        <div class="guarantee-icon g-blue"><i class="bi bi-shield-check-fill"></i></div>
+                        <p class="guarantee-title">ملاعب معتمدة</p>
+                        <span class="guarantee-sub">100% مرخصة</span>
+                    </div>
+                    <div class="pd-guarantee">
+                        <div class="guarantee-icon g-green"><i class="bi bi-calendar-check-fill"></i></div>
+                        <p class="guarantee-title">حجز فوري</p>
+                        <span class="guarantee-sub">تأكيد لحظي</span>
+                    </div>
+                    <div class="pd-guarantee">
+                        <div class="guarantee-icon g-amber"><i class="bi bi-arrow-counterclockwise"></i></div>
+                        <p class="guarantee-title">إلغاء مجاني</p>
+                        <span class="guarantee-sub">قبل ٢٤ ساعة</span>
+                    </div>
+                    <div class="pd-guarantee">
+                        <div class="guarantee-icon g-rose"><i class="bi bi-headset"></i></div>
+                        <p class="guarantee-title">دعم ٢٤/٧</p>
+                        <span class="guarantee-sub">نحن دائماً هنا</span>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </form>
+</div>
+
+<style>
+    :root {
+        --c-bg: #F7F8FC;
+        --c-surface: #FFFFFF;
+        --c-text: #111827;
+        --c-muted: #6B7280;
+        --c-border: #E5E7EB;
+        --c-accent: #1D4ED8;
+        --c-accent-lt: #DBEAFE;
+        --c-accent-dk: #1e40af;
+        --c-green: #16A34A;
+        --c-green-lt: #DCFCE7;
+        --c-amber: #D97706;
+        --c-amber-lt: #FEF3C7;
+        --c-rose: #E11D48;
+        --c-rose-lt: #FFE4E6;
+        --bounce: cubic-bezier(0.34, 1.56, 0.64, 1);
+        --font-ar: 'Cairo', 'Tajawal', sans-serif;
+    }
+
+    /* ── BREADCRUMB ── */
+    .pd-crumb {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        padding: 1.5rem 2.5rem 0.75rem;
+        font-size: 0.85rem;
+        font-weight: 700;
+        flex-wrap: wrap;
+    }
+
+        .pd-crumb a {
+            color: var(--c-muted);
+            text-decoration: none;
+            transition: color 0.2s;
+            display: flex;
+            align-items: center;
+            gap: 0.3rem;
+        }
+
+            .pd-crumb a:hover {
+                color: var(--c-accent);
+            }
+
+    .crumb-sep {
+        color: var(--c-border);
+        font-size: 0.72rem;
+    }
+
+    .crumb-current {
+        color: var(--c-accent);
+        font-weight: 800;
+    }
+
+    /* ── PAGE WRAPPER ── */
+    .pd-page {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 2rem 5rem;
+    }
+
+    /* ── MAIN GRID ── */
+    .pd-main {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 2.5rem;
+        align-items: start;
+    }
+
+    /* ════════════════════
+           LEFT: VISUAL PANEL
+        ════════════════════ */
+    .pd-visual {
+        position: sticky;
+        top: 5rem;
+        background: var(--c-surface);
+        border-radius: 20px;
+        padding: 1.75rem;
+        border: 1px solid var(--c-border);
+        box-shadow: 0 4px 24px rgba(0,0,0,0.06);
+        display: flex;
+        flex-direction: column;
+        gap: 1.1rem;
+        animation: slideInLeft 0.5s var(--bounce) both;
+    }
+
+    @@keyframes slideInLeft {
+        from
+
+    {
+        opacity: 0;
+        transform: translateX(-24px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+
+    }
+
+    /* Status badges */
+    .pd-status-badges {
+        display: flex;
+        gap: 0.5rem;
+        flex-wrap: wrap;
+    }
+
+    .pd-badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.35rem;
+        padding: 0.35rem 0.9rem;
+        border-radius: 50px;
+        font-size: 0.78rem;
+        font-weight: 700;
+    }
+
+    .badge-available {
+        background: var(--c-green-lt);
+        color: var(--c-green);
+        border: 1px solid rgba(22,163,74,0.2);
+    }
+
+    .badge-unavailable {
+        background: var(--c-rose-lt);
+        color: var(--c-rose);
+        border: 1px solid rgba(225,29,72,0.2);
+    }
+
+    .badge-tag {
+        background: var(--c-amber-lt);
+        color: var(--c-amber);
+        border: 1px solid rgba(217,119,6,0.2);
+    }
+
+    /* Wishlist */
+    .pd-wish {
+        position: absolute;
+        top: 1.25rem;
+        left: 1.25rem;
+        width: 40px;
+        height: 40px;
+        background: var(--c-surface);
+        border: 1.5px solid var(--c-border);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        font-size: 1rem;
+        color: #d1d5db;
+        transition: all 0.25s var(--bounce);
+        box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+    }
+
+        .pd-wish:hover,
+        .pd-wish.wished {
+            color: var(--c-rose);
+            border-color: var(--c-rose);
+            transform: scale(1.2);
+            box-shadow: 0 4px 16px rgba(225,29,72,0.2);
+        }
+
+    /* Image */
+    .pd-img-wrap {
+        position: relative;
+        background: var(--c-bg);
+        border-radius: 14px;
+        overflow: hidden;
+        aspect-ratio: 4/3;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border: 1px solid var(--c-border);
+    }
+
+    .pd-img-overlay {
+        position: absolute;
+        inset: 0;
+        background: radial-gradient(ellipse at 60% 40%, rgba(29,78,216,0.06) 0%, transparent 70%);
+        pointer-events: none;
+    }
+
+    .pd-main-img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        position: relative;
+        z-index: 1;
+        transition: transform 0.4s ease;
+    }
+
+    .pd-img-wrap:hover .pd-main-img {
+        transform: scale(1.04);
+    }
+
+    /* Thumbnails */
+    .pd-thumbs {
+        display: flex;
+        gap: 0.65rem;
+    }
+
+    .pd-thumb {
+        flex: 1;
+        aspect-ratio: 1;
+        border-radius: 10px;
+        overflow: hidden;
+        border: 2px solid transparent;
+        cursor: pointer;
+        transition: border-color 0.2s, transform 0.2s var(--bounce);
+        background: var(--c-bg);
+    }
+
+        .pd-thumb img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .pd-thumb.active {
+            border-color: var(--c-accent);
+        }
+
+        .pd-thumb:hover {
+            border-color: var(--c-accent-lt);
+            transform: translateY(-2px);
+        }
+
+    /* Visual footer */
+    .pd-visual-footer {
+        display: flex;
+        align-items: center;
+        gap: 0.45rem;
+        font-size: 0.83rem;
+        font-weight: 700;
+        color: var(--c-muted);
+        padding: 0.65rem 0.85rem;
+        background: var(--c-bg);
+        border: 1px solid var(--c-border);
+        border-radius: 10px;
+    }
+
+        .pd-visual-footer i {
+            color: var(--c-accent);
+        }
+
+    /* ════════════════════
+           RIGHT: INFO PANEL
+        ════════════════════ */
+    .pd-info {
+        display: flex;
+        flex-direction: column;
+        gap: 1.35rem;
+        animation: slideInRight 0.5s var(--bounce) 0.1s both;
+    }
+
+    @@keyframes slideInRight {
+        from
+
+    {
+        opacity: 0;
+        transform: translateX(24px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+
+    }
+
+    /* Type pill */
+    .pd-type-pill {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.4rem;
+        background: var(--c-accent-lt);
+        color: var(--c-accent);
+        border: 1px solid rgba(29,78,216,0.2);
+        padding: 0.4rem 1rem;
+        border-radius: 50px;
+        font-size: 0.8rem;
+        font-weight: 800;
+        width: fit-content;
+    }
+
+    /* Name */
+    .pd-name {
+        font-size: clamp(1.7rem, 3vw, 2.4rem);
+        font-weight: 900;
+        line-height: 1.25;
+        color: var(--c-text);
+        font-family: var(--font-ar);
+    }
+
+    /* Stars */
+    .pd-stars {
+        display: flex;
+        align-items: center;
+        gap: 0.4rem;
+        flex-wrap: wrap;
+        font-size: 0.87rem;
+        font-weight: 600;
+        color: var(--c-muted);
+    }
+
+    .star-icon {
+        color: #F59E0B;
+        font-size: 0.95rem;
+    }
+
+    .star-score {
+        color: var(--c-text);
+        font-weight: 800;
+        margin-right: 0.1rem;
+    }
+
+    .satisfaction {
+        color: var(--c-green);
+        font-weight: 700;
+        display: flex;
+        align-items: center;
+        gap: 0.25rem;
+    }
+
+    .sep {
+        width: 4px;
+        height: 4px;
+        background: var(--c-border);
+        border-radius: 50%;
+    }
+
+    /* Price block */
+    .pd-price-block {
+        background: var(--c-surface);
+        border: 1.5px solid var(--c-border);
+        border-radius: 16px;
+        padding: 1.25rem 1.5rem;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 1rem;
+        flex-wrap: wrap;
+        box-shadow: 0 2px 12px rgba(0,0,0,0.04);
+    }
+
+    .pd-price-left {
+        display: flex;
+        flex-direction: column;
+        gap: 0.2rem;
+    }
+
+    .price-label {
+        font-size: 0.75rem;
+        font-weight: 700;
+        color: var(--c-muted);
+        text-transform: uppercase;
+        letter-spacing: 0.04em;
+    }
+
+    .pd-price-main {
+        font-size: 2.6rem;
+        font-weight: 900;
+        color: var(--c-accent);
+        line-height: 1;
+        display: flex;
+        align-items: flex-start;
+        gap: 0.3rem;
+        font-family: var(--font-ar);
+    }
+
+    .price-currency {
+        font-size: 0.95rem;
+        font-weight: 800;
+        margin-top: 0.45rem;
+        color: var(--c-accent);
+    }
+
+    /* Availability badge */
+    .pd-availability-badge {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        padding: 0.6rem 1.1rem;
+        border-radius: 50px;
+        font-size: 0.82rem;
+        font-weight: 800;
+    }
+
+    .avail-open {
+        background: var(--c-green-lt);
+        color: var(--c-green);
+        border: 1px solid rgba(22,163,74,0.2);
+    }
+
+    .avail-closed {
+        background: var(--c-rose-lt);
+        color: var(--c-rose);
+        border: 1px solid rgba(225,29,72,0.2);
+    }
+
+    .pulse-dot {
+        font-size: 0.55rem;
+        animation: pulse 1.8s ease infinite;
+    }
+
+    @@keyframes pulse {
+        0%, 100%
+
+    {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0.3;
+    }
+
+    }
+
+    /* Description */
+    .pd-desc {
+        background: var(--c-bg);
+        border: 1px solid var(--c-border);
+        border-right: 3px solid var(--c-accent);
+        border-radius: 0 12px 12px 0;
+        padding: 1rem 1.2rem;
+        font-size: 0.9rem;
+        color: var(--c-muted);
+        font-weight: 600;
+        line-height: 1.8;
+    }
+
+    .pd-desc-icon {
+        color: var(--c-accent);
+        margin-left: 0.3rem;
+    }
+
+    /* Info rows */
+    .pd-info-rows {
+        display: flex;
+        flex-direction: column;
+        gap: 0.65rem;
+    }
+
+    .pd-info-row {
+        display: flex;
+        align-items: center;
+        gap: 0.85rem;
+        background: var(--c-surface);
+        border: 1px solid var(--c-border);
+        border-radius: 14px;
+        padding: 0.85rem 1rem;
+        transition: border-color 0.2s, transform 0.2s;
+    }
+
+        .pd-info-row:hover {
+            border-color: var(--c-accent-lt);
+            transform: translateX(-3px);
+            box-shadow: 0 2px 10px rgba(29,78,216,0.07);
+        }
+
+    .pd-info-row-icon {
+        width: 40px;
+        height: 40px;
+        border-radius: 11px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1rem;
+        flex-shrink: 0;
+    }
+
+    .icon-blue {
+        background: var(--c-accent-lt);
+        color: var(--c-accent);
+    }
+
+    .icon-green {
+        background: var(--c-green-lt);
+        color: var(--c-green);
+    }
+
+    .icon-amber {
+        background: var(--c-amber-lt);
+        color: var(--c-amber);
+    }
+
+    .pd-info-row-label {
+        font-size: 0.73rem;
+        color: var(--c-muted);
+        font-weight: 700;
+    }
+
+    .pd-info-row-val {
+        font-size: 0.9rem;
+        font-weight: 800;
+        color: var(--c-text);
+        margin-top: 0.1rem;
+    }
+
+    /* Login note */
+    .pd-login-note {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        background: var(--c-accent-lt);
+        border: 1px solid rgba(29,78,216,0.15);
+        border-radius: 12px;
+        padding: 0.75rem 1rem;
+        font-size: 0.82rem;
+        font-weight: 700;
+        color: var(--c-accent-dk);
+    }
+
+    /* CTA buttons */
+    .pd-cta {
+        display: flex;
+        gap: 0.85rem;
+        flex-wrap: wrap;
+    }
+
+    .pd-btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.5rem;
+        padding: 0.9rem 1.75rem;
+        border-radius: 12px;
+        font-family: var(--font-ar);
+        font-weight: 800;
+        font-size: 0.97rem;
+        cursor: pointer;
+        text-decoration: none;
+        border: none;
+        transition: transform 0.25s var(--bounce), box-shadow 0.2s, background 0.2s;
+        white-space: nowrap;
+    }
+
+        .pd-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            transform: none !important;
+        }
+
+    .pd-btn-add {
+        background: linear-gradient(135deg, var(--c-accent), var(--c-accent-dk));
+        color: white;
+        box-shadow: 0 6px 20px rgba(29,78,216,0.28);
+        flex: 1;
+    }
+
+        .pd-btn-add:hover:not(:disabled) {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 28px rgba(29,78,216,0.38);
+            color: white;
+        }
+
+    .pd-btn-remove {
+        background: linear-gradient(135deg, #ef4444, #dc2626);
+        color: white;
+        box-shadow: 0 5px 18px rgba(239,68,68,0.3);
+        flex: 1;
+    }
+
+        .pd-btn-remove:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 26px rgba(239,68,68,0.4);
+            color: white;
+        }
+
+    .pd-btn-back {
+        background: var(--c-surface);
+        color: var(--c-accent);
+        border: 1.5px solid var(--c-accent);
+    }
+
+        .pd-btn-back:hover {
+            background: var(--c-accent-lt);
+            transform: translateY(-3px);
+            color: var(--c-accent);
+        }
+
+    /* Guarantees */
+    .pd-guarantees {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 0.65rem;
+    }
+
+    .pd-guarantee {
+        background: var(--c-surface);
+        border: 1px solid var(--c-border);
+        border-radius: 14px;
+        padding: 1rem 0.75rem;
+        text-align: center;
+        transition: transform 0.25s var(--bounce), border-color 0.2s, box-shadow 0.2s;
+        cursor: default;
+    }
+
+        .pd-guarantee:hover {
+            transform: translateY(-4px);
+            border-color: var(--c-accent-lt);
+            box-shadow: 0 6px 20px rgba(29,78,216,0.08);
+        }
+
+    .guarantee-icon {
+        width: 42px;
+        height: 42px;
+        border-radius: 12px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.1rem;
+        margin: 0 auto 0.6rem;
+    }
+
+    .g-blue {
+        background: var(--c-accent-lt);
+        color: var(--c-accent);
+    }
+
+    .g-green {
+        background: var(--c-green-lt);
+        color: var(--c-green);
+    }
+
+    .g-amber {
+        background: var(--c-amber-lt);
+        color: var(--c-amber);
+    }
+
+    .g-rose {
+        background: var(--c-rose-lt);
+        color: var(--c-rose);
+    }
+
+    .guarantee-title {
+        font-weight: 800;
+        font-size: 0.8rem;
+        color: var(--c-text);
+        margin-bottom: 0.2rem;
+    }
+
+    .guarantee-sub {
+        font-size: 0.72rem;
+        color: var(--c-muted);
+        font-weight: 600;
+    }
+
+    /* ── RESPONSIVE ── */
+    @@media (max-width: 900px) {
+        .pd-main {
+            grid-template-columns: 1fr;
+            gap: 1.75rem;
+        }
+
+        .pd-visual {
+            position: static;
+        }
+
+        .pd-guarantees {
+            grid-template-columns: repeat(2, 1fr);
+        }
+    }
+
+    @@media (max-width: 576px) {
+        .pd-page {
+            padding: 0 1rem 4rem;
+        }
+
+        .pd-crumb {
+            padding: 1rem 1rem 0.5rem;
+        }
+
+        .pd-name {
+            font-size: 1.7rem;
+        }
+
+        .pd-price-main {
+            font-size: 2rem;
+        }
+
+        .pd-cta {
+            flex-direction: column;
+        }
+
+        .pd-btn {
+            width: 100%;
+        }
+    }
+</style>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

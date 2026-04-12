@@ -1,0 +1,535 @@
+﻿<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - بيتش أرينا</title>
+
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/lib/bootstrap-icons/font/bootstrap-icons.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;800;900&family=Tajawal:wght@300;400;500;700;800&display=swap" rel="stylesheet">
+
+    <style>
+        *, *::before, *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        :root {
+            --c-bg: #F7F8FC;
+            --c-surface: #FFFFFF;
+            --c-text: #111827;
+            --c-muted: #6B7280;
+            --c-border: #E5E7EB;
+            --c-accent: #1D4ED8;
+            --c-accent-lt: #DBEAFE;
+            --c-accent-dk: #1e40af;
+            --c-green: #16A34A;
+            --c-amber: #D97706;
+            --c-rose: #E11D48;
+            --bounce: cubic-bezier(0.34, 1.56, 0.64, 1);
+            --font-ar: 'Cairo', 'Tajawal', sans-serif;
+            --nav-h: 68px;
+            --shadow-nav: 0 2px 20px rgba(0,0,0,.08);
+        }
+
+        html, body {
+            height: 100%;
+            font-family: var(--font-ar);
+            background: var(--c-bg);
+            color: var(--c-text);
+            direction: rtl;
+            line-height: 1.7;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        /* ══ NAVBAR (identical to main layout) ══ */
+        .navbar {
+            position: fixed;
+            top: 0;
+            right: 0;
+            left: 0;
+            z-index: 1000;
+            height: var(--nav-h);
+            display: flex;
+            align-items: center;
+            background: rgba(255,255,255,.88);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border-bottom: 1px solid var(--c-border);
+            box-shadow: var(--shadow-nav);
+        }
+
+        .navbar__inner {
+            max-width: 1220px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+        }
+
+        .navbar__logo {
+            display: flex;
+            align-items: center;
+            gap: .55rem;
+            font-size: 1.35rem;
+            font-weight: 900;
+            color: var(--c-text);
+            flex-shrink: 0;
+            transition: transform .25s var(--bounce);
+        }
+
+            .navbar__logo:hover {
+                transform: scale(1.04);
+                color: var(--c-text);
+            }
+
+        .navbar__logo-icon {
+            width: 38px;
+            height: 38px;
+            background: linear-gradient(135deg, var(--c-accent), #3B82F6);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.1rem;
+            box-shadow: 0 4px 12px rgba(29,78,216,.35);
+            flex-shrink: 0;
+        }
+
+        .navbar__logo-text span {
+            color: var(--c-accent);
+        }
+
+        .navbar__spacer {
+            flex: 1;
+        }
+
+        .nav-back-btn {
+            display: flex;
+            align-items: center;
+            gap: .45rem;
+            padding: .5rem 1rem;
+            border-radius: 10px;
+            font-size: .85rem;
+            font-weight: 700;
+            color: var(--c-muted);
+            border: 1.5px solid var(--c-border);
+            transition: all .2s;
+        }
+
+            .nav-back-btn:hover {
+                color: var(--c-accent);
+                border-color: var(--c-accent);
+                background: var(--c-accent-lt);
+            }
+
+        /* ══ AUTH SHELL ══ */
+        .auth-shell {
+            min-height: 100vh;
+            display: grid;
+            grid-template-columns: 1fr 480px;
+            padding-top: var(--nav-h);
+        }
+
+        /* ══ LEFT PANEL ══ */
+        .auth-panel-left {
+            background: linear-gradient(145deg, var(--c-accent-dk) 0%, var(--c-accent) 100%);
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 3rem;
+        }
+
+            .auth-panel-left::before {
+                content: '';
+                position: absolute;
+                inset: 0;
+                background-image: radial-gradient(rgba(255,255,255,0.08) 1px, transparent 1px);
+                background-size: 32px 32px;
+                pointer-events: none;
+            }
+
+        .auth-blob {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(80px);
+            opacity: 0.25;
+            animation: blobDrift 8s ease-in-out infinite alternate;
+        }
+
+        .blob-1 {
+            width: 400px;
+            height: 400px;
+            background: var(--c-accent-lt);
+            top: -100px;
+            right: -100px;
+            animation-delay: 0s;
+        }
+
+        .blob-2 {
+            width: 300px;
+            height: 300px;
+            background: var(--c-rose);
+            bottom: -80px;
+            left: -80px;
+            animation-delay: -3s;
+        }
+
+        .blob-3 {
+            width: 200px;
+            height: 200px;
+            background: var(--c-amber);
+            top: 50%;
+            left: 30%;
+            animation-delay: -5s;
+        }
+
+        @@keyframes blobDrift {
+            from {
+                transform: translate(0, 0) scale(1);
+            }
+
+            to {
+                transform: translate(30px, 20px) scale(1.08);
+            }
+        }
+
+        .auth-brand {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            color: white;
+        }
+
+        .auth-brand-logo {
+            width: 76px;
+            height: 76px;
+            background: rgba(255,255,255,0.15);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255,255,255,0.2);
+            border-radius: 22px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.2rem;
+            margin: 0 auto 1.5rem;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.15);
+        }
+
+        .auth-brand-name {
+            font-size: 2.4rem;
+            font-weight: 900;
+            margin-bottom: 0.5rem;
+            background: linear-gradient(135deg, #fff 0%, var(--c-accent-lt) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+            .auth-brand-name span {
+                background: linear-gradient(135deg, #fff 0%, var(--c-accent-lt) 100%);
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent;
+                font-weight: 900;
+            }
+
+        .auth-brand-tagline {
+            font-size: 0.93rem;
+            color: rgba(255,255,255,0.75);
+            font-weight: 400;
+            max-width: 300px;
+            line-height: 1.8;
+            margin: 0 auto 2.5rem;
+        }
+
+        .auth-features {
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+            width: 100%;
+            max-width: 320px;
+        }
+
+        .auth-feature {
+            display: flex;
+            align-items: center;
+            gap: 0.85rem;
+            padding: 0.85rem 1.25rem;
+            background: rgba(255,255,255,0.1);
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(255,255,255,0.12);
+            border-radius: 14px;
+            color: white;
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
+
+        .auth-feature-icon {
+            width: 36px;
+            height: 36px;
+            background: rgba(255,255,255,0.2);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--c-accent-lt);
+            font-size: 1rem;
+            flex-shrink: 0;
+        }
+
+        /* ══ RIGHT PANEL ══ */
+        .auth-panel-right {
+            background: var(--c-surface);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 3rem 2.5rem;
+            border-right: 1px solid var(--c-border);
+            overflow-y: auto;
+        }
+
+        .auth-form-wrap {
+            width: 100%;
+            max-width: 380px;
+            animation: slideUp 0.45s ease both;
+        }
+
+        @@keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* ══ FORM ELEMENTS (shared across Login / Register) ══ */
+        .auth-form-title {
+            font-size: 1.75rem;
+            font-weight: 900;
+            color: var(--c-text);
+            margin-bottom: 0.4rem;
+        }
+
+        .auth-form-sub {
+            font-size: 0.875rem;
+            color: var(--c-muted);
+            margin-bottom: 2rem;
+            line-height: 1.75;
+        }
+
+        .auth-field {
+            margin-bottom: 1.1rem;
+        }
+
+            .auth-field label {
+                display: block;
+                font-size: 0.8rem;
+                font-weight: 700;
+                color: var(--c-text);
+                margin-bottom: 0.45rem;
+            }
+
+        .auth-field-wrap {
+            position: relative;
+        }
+
+        .auth-field-icon {
+            position: absolute;
+            right: 1rem;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--c-muted);
+            font-size: 1rem;
+            pointer-events: none;
+            transition: color 0.2s;
+        }
+
+        .auth-input {
+            width: 100%;
+            padding: 0.85rem 2.75rem 0.85rem 1rem;
+            border: 1.5px solid var(--c-border);
+            border-radius: 12px;
+            font-family: var(--font-ar);
+            font-size: 0.92rem;
+            color: var(--c-text);
+            background: var(--c-bg);
+            outline: none;
+            transition: all 0.2s ease;
+            direction: rtl;
+        }
+
+            .auth-input:focus {
+                border-color: var(--c-accent);
+                background: white;
+                box-shadow: 0 0 0 4px var(--c-accent-lt);
+            }
+
+                .auth-input:focus ~ .auth-field-icon {
+                    color: var(--c-accent);
+                }
+
+        .auth-error {
+            font-size: 0.75rem;
+            color: var(--c-rose);
+            margin-top: 0.35rem;
+            font-weight: 600;
+        }
+
+        .auth-remember {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 1.5rem;
+            font-size: 0.83rem;
+            color: var(--c-muted);
+        }
+
+            .auth-remember input[type="checkbox"] {
+                width: 16px;
+                height: 16px;
+                accent-color: var(--c-accent);
+                cursor: pointer;
+            }
+
+        .auth-submit {
+            width: 100%;
+            padding: 0.95rem;
+            background: linear-gradient(135deg, var(--c-accent), var(--c-accent-dk));
+            color: white;
+            border: none;
+            border-radius: 12px;
+            font-family: var(--font-ar);
+            font-size: 1rem;
+            font-weight: 800;
+            cursor: pointer;
+            transition: transform 0.25s var(--bounce), box-shadow 0.25s;
+            box-shadow: 0 6px 20px rgba(29, 78, 216, 0.25);
+            margin-bottom: 1.25rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+        }
+
+            .auth-submit:hover {
+                transform: translateY(-3px);
+                box-shadow: 0 10px 25px rgba(29, 78, 216, 0.38);
+            }
+
+        .auth-link-row {
+            text-align: center;
+            font-size: 0.85rem;
+            color: var(--c-muted);
+        }
+
+            .auth-link-row a {
+                color: var(--c-accent);
+                font-weight: 700;
+            }
+
+                .auth-link-row a:hover {
+                    text-decoration: underline;
+                }
+
+        /* ══ RESPONSIVE ══ */
+        @@media (max-width: 768px) {
+            .auth-shell {
+                grid-template-columns: 1fr;
+            }
+
+            .auth-panel-left {
+                display: none;
+            }
+
+            .auth-panel-right {
+                padding: 2.5rem 1.5rem;
+                min-height: calc(100vh - var(--nav-h));
+                justify-content: flex-start;
+                padding-top: 3rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ════════ NAVBAR (matches main layout) -->
+    <header>
+        <nav class="navbar">
+            <div class="navbar__inner">
+                <a asp-controller="Home" asp-action="Index" class="navbar__logo">
+                    <div class="navbar__logo-icon">⚽</div>
+                    <span class="navbar__logo-text">بيتش <span>أرينا</span></span>
+                </a>
+                <div class="navbar__spacer"></div>
+                <a asp-controller="Home" asp-action="Index" class="nav-back-btn">
+                    <i class="bi bi-arrow-right"></i>
+                    <span>الرئيسية</span>
+                </a>
+            </div>
+        </nav>
+    </header>
+
+    <!-- ════════ AUTH SHELL -->
+    <div class="auth-shell">
+
+        <!-- Left decorative panel -->
+        <div class="auth-panel-left">
+            <div class="auth-blob blob-1"></div>
+            <div class="auth-blob blob-2"></div>
+            <div class="auth-blob blob-3"></div>
+            <div class="auth-brand">
+                <div class="auth-brand-logo">⚽</div>
+                <div class="auth-brand-name">بيتش <span>أرينا</span></div>
+                <p class="auth-brand-tagline">منصتك الأولى لحجز الملاعب الرياضية — كرة قدم، كرة سلة، تنس، بادل والمزيد</p>
+                <div class="auth-features">
+                    <div class="auth-feature">
+                        <div class="auth-feature-icon"><i class="bi bi-shield-check"></i></div>
+                        <span>ملاعب معتمدة ومرخصة</span>
+                    </div>
+                    <div class="auth-feature">
+                        <div class="auth-feature-icon"><i class="bi bi-calendar-check"></i></div>
+                        <span>حجز فوري وتأكيد لحظي</span>
+                    </div>
+                    <div class="auth-feature">
+                        <div class="auth-feature-icon"><i class="bi bi-arrow-counterclockwise"></i></div>
+                        <span>إلغاء مجاني قبل 24 ساعة</span>
+                    </div>
+                    <div class="auth-feature">
+                        <div class="auth-feature-icon"><i class="bi bi-geo-alt-fill"></i></div>
+                        <span>ملاعب في كل المناطق</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Right form panel -->
+        <div class="auth-panel-right">
+            <div class="auth-form-wrap">
+                @RenderBody()
+            </div>
+        </div>
+
+    </div>
+
+    <script src="~/lib/jquery/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    @await RenderSectionAsync("ValidationSection", required: false)
+</body>
+</html>

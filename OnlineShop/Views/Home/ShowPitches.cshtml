@@ -1,0 +1,859 @@
+﻿@model List<Pitch>
+@{
+    ViewData["Title"] = "الملاعب";
+    var types        = ViewBag.Types       as List<PitchType> ?? new List<PitchType>();
+    var tags = ViewBag.Tags as List<SpecialTag> ?? new List<SpecialTag>();
+
+    var currentName  = ViewBag.name        as string ?? "";
+    var currentType  = ViewBag.currentType as int?;
+    var currentTag = ViewBag.currentTag as int?;
+
+    var currentPage  = (int)(ViewBag.pageNumber ?? 1);
+}
+
+<!-- ═══════════════════════ PAGE HEADER -->
+<div class="sp-header">
+    <div class="sp-header__bg">
+        <div class="sp-blob sp-blob--a"></div>
+        <div class="sp-blob sp-blob--b"></div>
+        <div class="sp-blob sp-blob--c"></div>
+    </div>
+    <div class="sp-header__inner">
+        <div class="sp-header__title-group">
+            <div class="sp-header__icon">⚽</div>
+            <div>
+                <h1 class="sp-header__title">تصفّح الملاعب</h1>
+                <p class="sp-header__sub">اختر ملعبك واحجز وقتك المفضّل</p>
+            </div>
+        </div>
+        <div class="sp-header__right">
+            <div class="sp-result-count">
+                <i class="bi bi-geo-alt-fill"></i>
+                @Model.Count ملعب متاح
+            </div>
+            <form method="get" asp-action="ShowPitches">
+                <input type="hidden" name="pageNumber" value="1" />
+                @if (currentType.HasValue) { <input type="hidden" name="type" value="@currentType" /> }
+                <div class="sp-quick-search">
+                    <i class="bi bi-search sp-quick-search__icon"></i>
+                    <input type="text" name="name" value="@currentName" placeholder="ابحث عن ملعب..." />
+                    <button type="submit">بحث</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!-- ═══════════════════════ LAYOUT -->
+<div class="sp-layout">
+
+    <!-- ── SIDEBAR ── -->
+    <aside class="sp-sidebar">
+
+        <button class="sp-mobile-filter-btn" id="mobileFilterToggle" onclick="toggleMobileFilters()">
+            <i class="bi bi-funnel-fill"></i> تصفية الملاعب
+            <span class="sp-mobile-filter-arrow" id="filterArrow"><i class="bi bi-chevron-down"></i></span>
+        </button>
+
+        <div class="sp-sidebar__body" id="sidebarBody">
+
+            <!-- Filter form -->
+            <form method="get" asp-action="ShowPitches" id="filterForm">
+                <input type="hidden" name="pageNumber" value="1" />
+                <input type="hidden" name="name" value="@currentName" />
+
+                <div class="sp-filter-card">
+                    <div class="sp-filter-card__head">
+                        <span><i class="bi bi-sliders"></i> تصفية النتائج</span>
+                        <a href="@Url.Action("ShowPitches", new { pageNumber = 1 })" class="sp-filter-reset">
+                            <i class="bi bi-x-circle"></i> مسح
+                        </a>
+                    </div>
+                    <div class="sp-filter-card__body">
+
+                        <div class="sp-filter-label">
+                            <i class="bi bi-trophy-fill"></i> نوع الملعب
+                        </div>
+                        <select name="type" class="sp-select" onchange="this.form.submit()">
+                            @foreach (var t in types)
+                            {
+                                if (currentType == t.Id)
+                                {
+                                    <option value="@t.Id" selected>@t.Name</option>
+                                }
+                                else
+                                {
+                                    <option value="@t.Id">@t.Name</option>
+                                }
+                            }
+                        </select>
+
+                        <button type="submit" class="sp-apply-btn">
+                            <i class="bi bi-check2-circle"></i> بحث الآن
+                        </button>
+                    </div>
+                </div>
+            </form>
+
+            <!-- Active filters -->
+            @if (!string.IsNullOrEmpty(currentName) || currentType.HasValue)
+            {
+                <div class="sp-active-filters">
+                    <div class="sp-active-filters__label">الفلاتر النشطة</div>
+                    <div class="sp-active-filters__tags">
+                        @if (!string.IsNullOrEmpty(currentName))
+                        {
+                            <span class="sp-tag">
+                                <i class="bi bi-search"></i> @currentName
+                                <a href="@Url.Action("ShowPitches", new { type = currentType, pageNumber = 1 })">×</a>
+                            </span>
+                        }
+                        @if (currentType.HasValue)
+                        {
+                            var tName = types.FirstOrDefault(t => t.Id == currentType)?.Name;
+                            <span class="sp-tag">
+                                <i class="bi bi-tag"></i> @tName
+                                <a href="@Url.Action("ShowPitches", new { name = currentName, pageNumber = 1 })">×</a>
+                            </span>
+                        }
+                    </div>
+                </div>
+            }
+
+            <!-- Sport type chips -->
+            @if (tags.Any())
+            {
+                <div class="sp-filter-card">
+                    <div class="sp-filter-card__head">
+                        <span><i class="bi bi-lightning-fill"></i> التاجات</span>
+                    </div>
+                    <div class="sp-filter-card__body">
+                        <div class="sp-chips">
+                            <a href="@Url.Action("ShowPitches", new { name = currentName, pageNumber = 1 })"
+                               class="sp-chip @(!currentType.HasValue ? "sp-chip--active" : "")">
+                                🏟️ الكل
+                            </a>
+                            @foreach (var t in tags)
+                            {
+                                <a href="@Url.Action("ShowPitches", new { tag = t.Id, name = currentName, pageNumber = 1 })"
+                                   class="sp-chip @( currentTag== t.Id ? "sp-chip--active" : "")">
+                                    @t.Name
+                                </a>
+                            }
+                        </div>
+                    </div>
+                </div>
+            }
+
+            <!-- Info card -->
+            <div class="sp-info-card">
+                <div class="sp-info-card__icon">📞</div>
+                <div class="sp-info-card__text">
+                    <strong>تحتاج مساعدة؟</strong>
+                    <span>تواصل معنا لحجز مجموعات أو استفسارات خاصة</span>
+                </div>
+                <a asp-controller="Home" asp-action="Compailant" class="sp-info-card__btn">تواصل</a>
+            </div>
+
+        </div>
+    </aside>
+
+    <!-- ── CONTENT ── -->
+    <main class="sp-content">
+
+        <!-- Toolbar -->
+        <div class="sp-toolbar">
+            <div class="sp-toolbar__left">
+                عرض <strong>@Model.Count</strong> ملعب
+                @if (!string.IsNullOrEmpty(currentName))
+                {<span> لـ "<strong>@currentName</strong>"</span>}
+            </div>
+            <div class="sp-view-toggle">
+                <button class="sp-view-btn sp-view-btn--active" id="gridViewBtn"
+                        onclick="setView('grid')" title="عرض شبكي" aria-label="عرض شبكي">
+                    <i class="bi bi-grid-3x3-gap-fill"></i>
+                </button>
+                <button class="sp-view-btn" id="listViewBtn"
+                        onclick="setView('list')" title="عرض قائمة" aria-label="عرض قائمة">
+                    <i class="bi bi-list-ul"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Grid -->
+        <div class="sp-grid" id="productsGrid">
+            @if (!Model.Any())
+            {
+                <div class="sp-empty">
+                    <div class="sp-empty__icon">🔍</div>
+                    <h3>لا توجد ملاعب بهذه المعايير</h3>
+                    <p>جرّب تغيير الفلاتر أو البحث بكلمة مختلفة</p>
+                    <a href="@Url.Action("ShowPitches", new { pageNumber = 1 })" class="sp-btn-primary">
+                        عرض كل الملاعب
+                    </a>
+                </div>
+            }
+            else
+            {
+                @foreach (var pitch in Model)
+                {
+                    <div class="sp-card">
+                        <div class="sp-card__img-wrap">
+                            <img src="~/files/images/@pitch.Image"
+                                 alt="@pitch.Name"
+                                 class="sp-card__img"
+                                 loading="lazy"
+                                 onerror="this.src='/files/images/noimage.png'" />
+                            <div class="sp-card__img-overlay"></div>
+
+                            <!-- Availability badge -->
+                            <div class="sp-card__avail-badge @(pitch.IsAvailable ? "sp-card__avail-badge--green" : "sp-card__avail-badge--red")">
+                                <span class="sp-dot @(pitch.IsAvailable ? "sp-dot--green" : "sp-dot--red")"></span>
+                                @(pitch.IsAvailable ? "متاح" : "محجوز")
+                            </div>
+
+                            <!-- Type tag -->
+                            @if (pitch.PitchType != null)
+                            {
+                                <div class="sp-card__type-tag">@pitch.PitchType.Name</div>
+                            }
+                        </div>
+
+                        <div class="sp-card__body">
+                            <div class="sp-card__stars">★★★★★ <span>(4.8)</span></div>
+                            <h3 class="sp-card__name">@pitch.Name</h3>
+
+                            @if (!string.IsNullOrEmpty(pitch.Address))
+                            {
+                                <p class="sp-card__address">
+                                    <i class="bi bi-geo-alt"></i> @pitch.Address
+                                </p>
+                            }
+
+                            @if (!string.IsNullOrEmpty(pitch.Description))
+                            {
+                                <p class="sp-card__desc">@pitch.Description</p>
+                            }
+
+                            <div class="sp-card__footer">
+                                <div class="sp-card__price">
+                                    <strong>@pitch.Price.ToString("0.00") ج.م</strong>
+                                    <span>/ ساعة</span>
+                                </div>
+                                <a asp-action="Details"
+                                   asp-controller="Home"
+                                   asp-route-id="@pitch.Id"
+                                   class="sp-card__btn @(!pitch.IsAvailable ? "sp-card__btn--disabled" : "")">
+                                    @(pitch.IsAvailable ? "احجز الآن" : "غير متاح")
+                                    @if (pitch.IsAvailable) { <i class="bi bi-arrow-left-short"></i> }
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                }
+            }
+        </div>
+
+        <!-- Pagination -->
+        @if (Model.Any())
+        {
+            <div class="sp-pagination">
+                @if (currentPage > 1)
+                {
+                    <a href="@Url.Action("ShowPitches", new { name = currentName, type = currentType, pageNumber = currentPage - 1 })"
+                       class="sp-page-btn" aria-label="السابق">
+                        <i class="bi bi-chevron-right"></i>
+                    </a>
+                }
+                @for (int i = Math.Max(1, currentPage - 2); i <= currentPage + 2; i++)
+                {
+                    <a href="@Url.Action("ShowPitches", new { name = currentName, type = currentType, pageNumber = i })"
+                       class="sp-page-btn @(i == currentPage ? "sp-page-btn--active" : "")">@i</a>
+                }
+                @if (Model.Count == 12)
+                {
+                    <a href="@Url.Action("ShowPitches", new { name = currentName, type = currentType, pageNumber = currentPage + 1 })"
+                       class="sp-page-btn" aria-label="التالي">
+                        <i class="bi bi-chevron-left"></i>
+                    </a>
+                }
+            </div>
+        }
+
+    </main>
+</div>
+
+<!-- ═══════════════════════ STYLES -->
+<style>
+    :root {
+        --c-bg:        #F7F8FC;
+        --c-surface:   #FFFFFF;
+        --c-text:      #111827;
+        --c-muted:     #6B7280;
+        --c-border:    #E5E7EB;
+        --c-accent:    #1D4ED8;
+        --c-accent-lt: #DBEAFE;
+        --c-accent-dk: #1e40af;
+        --c-green:     #16A34A;
+        --c-green-lt:  #DCFCE7;
+        --c-rose:      #E11D48;
+        --c-rose-lt:   #FFE4E6;
+        --c-amber:     #D97706;
+        --c-amber-lt:  #FEF3C7;
+        --font-ar:     'Cairo', 'Tajawal', sans-serif;
+        --ease-bounce: cubic-bezier(.34,1.56,.64,1);
+        --radius-sm:   8px;
+        --radius-md:   16px;
+        --radius-lg:   24px;
+        --shadow-card: 0 4px 20px rgba(0,0,0,.07);
+        --shadow-hover: 0 16px 48px rgba(29,78,216,.12);
+    }
+
+    /* ── PAGE HEADER ── */
+    .sp-header {
+        position: relative;
+        overflow: hidden;
+        background: linear-gradient(135deg, #0F172A 0%, #1D2D50 50%, #0F2027 100%);
+        padding: 3rem 0 2.5rem;
+        margin-bottom: 2.5rem;
+    }
+    .sp-header__bg { position: absolute; inset: 0; pointer-events: none; }
+
+    .sp-blob {
+        position: absolute; border-radius: 50%;
+        filter: blur(80px); opacity: .3; pointer-events: none;
+    }
+    .sp-blob--a { width: 380px; height: 380px; background: var(--c-accent);    top: -150px; right: -80px; }
+    .sp-blob--b { width: 260px; height: 260px; background: #3B82F6;             bottom: -80px; left: 8%; opacity: .25; }
+    .sp-blob--c { width: 180px; height: 180px; background: var(--c-amber);      top: 30%; left: 45%; opacity: .15; }
+
+    .sp-header__inner {
+        max-width: 1220px; margin: 0 auto; padding: 0 1.5rem;
+        position: relative; z-index: 2;
+        display: flex; align-items: center;
+        justify-content: space-between;
+        flex-wrap: wrap; gap: 1.25rem;
+    }
+
+    .sp-header__title-group {
+        display: flex; align-items: center; gap: 1rem;
+    }
+    .sp-header__icon {
+        width: 56px; height: 56px;
+        background: rgba(255,255,255,.1);
+        border: 1.5px solid rgba(255,255,255,.18);
+        border-radius: 18px;
+        display: flex; align-items: center; justify-content: center;
+        font-size: 1.7rem;
+        backdrop-filter: blur(12px);
+        flex-shrink: 0;
+    }
+    .sp-header__title {
+        font-family: var(--font-ar);
+        font-size: clamp(1.5rem, 3vw, 2rem);
+        font-weight: 900;
+        color: #fff;
+        margin: 0 0 .2rem;
+    }
+    .sp-header__sub {
+        font-size: .85rem;
+        color: rgba(255,255,255,.55);
+        font-weight: 500;
+        margin: 0;
+    }
+
+    .sp-header__right {
+        display: flex; align-items: center; gap: .75rem; flex-wrap: wrap;
+    }
+    .sp-result-count {
+        background: rgba(255,255,255,.1);
+        border: 1.5px solid rgba(255,255,255,.15);
+        color: rgba(255,255,255,.9);
+        font-size: .83rem; font-weight: 700;
+        padding: .45rem 1.1rem;
+        border-radius: 999px;
+        display: flex; align-items: center; gap: .4rem;
+        backdrop-filter: blur(8px);
+    }
+    .sp-result-count i { color: #86EFAC; }
+
+    .sp-quick-search {
+        display: flex; align-items: center;
+        background: rgba(255,255,255,.1);
+        border: 1.5px solid rgba(255,255,255,.18);
+        border-radius: 999px;
+        padding: .35rem .35rem .35rem 1rem;
+        gap: .5rem;
+        backdrop-filter: blur(8px);
+        transition: border-color .2s, background .2s;
+    }
+    .sp-quick-search:focus-within { border-color: rgba(255,255,255,.45); background: rgba(255,255,255,.15); }
+    .sp-quick-search__icon { color: rgba(255,255,255,.45); font-size: .9rem; }
+    .sp-quick-search input {
+        background: none; border: none; outline: none;
+        color: #fff;
+        font-family: var(--font-ar);
+        font-size: .87rem; font-weight: 600;
+        width: 180px; text-align: right;
+    }
+    .sp-quick-search input::placeholder { color: rgba(255,255,255,.4); }
+    .sp-quick-search button {
+        padding: .5rem 1.1rem;
+        border-radius: 999px;
+        background: var(--c-accent);
+        border: none; color: white;
+        font-family: var(--font-ar);
+        font-size: .82rem; font-weight: 700;
+        cursor: pointer;
+        transition: background .2s, transform .2s var(--ease-bounce);
+        white-space: nowrap;
+    }
+    .sp-quick-search button:hover { background: var(--c-accent-dk); transform: scale(1.04); }
+
+    /* ── LAYOUT ── */
+    .sp-layout {
+        max-width: 1220px; margin: 0 auto;
+        padding: 0 1.5rem 5rem;
+        display: grid;
+        grid-template-columns: 260px 1fr;
+        gap: 2rem;
+        align-items: start;
+        direction: rtl;
+    }
+
+    /* ── SIDEBAR ── */
+    .sp-sidebar { position: sticky; top: 80px; display: flex; flex-direction: column; gap: 1rem; }
+
+    .sp-mobile-filter-btn {
+        display: none;
+        width: 100%;
+        padding: .85rem 1.25rem;
+        background: var(--c-surface);
+        color: var(--c-text);
+        border: 1.5px solid var(--c-border);
+        border-radius: var(--radius-md);
+        font-family: var(--font-ar);
+        font-size: .9rem; font-weight: 800;
+        align-items: center; gap: .5rem;
+        cursor: pointer;
+        box-shadow: var(--shadow-card);
+        transition: border-color .2s;
+    }
+    .sp-mobile-filter-btn:hover { border-color: var(--c-accent); }
+    .sp-mobile-filter-arrow { margin-right: auto; font-size: .8rem; transition: transform .25s; }
+    .sp-mobile-filter-arrow.open { transform: rotate(180deg); }
+
+    .sp-sidebar__body { display: flex; flex-direction: column; gap: 1rem; }
+
+    .sp-filter-card {
+        background: var(--c-surface);
+        border-radius: var(--radius-lg);
+        overflow: hidden;
+        box-shadow: var(--shadow-card);
+        border: 1.5px solid var(--c-border);
+    }
+    .sp-filter-card__head {
+        padding: .9rem 1.1rem;
+        background: linear-gradient(135deg, #0F172A, #1e3a5f);
+        display: flex; align-items: center; justify-content: space-between;
+        font-size: .85rem; font-weight: 800; color: #fff;
+        gap: .5rem;
+    }
+    .sp-filter-card__head i { opacity: .8; }
+    .sp-filter-reset {
+        font-size: .75rem;
+        color: rgba(255,255,255,.45);
+        font-weight: 700;
+        text-decoration: none;
+        display: flex; align-items: center; gap: .3rem;
+        transition: color .2s;
+    }
+    .sp-filter-reset:hover { color: #FDE68A; }
+    .sp-filter-card__body { padding: 1.1rem; }
+
+    .sp-filter-label {
+        font-size: .75rem; font-weight: 800;
+        color: var(--c-muted);
+        margin-bottom: .6rem;
+        display: flex; align-items: center; gap: .4rem;
+    }
+
+    .sp-select {
+        width: 100%;
+        padding: .7rem 1rem;
+        border: 1.5px solid var(--c-border);
+        border-radius: var(--radius-sm);
+        font-family: var(--font-ar);
+        font-size: .87rem; font-weight: 600;
+        color: var(--c-text);
+        background: var(--c-bg);
+        outline: none; cursor: pointer;
+        appearance: none; -webkit-appearance: none;
+        transition: border-color .2s, box-shadow .2s;
+    }
+    .sp-select:focus { border-color: var(--c-accent); box-shadow: 0 0 0 3px var(--c-accent-lt); }
+
+    .sp-apply-btn {
+        width: 100%; padding: .8rem;
+        background: var(--c-accent);
+        color: white; border: none; border-radius: var(--radius-sm);
+        font-family: var(--font-ar);
+        font-size: .9rem; font-weight: 800;
+        cursor: pointer;
+        transition: transform .25s var(--ease-bounce), box-shadow .2s, background .2s;
+        box-shadow: 0 4px 14px rgba(29,78,216,.3);
+        display: flex; align-items: center; justify-content: center; gap: .5rem;
+        margin-top: .9rem;
+    }
+    .sp-apply-btn:hover { background: var(--c-accent-dk); transform: translateY(-2px); box-shadow: 0 8px 22px rgba(29,78,216,.4); }
+
+    /* Active filters */
+    .sp-active-filters {
+        background: var(--c-surface); border-radius: var(--radius-md);
+        padding: .9rem 1.1rem;
+        border: 1.5px solid var(--c-accent-lt);
+        box-shadow: var(--shadow-card);
+    }
+    .sp-active-filters__label {
+        font-size: .72rem; font-weight: 800;
+        color: var(--c-accent);
+        text-transform: uppercase; letter-spacing: .06em;
+        margin-bottom: .6rem;
+    }
+    .sp-active-filters__tags { display: flex; flex-wrap: wrap; gap: .4rem; }
+
+    .sp-tag {
+        display: inline-flex; align-items: center; gap: .4rem;
+        padding: .28rem .75rem;
+        background: var(--c-accent-lt);
+        border: 1.5px solid rgba(29,78,216,.2);
+        border-radius: 999px;
+        font-size: .75rem; font-weight: 700;
+        color: var(--c-accent);
+    }
+    .sp-tag a { color: var(--c-accent); text-decoration: none; opacity: .6; transition: opacity .15s; }
+    .sp-tag a:hover { opacity: 1; }
+
+    /* Chips */
+    .sp-chips { display: flex; flex-wrap: wrap; gap: .4rem; }
+    .sp-chip {
+        padding: .35rem .85rem;
+        border-radius: 999px;
+        font-size: .78rem; font-weight: 700;
+        border: 1.5px solid var(--c-border);
+        background: var(--c-bg);
+        color: var(--c-muted);
+        transition: all .2s var(--ease-bounce);
+        text-decoration: none;
+        display: inline-block;
+    }
+    .sp-chip:hover, .sp-chip--active {
+        background: var(--c-accent-lt);
+        border-color: var(--c-accent);
+        color: var(--c-accent);
+        transform: translateY(-2px);
+    }
+
+    /* Info card */
+    .sp-info-card {
+        background: linear-gradient(135deg, #EFF6FF, #DBEAFE);
+        border: 1.5px solid rgba(29,78,216,.15);
+        border-radius: var(--radius-md);
+        padding: 1.1rem;
+        display: flex; flex-direction: column; align-items: center;
+        text-align: center; gap: .6rem;
+    }
+    .sp-info-card__icon { font-size: 1.8rem; }
+    .sp-info-card__text { font-size: .82rem; }
+    .sp-info-card__text strong { display: block; font-weight: 800; color: var(--c-text); margin-bottom: .2rem; }
+    .sp-info-card__text span { color: var(--c-muted); font-weight: 500; }
+    .sp-info-card__btn {
+        display: inline-block;
+        padding: .45rem 1.2rem;
+        background: var(--c-accent);
+        color: #fff;
+        border-radius: 999px;
+        font-size: .8rem; font-weight: 700;
+        text-decoration: none;
+        transition: background .2s, transform .2s var(--ease-bounce);
+    }
+    .sp-info-card__btn:hover { background: var(--c-accent-dk); color: #fff; transform: translateY(-2px); }
+
+    /* ── CONTENT ── */
+    .sp-content { min-width: 0; }
+
+    .sp-toolbar {
+        display: flex; align-items: center;
+        justify-content: space-between;
+        margin-bottom: 1.25rem;
+        flex-wrap: wrap; gap: .75rem;
+        background: var(--c-surface);
+        border-radius: var(--radius-md);
+        padding: .8rem 1.1rem;
+        border: 1.5px solid var(--c-border);
+        box-shadow: var(--shadow-card);
+    }
+    .sp-toolbar__left { font-size: .87rem; color: var(--c-muted); font-weight: 600; }
+    .sp-toolbar__left strong { color: var(--c-accent); }
+
+    .sp-view-toggle { display: flex; gap: .4rem; }
+    .sp-view-btn {
+        width: 36px; height: 36px;
+        border: 1.5px solid var(--c-border);
+        background: var(--c-bg);
+        border-radius: var(--radius-sm);
+        display: flex; align-items: center; justify-content: center;
+        color: var(--c-muted); cursor: pointer;
+        transition: all .2s var(--ease-bounce); font-size: .9rem;
+    }
+    .sp-view-btn--active, .sp-view-btn:hover {
+        border-color: var(--c-accent);
+        color: var(--c-accent);
+        background: var(--c-accent-lt);
+        transform: scale(1.08);
+    }
+
+    /* ── PRODUCT CARDS ── */
+    .sp-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 1.25rem;
+    }
+    .sp-grid.list-view { grid-template-columns: 1fr; }
+
+    .sp-card {
+        background: var(--c-surface);
+        border-radius: var(--radius-lg);
+        overflow: hidden;
+        border: 1.5px solid var(--c-border);
+        transition: transform .3s var(--ease-bounce), box-shadow .3s, border-color .2s;
+        display: flex; flex-direction: column;
+        box-shadow: var(--shadow-card);
+        animation: cardReveal .4s ease both;
+    }
+
+    .sp-card:nth-child(1)  { animation-delay: .03s; }
+    .sp-card:nth-child(2)  { animation-delay: .06s; }
+    .sp-card:nth-child(3)  { animation-delay: .09s; }
+    .sp-card:nth-child(4)  { animation-delay: .12s; }
+    .sp-card:nth-child(5)  { animation-delay: .15s; }
+    .sp-card:nth-child(6)  { animation-delay: .18s; }
+    .sp-card:nth-child(7)  { animation-delay: .21s; }
+    .sp-card:nth-child(8)  { animation-delay: .24s; }
+    .sp-card:nth-child(9)  { animation-delay: .27s; }
+    .sp-card:nth-child(10) { animation-delay: .30s; }
+    .sp-card:nth-child(11) { animation-delay: .33s; }
+    .sp-card:nth-child(12) { animation-delay: .36s; }
+
+    @@keyframes cardReveal {
+        from { opacity: 0; transform: translateY(20px); }
+        to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .sp-card:hover {
+        transform: translateY(-7px);
+        box-shadow: var(--shadow-hover);
+        border-color: var(--c-accent);
+    }
+
+    .sp-card__img-wrap {
+        position: relative;
+        height: 195px; overflow: hidden;
+        background: linear-gradient(135deg, #EFF6FF, #DBEAFE);
+    }
+    .sp-card__img {
+        width: 100%; height: 100%;
+        object-fit: cover;
+        transition: transform .5s ease;
+    }
+    .sp-card:hover .sp-card__img { transform: scale(1.06); }
+    .sp-card__img-overlay {
+        position: absolute; inset: 0;
+        background: linear-gradient(to top, rgba(0,0,0,.35) 0%, transparent 55%);
+    }
+
+    .sp-card__avail-badge {
+        position: absolute; top: .75rem; right: .75rem;
+        display: flex; align-items: center; gap: .35rem;
+        font-size: .7rem; font-weight: 800;
+        padding: .28rem .75rem;
+        border-radius: 999px;
+        backdrop-filter: blur(8px);
+    }
+    .sp-card__avail-badge--green { background: rgba(220,252,231,.9); color: var(--c-green); }
+    .sp-card__avail-badge--red   { background: rgba(255,228,230,.9); color: var(--c-rose); }
+
+    .sp-dot {
+        width: 6px; height: 6px; border-radius: 50%; flex-shrink: 0;
+        animation: pulseDot 2s ease-in-out infinite;
+    }
+    .sp-dot--green { background: var(--c-green); box-shadow: 0 0 0 3px var(--c-green-lt); }
+    .sp-dot--red   { background: var(--c-rose);  box-shadow: 0 0 0 3px var(--c-rose-lt); }
+
+    @@keyframes pulseDot {
+        0%, 100% { opacity: 1; }
+        50%       { opacity: .55; }
+    }
+
+    .sp-card__type-tag {
+        position: absolute; top: .75rem; left: .75rem;
+        background: rgba(255,255,255,.85);
+        color: var(--c-accent);
+        font-size: .7rem; font-weight: 800;
+        padding: .28rem .75rem;
+        border-radius: 999px;
+        backdrop-filter: blur(8px);
+    }
+
+    .sp-card__body {
+        padding: 1.1rem 1.15rem 1.2rem;
+        flex: 1; display: flex; flex-direction: column; gap: .35rem;
+    }
+    .sp-card__stars { font-size: .78rem; color: var(--c-amber); font-weight: 700; }
+    .sp-card__stars span { color: var(--c-muted); font-weight: 500; font-size: .75rem; }
+    .sp-card__name {
+        font-size: 1rem; font-weight: 800; color: var(--c-text);
+        line-height: 1.4; margin: 0;
+        overflow: hidden; text-overflow: ellipsis;
+        display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical;
+    }
+    .sp-card__address {
+        font-size: .78rem; color: var(--c-muted);
+        display: flex; align-items: center; gap: .3rem;
+        font-weight: 500; margin: 0;
+    }
+    .sp-card__desc {
+        font-size: .8rem; color: var(--c-muted); font-weight: 500;
+        line-height: 1.6; margin: 0;
+        overflow: hidden; text-overflow: ellipsis;
+        display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical;
+    }
+
+    .sp-card__footer {
+        display: flex; align-items: center; justify-content: space-between;
+        margin-top: auto; padding-top: .85rem;
+        border-top: 1px solid var(--c-border);
+    }
+    .sp-card__price strong { font-size: 1.3rem; font-weight: 900; color: var(--c-accent); }
+    .sp-card__price span   { font-size: .72rem; color: var(--c-muted); margin-right: .2rem; }
+
+    .sp-card__btn {
+        display: inline-flex; align-items: center; gap: .35rem;
+        padding: .55rem 1.05rem;
+        background: var(--c-accent);
+        color: #fff; border: none; border-radius: var(--radius-sm);
+        font-family: var(--font-ar);
+        font-size: .82rem; font-weight: 700;
+        text-decoration: none;
+        transition: all .2s var(--ease-bounce);
+        box-shadow: 0 3px 10px rgba(29,78,216,.25);
+    }
+    .sp-card__btn:hover { background: var(--c-accent-dk); color: #fff; transform: translateY(-2px); box-shadow: 0 7px 18px rgba(29,78,216,.35); }
+    .sp-card__btn--disabled {
+        background: var(--c-border);
+        color: var(--c-muted);
+        box-shadow: none;
+        cursor: not-allowed;
+        pointer-events: none;
+    }
+
+    /* List view */
+    .list-view .sp-card { flex-direction: row; }
+    .list-view .sp-card__img-wrap { width: 160px; min-width: 160px; height: 150px; flex-shrink: 0; }
+    .list-view .sp-card__name { -webkit-line-clamp: 1; }
+
+    /* Empty */
+    .sp-empty {
+        grid-column: 1 / -1;
+        text-align: center; padding: 5rem 2rem;
+        background: var(--c-surface);
+        border-radius: var(--radius-lg);
+        border: 2px dashed var(--c-border);
+    }
+    .sp-empty__icon { font-size: 4rem; margin-bottom: 1rem; display: block; }
+    .sp-empty h3 { font-size: 1.2rem; font-weight: 800; margin-bottom: .5rem; }
+    .sp-empty p  { font-size: .9rem; color: var(--c-muted); font-weight: 500; margin-bottom: 0; }
+    .sp-btn-primary {
+        display: inline-flex; align-items: center; gap: .4rem;
+        margin-top: 1.25rem;
+        padding: .75rem 1.5rem;
+        background: var(--c-accent); color: #fff;
+        border-radius: var(--radius-md); font-weight: 700;
+        font-family: var(--font-ar); text-decoration: none;
+        box-shadow: 0 4px 14px rgba(29,78,216,.3);
+        transition: background .2s, transform .2s var(--ease-bounce);
+    }
+    .sp-btn-primary:hover { background: var(--c-accent-dk); color: #fff; transform: translateY(-2px); }
+
+    /* Pagination */
+    .sp-pagination {
+        display: flex; justify-content: center;
+        gap: .4rem; margin-top: 2.5rem; flex-wrap: wrap;
+    }
+    .sp-page-btn {
+        min-width: 42px; height: 42px;
+        padding: 0 .9rem;
+        border-radius: var(--radius-sm);
+        border: 1.5px solid var(--c-border);
+        background: var(--c-surface);
+        color: var(--c-muted);
+        font-family: var(--font-ar);
+        font-size: .85rem; font-weight: 700;
+        display: flex; align-items: center; justify-content: center;
+        text-decoration: none;
+        transition: all .22s var(--ease-bounce);
+    }
+    .sp-page-btn:hover, .sp-page-btn--active {
+        background: var(--c-accent);
+        border-color: var(--c-accent);
+        color: #fff;
+        transform: translateY(-2px);
+        box-shadow: 0 6px 16px rgba(29,78,216,.3);
+    }
+
+    /* ── RESPONSIVE ── */
+    @@media (max-width: 1024px) {
+        .sp-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+    @@media (max-width: 860px) {
+        .sp-layout { grid-template-columns: 1fr; }
+        .sp-sidebar { position: static; top: auto; }
+        .sp-sidebar__body { display: none; }
+        .sp-sidebar__body.open { display: flex; }
+        .sp-mobile-filter-btn { display: flex !important; }
+    }
+    @@media (max-width: 600px) {
+        .sp-grid { grid-template-columns: 1fr 1fr; }
+        .sp-quick-search input { width: 120px; }
+        .sp-layout { padding: 0 1rem 3rem; }
+    }
+    @@media (max-width: 400px) {
+        .sp-grid { grid-template-columns: 1fr; }
+    }
+</style>
+
+<script>
+    /* Grid / List view toggle */
+    function setView(mode) {
+        const grid = document.getElementById('productsGrid');
+        const gBtn = document.getElementById('gridViewBtn');
+        const lBtn = document.getElementById('listViewBtn');
+        if (mode === 'list') {
+            grid.classList.add('list-view');
+            lBtn.classList.add('sp-view-btn--active');
+            gBtn.classList.remove('sp-view-btn--active');
+        } else {
+            grid.classList.remove('list-view');
+            gBtn.classList.add('sp-view-btn--active');
+            lBtn.classList.remove('sp-view-btn--active');
+        }
+    }
+
+    /* Mobile filter toggle */
+    function toggleMobileFilters() {
+        const body  = document.getElementById('sidebarBody');
+        const arrow = document.getElementById('filterArrow');
+        const isOpen = body.classList.toggle('open');
+        arrow.classList.toggle('open', isOpen);
+    }
+</script>
