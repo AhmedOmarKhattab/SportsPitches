@@ -14,7 +14,9 @@ namespace BrightMinds.Api.Extensions
         public static async Task<WebApplication> SeedAppData(this WebApplication application, ApplicationDbContext context)
         {
            
-
+            var o=await context.orders.ToListAsync();   
+           context.RemoveRange(o);
+            await context.SaveChangesAsync();
             // 1. Seed Special Tags
             if (!context.specialTags.Any())
             {

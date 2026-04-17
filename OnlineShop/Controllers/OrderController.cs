@@ -16,12 +16,10 @@ namespace OnlineShop.Controllers
     public class OrderController : Controller
     {
         private ApplicationDbContext _context;
-        private readonly IPaymentService _paymentService;
 
-        public OrderController(ApplicationDbContext context,IPaymentService paymentService)
+        public OrderController(ApplicationDbContext context)
         {
             this._context = context;
-            this._paymentService = paymentService;
         }
         public async Task<IActionResult> Index()
         {
@@ -42,7 +40,8 @@ namespace OnlineShop.Controllers
             var pitch = await _context.Pitches.FindAsync(order.PitchId);      
             order.OrderNo = GetOrderNo();
             order.Id = 0;
-            order.Status=OrderStatus.Pending;
+            order.Status = "تم التاكيد";
+
             order.UserName = User.Identity.Name;
             order.PitchName = pitch.Name;
            await _context.orders.AddAsync(order);
@@ -56,8 +55,14 @@ namespace OnlineShop.Controllers
         {
             return View("Pay");
         }
-
-
+        public async Task<IActionResult>ChangeStauts(int id)
+        {
+            var order=await _context.orders.FindAsync(id);
+            order.Status = "تم التاكيد";
+            await _context.SaveChangesAsync();
+            TempData["Success"] = "تم  بنجاح ✅";
+            return RedirectToAction("Index");
+        }
 
 
 

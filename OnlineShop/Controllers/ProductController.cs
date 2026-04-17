@@ -31,18 +31,17 @@ namespace OnlineShop.Controllers
         }
 
         [HttpPost]
-        public IActionResult Index(decimal? lowAmount, decimal? largeAmount)
+        public IActionResult Index(string name)
         {
-            var products = _db.Pitches.Include(e => e.PitchType)
+            var pitches = _db.Pitches.Include(e => e.PitchType)
+                .Include(e => e.PitchType)
                 .Include(e => e.SpecialTag)
-                .Where(e => e.Price >= lowAmount && e.Price <= largeAmount)
+
+                .Where(e => e.Name.ToLower()
+                .Contains(name.ToLower()))
                 .ToList();
-            if(lowAmount == null || largeAmount == null)
-            {
-                products = _db.Pitches.Include(e => e.PitchType)
-                    .Include(e => e.SpecialTag).ToList();
-            }
-            return View(products);
+
+                return View(pitches);
         }
         //Get Create method
         //[Authorize]

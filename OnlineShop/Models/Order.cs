@@ -20,7 +20,7 @@ namespace OnlineShop.Models
     public string Email { get; set; }
     [Required]
     public string Address { get; set; }= string.Empty;
-    public OrderStatus Status { set; get; } 
+    public string Status { set; get; } 
     public DateTime OrderDate { get; set; }=DateTime.Now;
     public string? PaymentSessionId { set; get; }
     public int PitchId { get; set; }

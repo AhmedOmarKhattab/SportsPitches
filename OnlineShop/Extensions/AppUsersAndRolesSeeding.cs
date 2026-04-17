@@ -28,15 +28,15 @@ namespace OnlineShop.Extensions
              
                 var user = new ApplicationUser()
                 {
-                    UserName = "ahmmmedomarkhtab",
-                    FirstName = "Ahmed",
-                    LastName = "Omar Khattab",
-                    Email = "ahmmmedomarkhtab@gmail.com",
-                    PhoneNumber = "01006370511"
+                    UserName = "project",
+                    FirstName = "Project",
+                    LastName = "pitch",
+                    Email = "project@gmail.com",
+                    PhoneNumber = "0123456789"
                 };
 
 
-                var result = await userManager.CreateAsync(user, "Password123!");
+                var result = await userManager.CreateAsync(user, "0123456789");
                 if (result.Succeeded)
                 {
                     await userManager.AddToRoleAsync(user, "Admin");

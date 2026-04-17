@@ -725,12 +725,7 @@
         <nav class="navbar" id="mainNavbar">
             <div class="navbar__inner">
 
-                <!-- Logo -->
-                <a asp-controller="Home" asp-action="Index" class="navbar__logo">
-                    <div class="navbar__logo-icon">⚽</div>
-                    <span class="navbar__logo-text">بيتش <span>أرينا</span></span>
-                </a>
-
+             
                 <!-- Mobile Toggle -->
                 <button class="navbar__mobile-toggle" type="button" id="mobileToggle" aria-label="القائمة">
                     <i class="bi bi-list" id="toggleIcon"></i>
@@ -741,30 +736,35 @@
 
                     <!-- Links -->
                     <ul class="navbar__links">
-                        <li>
-                            <a asp-controller="Home" asp-action="Index">
-                                <i class="bi bi-house-door"></i>
-                                <span>الرئيسية</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a asp-controller="Home" asp-action="ShowPitches">
-                                <i class="bi bi-grid-3x3-gap"></i>
-                                <span>الملاعب</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a asp-controller="Home" asp-action="WhoUs">
-                                <i class="bi bi-people"></i>
-                                <span>من نحن</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a asp-controller="Home" asp-action="Compailant">
-                                <i class="bi bi-chat-dots"></i>
-                                <span>اتصل بنا</span>
-                            </a>
-                        </li>
+                          @if (role.Count == 0)
+                        {
+                            <li>
+                                <a asp-controller="Home" asp-action="Index">
+                                    <i class="bi bi-house-door"></i>
+                                    <span>الرئيسية</span>
+                                </a>
+                            </li>
+
+                            <li>
+                                <a asp-controller="Home" asp-action="ShowPitches">
+                                    <i class="bi bi-grid-3x3-gap"></i>
+                                    <span>الملاعب</span>
+                                </a>
+                            </li>
+
+                            <li>
+                                <a asp-controller="Home" asp-action="WhoUs">
+                                    <i class="bi bi-people"></i>
+                                    <span>من نحن</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a asp-controller="Home" asp-action="Compailant">
+                                    <i class="bi bi-chat-dots"></i>
+                                    <span>اتصل بنا</span>
+                                </a>
+                            </li>
+                        }
 
                         @if (role.Count() > 0 && role[0] == "Admin")
                         {
@@ -799,13 +799,13 @@
                                             <span>الملاعب</span>
                                         </a>
                                     </li>
-                                    <div class="nav-drop__divider"></div>
                                     <li>
-                                        <a asp-controller="Brands" asp-action="Index">
-                                            <i class="bi bi-shield-check" style="color:#E11D48"></i>
-                                            <span>الإعدادات</span>
+                                        <a asp-controller="complaint" asp-action="Index">
+                                            <i class="bi bi-building" style="color:#1D4ED8"></i>
+                                            <span>الشكاوي</span>
                                         </a>
                                     </li>
+
                                 </ul>
                             </li>
                         }
@@ -814,15 +814,7 @@
                     <!-- Actions -->
                     <div class="navbar__actions">
 
-                        <!-- Cart -->
-                        <a asp-controller="Home" asp-action="Cart" class="nav-cart-btn" aria-label="الحجوزات">
-                            <i class="bi bi-calendar-check"></i>
-                            @if (count > 0)
-                            {
-                                <span class="nav-cart-badge">@count</span>
-                            }
-                        </a>
-
+                       
                         @if (User.Identity?.IsAuthenticated ?? false)
                         {
                             <!-- User dropdown -->
@@ -853,6 +845,11 @@
                                 <span>إنشاء حساب</span>
                             </a>
                         }
+                        <!-- Logo -->
+                        <a asp-controller="Home" asp-action="Index" class="navbar__logo">
+                            <div class="navbar__logo-icon">⚽</div>
+                            <span class="navbar__logo-text">بيتش <span>أرينا</span></span>
+                        </a>
 
                     </div>
                 </div><!-- end panel -->
@@ -862,7 +859,13 @@
 
     <!-- ════════════════════════════════ MAIN -->
     <main role="main">
-        @RenderBody()
+        @if (TempData["Success"] != null)
+        {
+            <div class="alert alert-success text-center">
+                @TempData["Success"]
+            </div>
+        }
+  @RenderBody()
     </main>
 
     <!-- ════════════════════════════════ FOOTER -->
