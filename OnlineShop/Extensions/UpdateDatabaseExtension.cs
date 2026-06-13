@@ -1,12 +1,12 @@
 ﻿
 using BrightMinds.Api.Extensions;
 using Microsoft.AspNetCore.Identity;
-using OnlineShop.Data;
-using OnlineShop.Models;
+using FiveStadium.Data;
+using FiveStadium.Models;
 using System.Runtime.CompilerServices;
 
 
-namespace OnlineShop.Extensions
+namespace FiveStadium.Extensions
 {
     public static class UpdateDatabaseExtension
     {

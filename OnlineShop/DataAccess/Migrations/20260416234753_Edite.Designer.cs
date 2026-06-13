@@ -5,11 +5,11 @@ using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using OnlineShop.Data;
+using FiveStadium.Data;
 
 #nullable disable
 
-namespace OnlineShop.DataAccess.Migrations
+namespace FiveStadium.DataAccess.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
     [Migration("20260416234753_Edite")]
@@ -158,7 +158,7 @@ namespace OnlineShop.DataAccess.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
-            modelBuilder.Entity("OnlineShop.Models.ApplicationUser", b =>
+            modelBuilder.Entity("FiveStadium.Models.ApplicationUser", b =>
                 {
                     b.Property<string>("Id")
                         .HasColumnType("nvarchar(450)");
@@ -234,7 +234,7 @@ namespace OnlineShop.DataAccess.Migrations
                     b.ToTable("AspNetUsers", (string)null);
                 });
 
-            modelBuilder.Entity("OnlineShop.Models.Complaint", b =>
+            modelBuilder.Entity("FiveStadium.Models.Complaint", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -271,7 +271,7 @@ namespace OnlineShop.DataAccess.Migrations
                     b.ToTable("complaints");
                 });
 
-            modelBuilder.Entity("OnlineShop.Models.Order", b =>
+            modelBuilder.Entity("FiveStadium.Models.Order", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -324,7 +324,7 @@ namespace OnlineShop.DataAccess.Migrations
                     b.ToTable("orders");
                 });
 
-            modelBuilder.Entity("OnlineShop.Models.Pitch", b =>
+            modelBuilder.Entity("FiveStadium.Models.Pitch", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -369,7 +369,7 @@ namespace OnlineShop.DataAccess.Migrations
                     b.ToTable("Pitches");
                 });
 
-            modelBuilder.Entity("OnlineShop.Models.PitchType", b =>
+            modelBuilder.Entity("FiveStadium.Models.PitchType", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -386,7 +386,7 @@ namespace OnlineShop.DataAccess.Migrations
                     b.ToTable("PitchTypes");
                 });
 
-            modelBuilder.Entity("OnlineShop.Models.SpecialTag", b =>
+            modelBuilder.Entity("FiveStadium.Models.SpecialTag", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -414,7 +414,7 @@ namespace OnlineShop.DataAccess.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<string>", b =>
                 {
-                    b.HasOne("OnlineShop.Models.ApplicationUser", null)
+                    b.HasOne("FiveStadium.Models.ApplicationUser", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -423,7 +423,7 @@ namespace OnlineShop.DataAccess.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<string>", b =>
                 {
-                    b.HasOne("OnlineShop.Models.ApplicationUser", null)
+                    b.HasOne("FiveStadium.Models.ApplicationUser", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -438,7 +438,7 @@ namespace OnlineShop.DataAccess.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("OnlineShop.Models.ApplicationUser", null)
+                    b.HasOne("FiveStadium.Models.ApplicationUser", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -447,22 +447,22 @@ namespace OnlineShop.DataAccess.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<string>", b =>
                 {
-                    b.HasOne("OnlineShop.Models.ApplicationUser", null)
+                    b.HasOne("FiveStadium.Models.ApplicationUser", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("OnlineShop.Models.Pitch", b =>
+            modelBuilder.Entity("FiveStadium.Models.Pitch", b =>
                 {
-                    b.HasOne("OnlineShop.Models.PitchType", "PitchType")
+                    b.HasOne("FiveStadium.Models.PitchType", "PitchType")
                         .WithMany()
                         .HasForeignKey("PitchTypeId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("OnlineShop.Models.SpecialTag", "SpecialTag")
+                    b.HasOne("FiveStadium.Models.SpecialTag", "SpecialTag")
                         .WithMany()
                         .HasForeignKey("SpecialTagId")
                         .OnDelete(DeleteBehavior.Cascade)

@@ -1,0 +1,228 @@
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.EntityFrameworkCore;
+using FiveStadium.Data;
+using FiveStadium.Helpers;
+using FiveStadium.Models;
+
+namespace FiveStadium.Controllers
+{
+    // Identity => should user make login ,
+    // before controller 
+    // before action 
+   // [Authorize(Roles ="Admin")]
+    public class PitchController : Controller
+    {
+
+        private   ApplicationDbContext _db;
+
+        // DI
+        public PitchController(ApplicationDbContext dbContext)
+        {
+            this._db = dbContext;
+        }
+        public IActionResult Index()
+        {
+            return View(_db.Pitches.Include(e => e.PitchType)
+                .Include(e => e.SpecialTag)
+
+                .ToList());
+        }
+
+        [HttpPost]
+        public IActionResult Index(string name)
+        {
+            var pitches = _db.Pitches.Include(e => e.PitchType)
+                .Include(e => e.PitchType)
+                .Include(e => e.SpecialTag)
+
+                .Where(e => e.Name.ToLower()
+                .Contains(name.ToLower()))
+                .ToList();
+
+                return View(pitches);
+        }
+        //Get Create method
+        //[Authorize]
+        public IActionResult Create()
+        {
+            ViewData["productTypeId"] = new SelectList(_db.Pitches.ToList(), "Id", "Name");
+            ViewData["TagId"] = new SelectList(_db.specialTags.ToList(), "Id", "Name");
+            //ViewData["Brands"] = new SelectList(_db.productBrands.ToList(), "Id", "Name");
+
+            return View();
+        }
+
+        //Post Create method
+        [HttpPost]
+        public async Task<IActionResult> Create(Pitch product, IFormFile image)
+        {
+            if (ModelState.IsValid)
+            {
+                var searchProduct = _db.Pitches
+                    .FirstOrDefault(e => e.Name == product.Name);
+                if(searchProduct != null)
+                {
+                    ViewBag.messege = "This product already exist";
+                    ViewData["productTypeId"] = new SelectList(_db.Pitches.ToList(), "Id", "Name");
+                    ViewData["TagId"] = new SelectList(_db.specialTags.ToList(), "Id", "Name");
+                   // ViewData["Brands"] = new SelectList(_db.productBrands.ToList(), "Id", "Name");
+
+                    return View(product);
+                }
+                    
+                
+                if (image != null)
+                {
+                    var fileName = DocumentSettings.UploadImage(image, "images");
+                    product.Image = fileName;
+                }
+
+                //if (image == null)
+                //{
+                //    product.Image = "Images/noimage.PNG";
+                //}
+
+                _db.Pitches.Add(product);
+                await _db.SaveChangesAsync();
+                TempData["save"] = "Product created successfully!";
+                return RedirectToAction(nameof(Index));
+            }
+            ViewData["productTypeId"] = new SelectList(_db.PitchTypes.ToList(), "Id", "Name");
+            ViewData["TagId"] = new SelectList(_db.specialTags.ToList(), "Id", "Name");
+           // ViewData["Brands"] = new SelectList(_db.productBrands.ToList(), "Id", "Name");
+
+            return View(product);
+        }
+
+        [HttpGet]
+        public IActionResult Edit(int? id)
+        {
+            if (id == null)
+                return NotFound();
+
+            // Fetch the product with the given id
+            var product = _db.Pitches
+                             .Include(c => c.PitchType)
+                             .Include(c => c.SpecialTag)
+
+                             .FirstOrDefault(c => c.Id == id);
+
+            if (product == null)
+                return NotFound();
+
+            // Populate the dropdown lists for ProductType and SpecialTag
+            ViewData["productTypeId"] = new SelectList(_db.PitchTypes.ToList(), "Id", "Name");
+            ViewData["TagId"] = new SelectList(_db.specialTags.ToList(), "Id", "Name");
+           // ViewData["Brands"] = new SelectList(_db.productBrands.ToList(), "Id", "Name");
+
+            // Pass the product to the view
+            return View(product);
+        }
+
+
+        //Post Create method
+        [HttpPost]
+        public async Task<IActionResult> Edit(Pitch product, IFormFile? image)
+        {
+            if (ModelState.IsValid)
+            {
+                if (image != null)
+                {
+                    var fileName = DocumentSettings.UploadImage(image, "images");
+                    product.Image = fileName;
+                }
+
+
+                _db.Pitches.Update(product);
+                await _db.SaveChangesAsync();
+                return RedirectToAction(nameof(Index));
+            }
+
+            // Populate the dropdown lists again if the model is invalid
+          //  ViewData["Brands"] = new SelectList(_db.productBrands.ToList(), "Id", "Name");
+
+            ViewData["productTypeId"] = new SelectList(_db.PitchTypes.ToList(), "Id", "Name");
+            ViewData["TagId"] = new SelectList(_db.specialTags.ToList(), "Id", "Name");
+            return View(product);
+        }
+
+        [HttpGet]
+        public IActionResult Details(int? id)
+        {
+            if(id== null)
+                return NotFound();
+
+            var product = _db.Pitches.Include(e => e.PitchType)
+
+                .Include(e => e.SpecialTag).FirstOrDefault(e => e.Id == id);
+
+            if(product == null)
+                return NotFound();
+            return View(product);
+        }
+
+        [HttpGet]
+        public IActionResult Delete(int? id)
+        {
+            if(id== null)
+                return NotFound();
+
+            var product = _db.Pitches.Include(e => e.SpecialTag)
+
+                .Include(e => e.PitchType).Where(e => e.Id == id)
+                .FirstOrDefault(e => e.Id == id);
+
+            if(product == null)
+                return NotFound();
+            return View(product);
+        }
+        [HttpPost]
+        [ActionName("Delete")]
+        public async Task<IActionResult> DeleteConfirm(int? id)
+        {
+            if (id == null)
+                return NotFound();
+
+            var product = _db.Pitches.FirstOrDefault(e => e.Id==id);
+            TempData["delete"] = "Product Deleted";
+            if (product == null)
+                return NotFound();
+            _db.Pitches.Remove(product);
+            await _db.SaveChangesAsync();
+            return RedirectToAction(nameof(Index));
+        }
+        [HttpGet]
+        public async Task<IEnumerable<PitchAppointment>>GetAppointments(int pitchId)
+        {
+            var appointments= await _db.Appointments
+            .Where(a => a.PitchId ==pitchId)
+            .ToListAsync();
+
+            return appointments;
+
+        }
+        [HttpDelete]
+        public async Task<bool> DeleteAppointemnt(int id)
+        {
+            var appointment=await _db.Appointments.FindAsync(id);
+            if(appointment == null) return false;
+
+            _db.Appointments.Remove(appointment);
+            await _db.SaveChangesAsync();
+            return true;
+        }
+        [HttpPost]
+        public async Task<bool>AddAppointment(PitchAppointment appointment)
+        {
+            _db.Appointments.Add(appointment);
+            await _db.SaveChangesAsync();
+            return true;
+
+        }
+
+
+    }
+}
+ 

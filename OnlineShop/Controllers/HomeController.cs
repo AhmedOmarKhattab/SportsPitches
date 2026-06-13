@@ -1,14 +1,14 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using OnlineShop.Data;
-using OnlineShop.Helpers;
-using OnlineShop.Models;
+using FiveStadium.Data;
+using FiveStadium.Helpers;
+using FiveStadium.Models;
 using Stripe.Events;
 using System.Diagnostics;
 using X.PagedList.Extensions;
 
-namespace OnlineShop.Controllers
+namespace FiveStadium.Controllers
 {
     public class HomeController : Controller
     {

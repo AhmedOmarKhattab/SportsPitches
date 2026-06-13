@@ -1,13 +1,13 @@
 using Microsoft.EntityFrameworkCore;
-using OnlineShop.Data;
+using FiveStadium.Data;
 using Microsoft.AspNetCore.Identity;
-using OnlineShop.Models;
+using FiveStadium.Models;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using System.Threading.Tasks;
-using OnlineShop.Extensions;
-using OnlineShop.Services;
+using FiveStadium.Extensions;
+using FiveStadium.Services;
 
-namespace OnlineShop
+namespace FiveStadium
 {
     public class Program
     {

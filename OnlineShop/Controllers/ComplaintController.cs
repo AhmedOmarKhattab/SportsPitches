@@ -1,10 +1,10 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using OnlineShop.Data;
-using OnlineShop.Models;
+using FiveStadium.Data;
+using FiveStadium.Models;
 using System.Threading.Tasks;
 
-namespace OnlineShop.Controllers
+namespace FiveStadium.Controllers
 {
     public class ComplaintController : Controller
     {

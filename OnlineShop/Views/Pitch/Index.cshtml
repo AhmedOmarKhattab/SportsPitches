@@ -1,0 +1,299 @@
+﻿@model IEnumerable<Pitch>
+@{
+    ViewData["Title"] = "المنتجات";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+
+}
+<br />
+<br />
+
+<div class="row">
+    <div class="col-6">
+        <h2 class="text-info">  قائمة الملاعب</h2>
+    </div>
+    <div class="col-6 text-right">
+        <a asp-action="Create" class="btn btn-info">
+            <i class="fa fa-plus"></i> إضافة ملعب جديد
+        </a>
+    </div>
+</div>
+
+<form method="post">
+    <div class="row">
+        <div class="col-3">
+            <input  class="form-control" name="name" placeholder="بحث بالاسم " />
+        </div>
+         <div class="col-3">
+            <input type="submit" value="بحث" class="btn btn-success" />
+        </div>
+        <div class="col-3"></div>
+    </div>
+</form>
+
+<br />
+
+<div>
+    <table class="table table-striped border" id="myTable">
+        <thead>
+            <tr class="table-info">
+                <th>
+                    الاسم
+                </th>
+                <th>
+                    السعر
+                </th>
+                <th>
+                    العنوان
+                </th>
+                 <th>
+                    متوفر
+                </th>
+                <th>
+                    نوع الملعب
+                </th>
+                <th>
+                    التصنيف 
+                </th>
+                <th>المواعيد</th>
+                <th> </th>
+                <th> </th>
+
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.Name</td>
+                    <td>@item.Price</td>
+                    <td>@item.Address</td>
+                    <td>@item.IsAvailable</td>
+                    <td>@item.PitchType.Name</td>
+                    <td>@item.SpecialTag.Name</td>
+                    <td>
+                        <button type="button" class="btn btn-warning btn-sm"
+                                onclick="openAppointments(@item.Id, '@item.Name')">
+                            <i class="fa fa-calendar"></i> المواعيد
+                        </button>
+                    </td>
+                    <td>
+                        <partial name="PartialView/CreateEditPartialView" model="@item.Id" />
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+<!-- Appointments Modal -->
+<div class="modal fade" id="appointmentsModal" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+
+            <div class="modal-header bg-info text-white">
+                <h5 class="modal-title">
+                    <i class="fa fa-calendar"></i>
+                    مواعيد ملعب: <span id="modalPitchName"></span>
+                </h5>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+
+            </div>
+
+            <div class="modal-body">
+
+                <!-- Add Form -->
+                <div class="card mb-3 border-info">
+                    <div class="card-header bg-light">
+                        <strong><i class="fa fa-plus text-info"></i> إضافة موعد جديد</strong>
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-3">
+                                <label>التاريخ</label>
+                                <input type="date" id="apt-date" class="form-control" />
+                            </div>
+                            <div class="col-md-3">
+                                <label>وقت البداية</label>
+                                <input type="time" id="apt-start" class="form-control" />
+                            </div>
+                            <div class="col-md-3">
+                                <label>وقت النهاية</label>
+                                <input type="time" id="apt-end" class="form-control" />
+                            </div>
+                            <div class="col-md-3 d-flex align-items-end">
+                                <button class="btn btn-info btn-block" onclick="addAppointment()">
+                                    <i class="fa fa-plus"></i> إضافة
+                                </button>
+                            </div>
+                        </div>
+                        <div id="add-error" class="text-danger mt-2" style="display:none;"></div>
+                    </div>
+                </div>
+
+                <!-- Appointments Table -->
+                <div id="appointments-loading" class="text-center py-3" style="display:none;">
+                    <i class="fa fa-spinner fa-spin fa-2x text-info"></i>
+                    <p class="mt-2 text-muted">جاري التحميل...</p>
+                </div>
+
+                <div id="appointments-empty" class="text-center py-4" style="display:none;">
+                    <i class="fa fa-calendar-times fa-3x text-muted"></i>
+                    <p class="mt-2 text-muted">لا توجد مواعيد لهذا الملعب</p>
+                </div>
+
+                <table class="table table-bordered table-hover" id="appointments-table" style="display:none;">
+                    <thead class="table-info">
+                        <tr>
+                            <th>التاريخ</th>
+                            <th>وقت البداية</th>
+                            <th>وقت النهاية</th>
+                            <th>متاح</th>
+                            <th>حذف</th>
+                        </tr>
+                    </thead>
+                    <tbody id="appointments-body"></tbody>
+                </table>
+
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">إغلاق</button>
+
+            </div>
+
+        </div>
+    </div>
+</div>
+@section scripts {
+    <script>
+        var currentPitchId = null;
+
+        function openAppointments(pitchId, pitchName) {
+            currentPitchId = pitchId;
+            document.getElementById('modalPitchName').textContent = pitchName;
+            document.getElementById('apt-date').value = '';
+            document.getElementById('apt-start').value = '';
+            document.getElementById('apt-end').value = '';
+            document.getElementById('add-error').style.display = 'none';
+            $('#appointmentsModal').modal('show');
+            loadAppointments();
+        }
+
+        function loadAppointments() {
+            var loading = document.getElementById('appointments-loading');
+            var table   = document.getElementById('appointments-table');
+            var empty   = document.getElementById('appointments-empty');
+            var tbody   = document.getElementById('appointments-body');
+
+            loading.style.display = 'block';
+            table.style.display   = 'none';
+            empty.style.display   = 'none';
+            tbody.innerHTML       = '';
+
+            fetch('/Pitch/GetAppointments?pitchId=' + currentPitchId)
+                .then(r => r.json())
+                .then(data => {
+                    loading.style.display = 'none';
+                    if (!data || data.length === 0) {
+                        empty.style.display = 'block';
+                        return;
+                    }
+                    table.style.display = 'table';
+                    data.forEach(function(apt) {
+                        var row = `
+                            <tr id="row-${apt.id}">
+                                <td>${formatDate(apt.date)}</td>
+                                <td>${formatTime(apt.startDate)}</td>
+                                <td>${formatTime(apt.endDate)}</td>
+                                <td>
+                                    ${apt.isAvailable
+                                        ? '<span class="badge badge-success">متاح</span>'
+                                        : '<span class="badge badge-danger">محجوز</span>'}
+                                </td>
+                                <td>
+                                    <button class="btn btn-danger btn-sm"
+                                            onclick="deleteAppointment(${apt.id})">
+                                        <i class="fa fa-trash"></i>
+                                    </button>
+                                </td>
+                            </tr>`;
+                        tbody.innerHTML += row;
+                    });
+                })
+                .catch(function() {
+                    loading.style.display = 'none';
+                    empty.style.display   = 'block';
+                });
+        }
+
+        function addAppointment() {
+            var date    = document.getElementById('apt-date').value;
+            var start   = document.getElementById('apt-start').value;
+            var end     = document.getElementById('apt-end').value;
+            var errDiv  = document.getElementById('add-error');
+
+            if (!date || !start || !end) {
+                errDiv.textContent     = 'يرجى تعبئة جميع الحقول';
+                errDiv.style.display   = 'block';
+                return;
+            }
+            if (start >= end) {
+                errDiv.textContent     = 'وقت البداية يجب أن يكون قبل وقت النهاية';
+                errDiv.style.display   = 'block';
+                return;
+            }
+            errDiv.style.display = 'none';
+
+            var payload = {
+                pitchId:     currentPitchId,
+                date:        date,
+                startDate:   start + ':00',
+                endDate:     end   + ':00',
+                isAvailable: true
+            };
+
+            fetch('/Pitch/AddAppointment', {
+                method:  'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body:    JSON.stringify(payload)
+            })
+            .then(r => r.json())
+            .then(function(success) {
+                if (success) {
+                    document.getElementById('apt-date').value  = '';
+                    document.getElementById('apt-start').value = '';
+                    document.getElementById('apt-end').value   = '';
+                    loadAppointments();
+                }
+            });
+        }
+
+        function deleteAppointment(id) {
+            if (!confirm('هل أنت متأكد من حذف هذا الموعد؟')) return;
+
+            fetch('/Pitch/DeleteAppointemnt?id=' + id, { method: 'DELETE' })
+                .then(r => r.json())
+                .then(function(success) {
+                    if (success) {
+                        var row = document.getElementById('row-' + id);
+                        if (row) row.remove();
+                        var tbody = document.getElementById('appointments-body');
+                        if (tbody.children.length === 0) {
+                            document.getElementById('appointments-table').style.display = 'none';
+                            document.getElementById('appointments-empty').style.display = 'block';
+                        }
+                    }
+                });
+        }
+
+        function formatDate(dateStr) {
+            if (!dateStr) return '';
+            var d = new Date(dateStr);
+            return d.toLocaleDateString('ar-EG');
+        }
+
+        function formatTime(timeStr) {
+            if (!timeStr) return '';
+            return timeStr.substring(0, 5);
+        }
+    </script>
+}

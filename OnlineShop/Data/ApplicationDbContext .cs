@@ -1,8 +1,8 @@
 ﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
-using OnlineShop.Models;
+using FiveStadium.Models;
 
-namespace OnlineShop.Data
+namespace FiveStadium.Data
 {
     public class ApplicationDbContext:IdentityDbContext<ApplicationUser>
     {
@@ -16,6 +16,7 @@ namespace OnlineShop.Data
         public DbSet<Order> orders { get; set; }
         public DbSet<ApplicationUser> applicationUsers { get; set; }
         public DbSet<Complaint> complaints { get; set; }
+        public DbSet<PitchAppointment> Appointments { get; set; }
          
 
     }

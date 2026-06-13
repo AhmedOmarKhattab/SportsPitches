@@ -1,5 +1,5 @@
 ﻿@model Order
-@using OnlineShop.Helpers
+@using FiveStadium.Helpers
 @using Microsoft.AspNetCore.Http
 @inject IHttpContextAccessor HttpContextAccessor;
 
@@ -96,7 +96,22 @@
                         </div>
                         <span asp-validation-for="Email" class="co-field-error"></span>
                     </div>
-
+                    <div class="co-field">
+                        <label class="co-label">موعد الحجز</label>
+                        <div class="co-input-wrap">
+                            <i class="bi bi-clock-fill co-input-icon"></i>
+                            <select asp-for="PitchAppointmentId" class="co-input co-select">
+                                <option value="">-- اختر الموعد المناسب --</option>
+                                @foreach (var apt in (IEnumerable<PitchAppointment>)ViewBag.Appointments)
+                                {
+                                    <option value="@apt.Id">
+                                        @apt.Date.ToString("dd/MM/yyyy") — @apt.StartDate.ToString(@"hh\:mm") إلى @apt.EndDate.ToString(@"hh\:mm")
+                                    </option>
+                                }
+                            </select>
+                        </div>
+                        <span asp-validation-for="PitchAppointmentId" class="co-field-error"></span>
+                    </div>
                 </div>
             </div>
         </div>
@@ -848,4 +863,18 @@
             margin: 0 1rem 1rem;
         }
     }
+
+    .co-select {
+        appearance: none;
+        -webkit-appearance: none;
+        padding-left: 2.75rem;
+        cursor: pointer;
+    }
+
+        .co-select option {
+            font-family: var(--font-ar);
+            font-weight: 600;
+            direction: rtl;
+        }
+
 </style>

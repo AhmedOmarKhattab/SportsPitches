@@ -2,7 +2,7 @@
 
 #nullable disable
 
-namespace OnlineShop.DataAccess.Migrations
+namespace FiveStadium.DataAccess.Migrations
 {
     /// <inheritdoc />
     public partial class edit : Migration

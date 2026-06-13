@@ -1,5 +1,5 @@
 ﻿@using System.Net.Http
-@using OnlineShop.Helpers
+@using FiveStadium.Helpers
 @using Microsoft.AspNetCore.Http
 @inject IHttpContextAccessor HttpContextAccessor;
 @inject UserManager<ApplicationUser> userManager;
@@ -736,8 +736,7 @@
 
                     <!-- Links -->
                     <ul class="navbar__links">
-                          @if (role.Count == 0)
-                        {
+                       
                             <li>
                                 <a asp-controller="Home" asp-action="Index">
                                     <i class="bi bi-house-door"></i>
@@ -764,52 +763,7 @@
                                     <span>اتصل بنا</span>
                                 </a>
                             </li>
-                        }
-
-                        @if (role.Count() > 0 && role[0] == "Admin")
-                        {
-                            <li class="nav-drop">
-                                <button class="nav-drop-toggle" onclick="toggleDrop(this)">
-                                    <i class="bi bi-gear-fill"></i>
-                                    <span>لوحة الإدارة</span>
-                                    <i class="bi bi-chevron-down nav-chevron"></i>
-                                </button>
-                                <ul class="nav-drop__menu">
-                                    <li>
-                                        <a asp-controller="ProductType" asp-action="Index">
-                                            <i class="bi bi-tags-fill" style="color:#3B82F6"></i>
-                                            <span>أنواع الملاعب</span>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a asp-controller="SpecialTag" asp-action="Index">
-                                            <i class="bi bi-bookmark-star-fill" style="color:#D97706"></i>
-                                            <span>التصنيفات المميزة</span>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a asp-controller="Order" asp-action="Index">
-                                            <i class="bi bi-receipt" style="color:#16A34A"></i>
-                                            <span>الحجوزات</span>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a asp-controller="Product" asp-action="Index">
-                                            <i class="bi bi-building" style="color:#1D4ED8"></i>
-                                            <span>الملاعب</span>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a asp-controller="complaint" asp-action="Index">
-                                            <i class="bi bi-building" style="color:#1D4ED8"></i>
-                                            <span>الشكاوي</span>
-                                        </a>
-                                    </li>
-
-                                </ul>
-                            </li>
-                        }
-                    </ul>
+                             </ul>
 
                     <!-- Actions -->
                     <div class="navbar__actions">
@@ -998,7 +952,7 @@
             if (link.getAttribute('href') === currentPath) link.classList.add('active');
         });
     </script>
-
+    @await RenderSectionAsync("ValidationSection", required: false)
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>

@@ -1,6 +1,6 @@
 ﻿using System.IO;
 
-namespace OnlineShop.Helpers
+namespace FiveStadium.Helpers
 {
     public static class DocumentSettings
     {

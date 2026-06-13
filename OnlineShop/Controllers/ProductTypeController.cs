@@ -1,8 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using OnlineShop.Data;
-using OnlineShop.Models;
+using FiveStadium.Data;
+using FiveStadium.Models;
 
-namespace OnlineShop.Controllers
+namespace FiveStadium.Controllers
 {
     public class ProductTypeController : Controller
     {

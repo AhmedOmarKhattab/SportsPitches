@@ -2,14 +2,14 @@
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using OnlineShop.Data;
-using OnlineShop.Dtos;
-using OnlineShop.Enums;
-using OnlineShop.Services;
+using FiveStadium.Data;
+using FiveStadium.Dtos;
+using FiveStadium.Enums;
+using FiveStadium.Services;
 using Stripe;
 using Stripe.Checkout;
 
-namespace OnlineShop.Controllers
+namespace FiveStadium.Controllers
 {
  
     public class PaymentController : Controller

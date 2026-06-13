@@ -1,10 +1,10 @@
 ﻿
 
 using Microsoft.AspNetCore.Identity;
-using OnlineShop.Models;
+using FiveStadium.Models;
 using System.Runtime.CompilerServices;
 
-namespace OnlineShop.Extensions
+namespace FiveStadium.Extensions
 {
     public static class AppUsersAndRolesSeeding
     {

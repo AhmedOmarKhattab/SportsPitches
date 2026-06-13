@@ -1,4 +1,4 @@
-﻿namespace OnlineShop.Models
+﻿namespace FiveStadium.Models
 {
     public class LoginModel
     {

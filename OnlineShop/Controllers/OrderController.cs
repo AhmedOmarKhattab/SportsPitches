@@ -4,15 +4,15 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using OnlineShop.Data;
-using OnlineShop.Enums;
-using OnlineShop.Helpers;
-using OnlineShop.Models;
-using OnlineShop.Services;
+using FiveStadium.Data;
+using FiveStadium.Enums;
+using FiveStadium.Helpers;
+using FiveStadium.Models;
+using FiveStadium.Services;
 
-namespace OnlineShop.Controllers
+namespace FiveStadium.Controllers
 {
-    [Authorize]
+   // [Authorize]
     public class OrderController : Controller
     {
         private ApplicationDbContext _context;
@@ -28,16 +28,22 @@ namespace OnlineShop.Controllers
         }
 
         [HttpGet]
-        public IActionResult Checkout(Pitch pitch)
+        public async Task<IActionResult> Checkout(Pitch pitch)
         {
-            ViewBag.Pitch = pitch;  
+            ViewBag.Pitch = pitch;
+            ViewBag.Appointments = await _context.Appointments
+            .Where(a => a.PitchId == pitch.Id && a.IsAvailable)
+            .ToListAsync();
             return View();
         }
 
         [HttpPost]
         public async Task<IActionResult> Checkout(Order  order)
         {
-            var pitch = await _context.Pitches.FindAsync(order.PitchId);      
+            var pitch = await _context.Pitches.FindAsync(order.PitchId);
+            var apoointemnt = await _context.Appointments.FindAsync(order.PitchAppointmentId);;
+            apoointemnt.IsAvailable = false;
+
             order.OrderNo = GetOrderNo();
             order.Id = 0;
             order.Status = "تم التاكيد";
@@ -55,10 +61,16 @@ namespace OnlineShop.Controllers
         {
             return View("Pay");
         }
-        public async Task<IActionResult>ChangeStauts(int id)
+        public async Task<IActionResult>ChangeStauts(int id,bool status)
         {
             var order=await _context.orders.FindAsync(id);
+            if(order==null)
+            return RedirectToAction("Index");
+
+            if (status)
             order.Status = "تم التاكيد";
+            else
+                order.Status = "ملغي";
             await _context.SaveChangesAsync();
             TempData["Success"] = "تم  بنجاح ✅";
             return RedirectToAction("Index");

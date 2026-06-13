@@ -4,11 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-using OnlineShop.Dtos;
-using OnlineShop.Enums;
-using OnlineShop.Models;
+using FiveStadium.Dtos;
+using FiveStadium.Enums;
+using FiveStadium.Models;
 
-namespace OnlineShop.Services
+namespace FiveStadium.Services
 {
      public  interface IPaymentService
     {

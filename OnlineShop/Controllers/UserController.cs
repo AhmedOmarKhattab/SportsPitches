@@ -1,8 +1,8 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using OnlineShop.Models;
+using FiveStadium.Models;
 
-namespace OnlineShop.Controllers
+namespace FiveStadium.Controllers
 {
     public class UserController : Controller
     {

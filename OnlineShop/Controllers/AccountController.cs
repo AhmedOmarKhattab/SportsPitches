@@ -1,9 +1,9 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using OnlineShop.Models;
+using FiveStadium.Models;
 
-namespace OnlineShop.Controllers
+namespace FiveStadium.Controllers
 {
     public class AccountController : Controller
     {

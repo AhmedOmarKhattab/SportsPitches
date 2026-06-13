@@ -3,9 +3,9 @@ using System.Text.Json;
 using System.Text.Json.Serialization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
-using OnlineShop.Data;
-using OnlineShop.Extensions;
-using OnlineShop.Models;
+using FiveStadium.Data;
+using FiveStadium.Extensions;
+using FiveStadium.Models;
 
 namespace BrightMinds.Api.Extensions
 {
@@ -217,6 +217,36 @@ PitchTypeId = typeIds[random.Next(typeIds.Count)],
                 context.AddRange(pitches);
                 await context.SaveChangesAsync();
             }
+            if (!context.Appointments.Any())
+            {
+                var pitchesIds = await context.Pitches.Select(c => c.Id).ToListAsync();
+                var appointmentsToCreate = new List<PitchAppointment>();
+
+                // Set the date for the appointments (e.g., Today)
+                DateOnly today = DateOnly.FromDateTime(DateTime.Today);
+
+                foreach (var pitchId in pitchesIds)
+                {
+                    // Example: Generating hourly slots from 16:00 (4 PM) to 22:00 (10 PM)
+                    for (int hour = 16; hour < 22; hour++)
+                    {
+                        appointmentsToCreate.Add(new PitchAppointment
+                        {
+                            Date = today,
+                            StartDate = new TimeSpan(hour, 0, 0),       // e.g., 16:00:00
+                            EndDate = new TimeSpan(hour + 1, 0, 0),    // e.g., 17:00:00
+                            IsAvailable = true,
+                            PitchId = pitchId
+                            // Pitch navigation property can be left null; EF handles it via PitchId
+                        });
+                    }
+                }
+
+                // Add all generated slots to the database in one optimized batch
+                await context.Appointments.AddRangeAsync(appointmentsToCreate);
+                await context.SaveChangesAsync();
+            }
+
 
             return application;
         }

@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Identity;
 
-namespace OnlineShop.Models
+namespace FiveStadium.Models
 {
     public class ApplicationUser:IdentityUser
     {

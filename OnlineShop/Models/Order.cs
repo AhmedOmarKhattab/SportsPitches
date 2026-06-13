@@ -1,8 +1,8 @@
 ﻿using System.ComponentModel.DataAnnotations;
-using OnlineShop.Enums;
+using FiveStadium.Enums;
 using Stripe.Climate;
 
-namespace OnlineShop.Models
+namespace FiveStadium.Models
 {
     public class Order
     {
@@ -25,6 +25,9 @@ namespace OnlineShop.Models
     public string? PaymentSessionId { set; get; }
     public int PitchId { get; set; }
     public string PitchName { get; set; } 
+    public int PitchAppointmentId { get; set; }
+    public PitchAppointment PitchAppointment { get; set; }
+
   //  public virtual List<OrderItem> Items { get; set; }
     }
 }

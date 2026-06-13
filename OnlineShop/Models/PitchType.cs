@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace OnlineShop.Models
+namespace FiveStadium.Models
 {
     public class PitchType
     {

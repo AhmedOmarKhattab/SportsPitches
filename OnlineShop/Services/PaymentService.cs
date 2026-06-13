@@ -1,7 +1,7 @@
 ﻿
-using OnlineShop.Data;
-using OnlineShop.Dtos;
-using OnlineShop.Models;
+using FiveStadium.Data;
+using FiveStadium.Dtos;
+using FiveStadium.Models;
 using Stripe.Checkout;
 using System;
 using System.Collections.Generic;
@@ -10,11 +10,11 @@ using System.Text;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using static System.Net.WebRequestMethods;
-using OnlineShop.Enums;
+using FiveStadium.Enums;
 using System.Security.Claims;
 using Microsoft.EntityFrameworkCore;
 
-namespace OnlineShop.Services
+namespace FiveStadium.Services
 {
     public class PaymentService : IPaymentService
     {
