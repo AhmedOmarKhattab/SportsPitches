@@ -46,7 +46,7 @@ namespace FiveStadium.Controllers
 
             order.OrderNo = GetOrderNo();
             order.Id = 0;
-            order.Status = "تم التاكيد";
+            order.Status = "قيد الانتظار";
 
             order.UserName = User.Identity.Name;
             order.PitchName = pitch.Name;

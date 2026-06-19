@@ -47,7 +47,7 @@ namespace FiveStadium.Controllers
         //[Authorize]
         public IActionResult Create()
         {
-            ViewData["productTypeId"] = new SelectList(_db.Pitches.ToList(), "Id", "Name");
+            ViewData["productTypeId"] = new SelectList(_db.PitchTypes.ToList(), "Id", "Name");
             ViewData["TagId"] = new SelectList(_db.specialTags.ToList(), "Id", "Name");
             //ViewData["Brands"] = new SelectList(_db.productBrands.ToList(), "Id", "Name");
 
@@ -214,7 +214,7 @@ namespace FiveStadium.Controllers
             return true;
         }
         [HttpPost]
-        public async Task<bool>AddAppointment(PitchAppointment appointment)
+        public async Task<bool>AddAppointment([FromBody]PitchAppointment appointment)
         {
             _db.Appointments.Add(appointment);
             await _db.SaveChangesAsync();

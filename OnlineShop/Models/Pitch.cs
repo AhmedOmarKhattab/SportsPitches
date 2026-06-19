@@ -33,7 +33,7 @@ namespace FiveStadium.Models
 
         [ForeignKey("SpecialTagId")]
         public virtual SpecialTag? SpecialTag { get; set; }
-        public ICollection<PitchAppointment> Appointments { get; set; }
+        public ICollection<PitchAppointment>? Appointments { get; set; }
      
 }
 }

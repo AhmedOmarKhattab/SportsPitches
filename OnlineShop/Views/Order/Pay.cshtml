@@ -88,9 +88,17 @@
                 </div>
             </div>
 
-            <button type="submit" class="btn-submit">اتمام الدفع</button>
+            <button type="submit" id="submitButton" class="btn-submit">اتمام الدفع</button>
         </form>
     </div>
+    <script>
+        let submitButton=document.getElementById("submitButton");
+        submitButton.addEventListener("click",()=>{
+            alert("تم الدفع بنداح")
+        })
+
+    </script>
+
 
 </body>
 </html>

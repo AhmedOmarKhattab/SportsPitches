@@ -15,7 +15,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("FiveStadium")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+4885a5f95176b74ee370357b0e5a513db7b0aaf9")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+2e214dae557a4e010843fa847c5908c536632196")]
 [assembly: System.Reflection.AssemblyProductAttribute("FiveStadium")]
 [assembly: System.Reflection.AssemblyTitleAttribute("FiveStadium")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
